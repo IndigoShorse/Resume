@@ -1,0 +1,80 @@
+
+.ui-stepper {
+    width: 100%;
+}
+
+.ui-stepper__header {
+    width: fit-content;
+    background-color: #F1F5F9;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    gap: 0;
+}
+
+.ui-stepper__header-highlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-radius: var(--button-radius);
+    border: 2px solid var(--primary-color);
+    background: rgba(146, 218, 240, 0.08);
+    transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 0;
+    pointer-events: none;
+    box-sizing: border-box;
+}
+
+.ui-stepper__tab {
+    position: relative;
+    z-index: 1;
+    flex: 0 0 auto;
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    cursor: default;
+    font-size: var(--font-size-default);
+    font-weight: 500;
+    color: var(--subtitle-color);
+    transition: color 0.3s ease, font-weight 0.3s ease;
+    user-select: none;
+}
+
+.ui-stepper__tab--clickable {
+    cursor: pointer;
+}
+
+.ui-stepper__tab--active {
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.ui-stepper__tab--completed {
+    color: var(--text-color);
+}
+
+.ui-stepper__viewport {
+    overflow: hidden;
+    width: 100%;
+}
+
+.ui-stepper__track {
+    display: flex;
+    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.ui-stepper__slide {
+    display: flex;
+    justify-content: center;
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
+
+.ui-stepper__buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+}

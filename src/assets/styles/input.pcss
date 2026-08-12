@@ -1,0 +1,159 @@
+@import 'animate.pcss';
+
+.ui-input {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    min-width: 350px;
+
+    font-size: var(--font-size-default);
+    font-weight: 400;
+}
+.ui-input--has-margin {
+    margin-top: 12px;
+}
+.ui-input--full-width {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.ui-input__label {
+    width: 100%;
+}
+.ui-input__label-bolder {
+    font-weight: 500;
+}
+
+.ui-input__control {
+    width: 100%;
+    min-height: 36px;
+    padding: 8px 12px;
+    box-sizing: border-box;
+
+    background: #FAFAFA;
+    border: 1px #E2E8F0 solid;
+    border-radius: 8px;
+}
+.ui-input__control:focus {
+    outline: 1px #E2E8F0 solid;
+    background: #FFF;
+}
+
+.ui-input__error {
+    color: #ef4444;
+    font-size: 13px;
+    margin-top: 2px;
+}
+
+
+.ui-input-image {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.ui-input-image__container {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--button-radius);
+
+    width: 250px;
+    min-height: var(--img-height);
+    max-height: var(--img-height);
+
+    background-color: var(--bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ui-input-image__placeholder {
+    display: flex;
+    height: 100%;
+    width: 100%;
+
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    color: var(--subtitle-color);
+    font-size: var(--font-size-default);
+
+    transform: scale(1);
+    transition: all 0.3s;
+}
+
+.ui-input-image__placeholder:hover {
+    color: color-mix(in oklab, 60% var(--subtitle-color), var(--bg-color));
+    transform: scale(1.02);
+}
+
+.ui-input-image__placeholder span {
+    transform: scale(1) translateY(0);
+    transition: all 0.3s;
+}
+.ui-input-image__placeholder:hover span {
+    transform: scale(1.01) translateY(-0.25rem);
+}
+
+.ui-input-image__preview {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.ui-input-image__remove {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    top: 0.5rem;
+    right: 1.25rem;
+    padding: 6px 6px;
+    margin: 0;
+    z-index: 10;
+    border-radius: 5px;
+    border: color-mix(in oklab, 30% var(--bg-color), transparent) 1px solid;
+
+    font-size: 20px;
+    line-height: 1;
+
+    background: color-mix(in oklab, 60% var(--bg-color), transparent);
+    color: var(--text-color);
+    transition: color, background 0.3s;
+    transform: scaleY(0.8);
+    cursor: pointer;
+}
+.ui-input-image__remove:hover {
+    background: color-mix(in oklab, 70% var(--bg-color), transparent);
+    color: color-mix(in oklab, 80% var(--text-color), var(--bg-color));
+}
+
+.ui-input-image__label {
+    width: 210px;
+    margin: 10px auto 0;
+
+    font-size: var(--font-size-small);
+    text-align: center;
+}
+.ui-input-image__error {
+    color: #ef4444;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+
+@media (max-width: 1024px) {
+    .ui-input-image__container {
+        height: 60vh;
+    }
+    .ui-input-image__placeholder {
+        font-size: 2.25rem;
+    }
+}

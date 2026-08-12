@@ -1,0 +1,35 @@
+
+.ui-breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ui-breadcrumbs__link {
+  color: var(--subtitle-color);
+  text-decoration: none;
+  font-weight: 400;
+  font-size: var(--font-size-default);
+  transition: color 0.2s ease;
+}
+
+.ui-breadcrumbs__link:hover {
+  color: var(--text-color-link);
+}
+
+.ui-breadcrumbs__separator {
+  color: var(--subtitle-color);
+  font-size: var(--font-size-default);
+  user-select: none;
+  display: flex;
+  align-items: center;
+  height: 8px;
+  overflow: hidden;
+}
+
+.ui-breadcrumbs__current {
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: var(--font-size-default);
+}

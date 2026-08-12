@@ -1,0 +1,48 @@
+.ui-card {
+    background: #fff;
+    border-radius: calc(var(--radius) * 1.4);
+
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.ui-card__navigation {
+    border: 2px #E2E8F0 solid;
+    transition: box-shadow .2s ease-in-out;
+    box-shadow: none;
+}
+.ui-card__navigation:hover {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.ui-card__form {
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05);
+}
+
+
+.ui-card__image {
+    width: calc(100% + 2px);
+    margin-left: -1px;
+}
+
+.ui-card__content {
+    width: auto;
+    padding: 30px 40px;
+
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ui-card__title {
+    font-size: 24px;
+    height: 24px;
+    width: auto;
+    text-align: center;
+    font-weight: 600;
+    line-height: 28px;
+    margin: 0 0 30px 0;
+}

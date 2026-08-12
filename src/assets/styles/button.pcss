@@ -1,0 +1,71 @@
+.ui-button {
+    position: relative;
+    cursor: pointer;
+
+    padding: 8px 20px;
+    box-sizing: border-box;
+    min-height: var(--min-button-height);
+
+    border-radius: var(--button-radius);
+    min-width: fit-content;
+    border: none;
+
+    font-weight: 600;
+
+}
+.ui-button:link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.ui-button--color-primary {
+    background: var(--primary-color);
+    color: var(--text-color);
+}
+.ui-button--color-secondary {
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+.ui-button--color-secondary:hover {
+    background-color: color-mix(in oklab, var(--bg-color) 80%, rgba(0,0,0,0.2));
+}
+.ui-button--color-primary:hover {
+    background-color: color-mix(in oklab, var(--primary-color) 80%, transparent);
+}
+
+.ui-button--color-plain {
+    padding: 0;
+    background: transparent;
+    display: inline-block!important;
+    color: var(--text-color-link);
+}
+.ui-button--color-plain:hover {
+    color: color-mix(in oklab, var(--text-color-link) 90%, #fff);
+}
+
+.ui-btn--pending {
+    background-color: color-mix(in oklab, var(--primary-color) 80%, rgba(0,0,0,0.2));
+    cursor: not-allowed;
+    padding: 0;
+}
+.ui-btn--pending:hover {
+    background-color: color-mix(in oklab, var(--primary-color) 80%, rgba(0,0,0,0.2));
+}
+
+.ui-btn--full-width {
+    width: 100%;
+}
+.ui-btn--has-append {
+    padding-right: 40px
+}
+.ui-btn--has-margin {
+    margin-top: 30px;
+}
+
+.ui-btn__append-icon {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
