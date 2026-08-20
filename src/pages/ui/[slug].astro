@@ -1,0 +1,43 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import ComponentShowcase from '@/components/showcase/ComponentShowcase.vue'
+import { registry, sourceMap } from '@/components/showcase/registry'
+import { Code } from 'astro:components'
+
+export function getStaticPaths() {
+  return registry.map((meta) => ({ params: { slug: meta.slug } }))
+}
+
+const { slug } = Astro.params
+const meta = registry.find((m) => m.slug === slug)!
+const source = sourceMap[meta.slug]
+---
+
+<Layout title={`${meta.name} — UI-библиотека`} description={meta.description}>
+  <a href="/ui" class="page-back">← Все компоненты</a>
+  <h1 class="page-title">{meta.name}</h1>
+  <p class="page-subtitle">{meta.description}</p>
+
+  <ComponentShowcase client:load slug={meta.slug} />
+
+  <details class="code-block">
+    <summary class="code-block__summary">Исходный код {meta.name}.vue</summary>
+    <div class="code-block__body">
+      <button class="code-block__copy" type="button">Скопировать</button>
+      <Code code={source} lang="vue" theme="github-light" />
+    </div>
+  </details>
+</Layout>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.code-block__copy').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const pre = btn.closest('.code-block__body')?.querySelector('pre')
+      if (!pre) return
+      await navigator.clipboard.writeText(pre.textContent ?? '')
+      const prev = btn.textContent
+      btn.textContent = 'Скопировано!'
+      setTimeout(() => (btn.textContent = prev), 1500)
+    })
+  })
+</script>

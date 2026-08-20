@@ -1,0 +1,23 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import { registry } from '@/components/showcase/registry'
+---
+
+<Layout title="UI-библиотека — Nuxt 3">
+  <h1 class="page-title">UI-библиотека</h1>
+  <p class="page-subtitle">
+    Кастомные Vue-компоненты из проекта на Nuxt 3. Открой любой — внутри живое демо
+    с настройкой пропсов и исходным кодом.
+  </p>
+
+  <div class="ui-grid">
+    {
+      registry.map((meta) => (
+        <a href={`/ui/${meta.slug}`} class="ui-grid__card">
+          <span class="ui-grid__name">{meta.name}</span>
+          <p class="ui-grid__description">{meta.description}</p>
+        </a>
+      ))
+    }
+  </div>
+</Layout>

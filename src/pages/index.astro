@@ -1,0 +1,24 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import ResumeHero from '@/components/resume/astro/ResumeHero.astro'
+import ResumeSection from '@/components/resume/astro/ResumeSection.astro'
+import ImplSwitcher from '@/components/resume/astro/ImplSwitcher.astro'
+import { sections } from '@/data/resume'
+---
+
+<Layout
+  title="Сурков Даниил — Frontend-разработчик"
+  description="Резюме-визитка Даниила Суркова: frontend-разработчик (Vue / React / TypeScript). Статическая Astro-версия; Vue-версия свёрстана из компонентов собственной UI-библиотеки."
+>
+  <div class="resume">
+    <ResumeHero />
+
+    <ImplSwitcher current="astro" />
+
+    <div class="ui-divider" style="width: 100%; margin-bottom: 0;"></div>
+
+    <div class="resume__sections">
+      {sections.map((section) => <ResumeSection section={section} />)}
+    </div>
+  </div>
+</Layout>
