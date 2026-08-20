@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { Field, ErrorMessage } from 'vee-validate'
+import { Field, useFieldError } from 'vee-validate'
 
 type Option = {
   label: string
@@ -73,6 +73,11 @@ const emit = defineEmits<{
 const component = computed(() => {
   return props.as
 })
+
+// Ошибка валидации из vee-validate (вне контекста формы остаётся undefined);
+// проп error имеет приоритет. Показ единым блоком, чтобы анимировался Transition
+const fieldError = useFieldError(computed(() => props.name ?? ''))
+const shownError = computed(() => props.error || fieldError.value || null)
 
 const inputValue = computed({
   get() {
@@ -183,13 +188,13 @@ const inputValue = computed({
       </div>
     </template>
 
-    <ErrorMessage :name="name" class="ui-input__error" />
-
-    <span
-        v-if="error"
-        class="ui-input__error"
-    >
-      {{ error }}
-    </span>
+    <Transition name="ui-input-error">
+      <span
+          v-if="shownError"
+          class="ui-input__error"
+      >
+        {{ shownError }}
+      </span>
+    </Transition>
   </label>
 </template>

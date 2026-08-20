@@ -23,6 +23,7 @@ const emit = defineEmits(['update:modelValue', 'confirmAction'])
 </script>
 
 <template>
+  <Transition name="ui-modal">
   <div v-if="modelValue" class="ui-modal__bg">
     <div class="ui-modal">
       <div
@@ -48,6 +49,7 @@ const emit = defineEmits(['update:modelValue', 'confirmAction'])
       </div>
     </div>
   </div>
+  </Transition>
 </template>
 
 <style scoped>

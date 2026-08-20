@@ -46,6 +46,24 @@
     margin-top: 2px;
 }
 
+/* Появление/скрытие ошибки: выезжает вниз из-под поля (Transition name="ui-input-error") */
+.ui-input-error-enter-active,
+.ui-input-error-leave-active {
+    overflow: hidden;
+    transition: opacity 0.25s ease, transform 0.25s ease, max-height 0.25s ease, margin-top 0.25s ease;
+}
+.ui-input-error-enter-from,
+.ui-input-error-leave-to {
+    opacity: 0;
+    transform: translateY(-6px);
+    max-height: 0;
+    margin-top: 0;
+}
+.ui-input-error-enter-to,
+.ui-input-error-leave-from {
+    max-height: 40px;
+}
+
 
 .ui-input-image {
     display: flex;
