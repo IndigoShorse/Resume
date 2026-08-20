@@ -69,7 +69,7 @@ export const sections: ResumeSectionData[] = [
     title: 'Опыт работы',
     blocks: [
       {
-        label: 'ЦСЭ',
+        label: 'ЦЭС',
         heading: 'Fullstack-разработчик',
         subheading: 'ООО «Центр сертификации энергосбережения»',
         meta: 'Дек 2023 — настоящее время · Москва',

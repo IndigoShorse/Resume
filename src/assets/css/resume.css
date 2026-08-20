@@ -61,6 +61,12 @@
   cursor: default;
 }
 
+.resume__modes {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
 .resume__sections {
   display: flex;
   flex-direction: column;

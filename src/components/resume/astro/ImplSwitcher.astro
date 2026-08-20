@@ -1,6 +1,6 @@
 ---
-// Переключатель реализации визитки: Astro / Vue / (позже React).
-// Новая реализация = новый пункт в impls + своя страница в src/pages.
+// Вкладки визитки: Astro — резюме со стилями отображения,
+// Vue — интерактивный шоукейс компонентов UI-библиотеки, позже React.
 interface Props {
   current: 'astro' | 'vue'
 }
@@ -9,12 +9,12 @@ const { current } = Astro.props
 
 const impls = [
   { key: 'astro', label: 'Astro', href: '/' },
-  { key: 'vue', label: 'Vue (UI-библиотека)', href: '/vue' },
+  { key: 'vue', label: 'Vue', href: '/ui/med' },
 ]
 ---
 
-<div class="resume__switcher" role="group" aria-label="Реализация">
-  <span class="resume__switcher-label">Реализация:</span>
+<div class="resume__switcher" role="group" aria-label="Вкладки">
+  <span class="resume__switcher-label">Вкладки:</span>
   {impls.map((impl) => (
     <a
       href={impl.href}

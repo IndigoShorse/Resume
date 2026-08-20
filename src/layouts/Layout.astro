@@ -25,10 +25,9 @@ const { pathname } = Astro.url
   <body>
     <header class="site-header">
       <nav class="site-header__nav">
-        <a href="/" class="site-header__logo">Портфолио</a>
         <a
           href="/"
-          class:list={['site-header__link', { 'site-header__link--active': pathname === '/' || pathname.startsWith('/vue') }]}
+          class:list={['site-header__link', { 'site-header__link--active': pathname === '/' }]}
         >
           Резюме
         </a>
@@ -41,7 +40,7 @@ const { pathname } = Astro.url
                 { 'site-header__link--active': pathname.startsWith(`/ui/${kit.key}`) },
               ]}
             >
-              UI-библиотека {kit.title}
+              {kit.title} UI-kit
             </a>
           ))
         }
