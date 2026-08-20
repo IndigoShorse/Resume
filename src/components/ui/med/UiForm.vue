@@ -125,6 +125,7 @@ defineProps({
           v-if="!!subtitle"
           class="ui-form__subtitle"
           :style="{
+            'text-align': titleAlign,
             'width': titleWidth ? titleWidth + 'px' : '100%',
           }"
       >{{ subtitle }}</p>

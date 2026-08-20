@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
 import type { PropField } from '@/data/registry'
+import { getDict } from '@/i18n'
+
+const dict = getDict().showcase
 
 const props = defineProps<{
   fields: PropField[]
@@ -102,7 +105,7 @@ function onNumberInput(name: string, event: Event) {
     </div>
 
     <p v-if="!fields.length" class="props-panel__empty">
-      У компонента нет настраиваемых пропсов
+      {{ dict.noProps }}
     </p>
   </div>
 </template>

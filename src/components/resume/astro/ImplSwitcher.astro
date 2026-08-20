@@ -1,20 +1,23 @@
 ---
 // Вкладки визитки: Astro — резюме со стилями отображения,
 // Vue — интерактивный шоукейс компонентов UI-библиотеки, позже React.
+import { getDict } from '@/i18n'
+
 interface Props {
   current: 'astro' | 'vue'
 }
 
 const { current } = Astro.props
+const dict = getDict().tabs
 
 const impls = [
-  { key: 'astro', label: 'Astro', href: '/' },
-  { key: 'vue', label: 'Vue', href: '/ui/med' },
+  { key: 'astro', label: dict.astro, href: '/' },
+  { key: 'vue', label: dict.vue, href: '/ui/med' },
 ]
 ---
 
-<div class="resume__switcher" role="group" aria-label="Вкладки">
-  <span class="resume__switcher-label">Вкладки:</span>
+<div class="resume__switcher" role="group" aria-label={dict.aria}>
+  <span class="resume__switcher-label">{dict.label}</span>
   {impls.map((impl) => (
     <a
       href={impl.href}
@@ -26,5 +29,5 @@ const impls = [
       {impl.label}
     </a>
   ))}
-  <span class="ui-button ui-button--color-secondary resume__impl-soon">React — скоро</span>
+  <span class="ui-button ui-button--color-secondary resume__impl-soon">{dict.reactSoon}</span>
 </div>

@@ -1,0 +1,221 @@
+{
+  "site": {
+    "description": "Сайт-визитка и портфолио: кастомная UI-библиотека на Vue (Nuxt 3) и React",
+    "nav": {
+      "resume": "Резюме",
+      "kit": "{title} UI-kit"
+    }
+  },
+  "home": {
+    "title": "Сурков Даниил — Frontend-разработчик",
+    "description": "Резюме-визитка Даниила Суркова: frontend-разработчик (Vue / React / TypeScript). Стили отображения собраны из компонентов собственной UI-библиотеки."
+  },
+  "hero": {
+    "downloadPdf": "Скачать PDF",
+    "alert": "Стили отображения резюме собраны из компонентов моей UI-библиотеки — переключайте их ниже. На вкладке Vue — интерактивный шоукейс каждого компонента; вкладка React появится позже."
+  },
+  "tabs": {
+    "label": "Вкладки:",
+    "aria": "Вкладки",
+    "astro": "Astro",
+    "vue": "Vue",
+    "reactSoon": "React — скоро"
+  },
+  "modes": {
+    "label": "Стиль отображения:",
+    "aria": "Стиль отображения",
+    "plain": "Типографика",
+    "cards": "Карточки",
+    "stepper": "Степпер"
+  },
+  "kitPage": {
+    "title": "UI-библиотека {title}",
+    "componentTitle": "{name} — UI-библиотека {title}",
+    "sidebarAria": "Компоненты {title}",
+    "source": "Исходный код {name}.vue",
+    "copy": "Скопировать",
+    "copied": "Скопировано!"
+  },
+  "showcase": {
+    "props": "Пропсы",
+    "slot": "Слот",
+    "vModel": "v-model",
+    "openModal": "Открыть модалку",
+    "stepContent": "Содержимое шага {n}",
+    "noProps": "У компонента нет настраиваемых пропсов"
+  },
+  "kits": {
+    "med": {
+      "title": "Med (Nuxt 3)",
+      "description": "Кастомные Vue-компоненты из проекта на Nuxt 3. Открой любой — внутри живое демо с настройкой пропсов и исходным кодом.",
+      "components": {
+        "button": "Кнопка с вариантами цвета, состоянием загрузки, иконкой и рендером как ссылка.",
+        "input": "Универсальное поле: input / select / textarea / radio-group, с vee-validate под капотом.",
+        "input-image": "Загрузка изображения с превью, удалением и валидацией через vee-validate.",
+        "form": "Обёртка формы на vee-validate: заголовок, кнопки, ошибка, алерт и слоты.",
+        "stepper-form": "Упрощённая форма для шага степпера: без vee-validate, с теми же слотами и кнопками.",
+        "stepper": "Степпер с анимированной подсветкой активного таба и слайдами-слотами.",
+        "modal": "Модальное окно с заголовком, подзаголовком и кнопкой подтверждения.",
+        "card": "Карточка с изображением, заголовком и произвольным содержимым.",
+        "container": "Контейнер раскладки: колонка/строка, центрирование, вариант inset.",
+        "layout-container": "Сеточный контейнер: row / col / grid с настраиваемыми отступами.",
+        "divider": "Горизонтальный разделитель с настраиваемой шириной.",
+        "alert": "Предупреждение с иконкой.",
+        "breadcrumbs": "Хлебные крошки со ссылками и текущим пунктом.",
+        "back": "Ссылка «назад» с шевроном.",
+        "icon": "SVG-иконка из assets/icons с динамическим импортом.",
+        "header": "Шапка страницы с блоком пользователя."
+      }
+    }
+  },
+  "resume": {
+    "person": {
+      "name": "Сурков Даниил Георгиевич",
+      "tagline": "Frontend-разработчик (Vue / React / TypeScript)",
+      "location": "Москва",
+      "contacts": [
+        { "label": "7535415@gmail.com", "href": "mailto:7535415@gmail.com" },
+        { "label": "+7 (968) 994-87-16", "href": "tel:+79689948716" },
+        { "label": "Telegram @indigoshorse", "href": "https://t.me/indigoshorse" },
+        { "label": "GitLab @IndigoShorse", "href": "https://gitlab.com/IndigoShorse" },
+        { "label": "GitHub @IndigoShorse", "href": "https://github.com/IndigoShorse" }
+      ]
+    },
+    "sections": [
+      {
+        "id": "profile",
+        "title": "Профиль",
+        "blocks": [
+          {
+            "label": "Обо мне",
+            "text": "Frontend-разработчик с 3+ годами коммерческого опыта и более чем 5 годами практики разработки. Разрабатываю веб-приложения на Nuxt 3/4 и React с использованием Pinia и Axios/Fetch API. Генерирую API-клиенты с помощью Orval и собственных адаптеров. Работаю с Vuetify, Ant Design и Tailwind CSS. Проектирую клиентскую архитектуру и интеграцию с REST API. Имею опыт fullstack-разработки (Nuxt 3/4 + FastAPI / Django)."
+          }
+        ]
+      },
+      {
+        "id": "experience",
+        "title": "Опыт работы",
+        "blocks": [
+          {
+            "label": "ЦЭС",
+            "heading": "Fullstack-разработчик",
+            "subheading": "ООО «Центр Энергосертификации»",
+            "meta": "Дек 2023 — настоящее время · Москва",
+            "items": [
+              "Провёл рефакторинг легаси-кода, оптимизировал архитектуру и использование памяти: повысил производительность интерфейса веб-приложения на 30 % и сократил время разработки новых функций примерно на 40 %.",
+              "Разработал ряд функций в основной системе, включая выпуск сертификатов (React + Axios + Ant Design + Python FastAPI).",
+              "Автоматизировал документооборот во внутреннем сервисе и ускорил выпуск сертификатов на 90 % (Nuxt 3 + Pinia + FastAPI).",
+              "Разработал сервис-расширение для формирования отчётов и сертификатов (FastAPI)."
+            ]
+          },
+          {
+            "label": "Russian Love",
+            "heading": "Frontend-разработчик",
+            "subheading": "Russian Love (dev.forruss.ru)",
+            "meta": "Июн 2026 — настоящее время · Москва",
+            "items": [
+              "Участвую в разработке и рефакторинге социальной сети для знакомств на React/TypeScript.",
+              "Выполнил крупный рефакторинг главного приложения: выделил доменные хуки и UI-компоненты, повысил читаемость и переиспользуемость кода.",
+              "Улучшил backoffice: фильтрацию, управление контентом, пользовательские сценарии и новые функциональные блоки.",
+              "Работал над UX и исправлениями веб-интерфейса, включая футер, навигацию и главную страницу приложения."
+            ]
+          },
+          {
+            "label": "Xoxlov Store",
+            "heading": "Frontend-разработчик",
+            "subheading": "Xoxlov Store",
+            "meta": "Сен 2022 — Авг 2023 · Москва",
+            "items": [
+              "Разрабатывал интернет-магазин на Nuxt 3, Pinia и Bulma CSS.",
+              "Создал ряд экранных форм и страниц каталога.",
+              "Интегрировал приложение с Django REST API."
+            ]
+          },
+          {
+            "label": "Навигатор Сервис",
+            "heading": "Системный администратор",
+            "subheading": "ООО «Навигатор Сервис»",
+            "meta": "Окт 2020 — Фев 2023 · Химки",
+            "items": [
+              "Внедрил автоматическое резервное копирование локального сервера (Ubuntu, Samba).",
+              "Поддерживал инфраструктуру и консультировал сотрудников.",
+              "Настроил и подключил IP-телефонию."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "skills",
+        "title": "Технологии",
+        "blocks": [
+          {
+            "label": "Стек",
+            "tags": [
+              "JavaScript", "TypeScript", "Python", "Nuxt 3", "React", "Pinia",
+              "Tailwind", "Ant Design", "Webpack", "REST API", "Git", "Vite",
+              "FastAPI", "Django"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "projects",
+        "title": "Проекты",
+        "blocks": [
+          {
+            "label": "Отчёты",
+            "heading": "Сервис генерации отчётов",
+            "subheading": "Nuxt 3 + Pinia + Vuetify + FastAPI"
+          },
+          {
+            "label": "Магазин",
+            "heading": "Интернет-магазин",
+            "subheading": "Nuxt 3 + Pinia + Tailwind"
+          },
+          {
+            "label": "НИР",
+            "heading": "НИР (ИИ-анализ УЗИ)",
+            "subheading": "Nuxt 3 + Pinia + Vuetify"
+          },
+          {
+            "label": "Каталог",
+            "heading": "Каталог",
+            "subheading": "WordPress + WooCommerce",
+            "links": [
+              { "label": "rstartrading.ae", "href": "https://rstartrading.ae/" },
+              { "label": "Прототип на GitLab", "href": "https://gitlab.com/IndigoShorse/catalogue" }
+            ]
+          },
+          {
+            "label": "Диплом",
+            "heading": "Веб-приложение для дипломного проекта заказчика",
+            "subheading": "Nuxt 3 + Django + python-docx",
+            "links": [
+              { "label": "energy-passport на GitLab", "href": "https://gitlab.com/IndigoShorse/energy-passport" }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "education",
+        "title": "Образование",
+        "blocks": [
+          {
+            "label": "Дубна",
+            "heading": "Программная инженерия",
+            "subheading": "Университет «Дубна»",
+            "meta": "2026 · Бакалавриат"
+          }
+        ]
+      },
+      {
+        "id": "languages",
+        "title": "Языки",
+        "blocks": [
+          { "label": "Русский", "heading": "Русский", "level": 5 },
+          { "label": "Английский", "heading": "Английский (B2)", "level": 4 }
+        ]
+      }
+    ]
+  }
+}

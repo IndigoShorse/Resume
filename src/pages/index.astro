@@ -3,12 +3,12 @@ import Layout from '@/layouts/Layout.astro'
 import ResumeHero from '@/components/resume/astro/ResumeHero.astro'
 import ImplSwitcher from '@/components/resume/astro/ImplSwitcher.astro'
 import ResumeModes from '@/components/resume/vue/ResumeModes.vue'
+import { getDict } from '@/i18n'
+
+const dict = getDict()
 ---
 
-<Layout
-  title="Сурков Даниил — Frontend-разработчик"
-  description="Резюме-визитка Даниила Суркова: frontend-разработчик (Vue / React / TypeScript). Стили отображения собраны из компонентов собственной UI-библиотеки."
->
+<Layout title={dict.home.title} description={dict.home.description}>
   <div class="resume">
     <ResumeHero />
 

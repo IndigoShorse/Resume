@@ -1,21 +1,27 @@
 <script setup lang="ts">
 // Интерактивная часть визитки: переключатель стиля отображения + секции.
-// Текстовка одна (src/data/resume.ts), стили-обёртки — компоненты UI-библиотеки.
+// Текстовка и подписи — из словаря i18n, стили-обёртки — компоненты UI-библиотеки.
 import { ref, watch, onMounted } from 'vue'
-import { sections } from '@/data/resume'
-import { modes, type ResumeMode } from '@/data/modes'
+import { getResume } from '@/data/resume'
+import { getModes, modeValues, type ResumeMode } from '@/data/modes'
+import { getDict } from '@/i18n'
 import ResumeSection from './ResumeSection.vue'
 import UiButton from '@/components/ui/med/UiButton.vue'
 import UiDivider from '@/components/ui/med/UiDivider.vue'
 
 const STORAGE_KEY = 'resume-mode'
+
+const { sections } = getResume()
+const modes = getModes()
+const dict = getDict().modes
+
 const mode = ref<ResumeMode>('plain')
 
 onMounted(() => {
   // ?mode=cards|stepper|plain — шарабельная ссылка на стиль, приоритетнее сохранённого
   const fromUrl = new URLSearchParams(location.search).get('mode')
   const saved = fromUrl ?? localStorage.getItem(STORAGE_KEY)
-  if (modes.some((m) => m.value === saved)) {
+  if (modeValues.includes(saved as ResumeMode)) {
     mode.value = saved as ResumeMode
   }
 })
@@ -25,8 +31,8 @@ watch(mode, (value) => localStorage.setItem(STORAGE_KEY, value))
 
 <template>
   <div class="resume__modes">
-    <div class="resume__switcher" role="group" aria-label="Стиль отображения">
-      <span class="resume__switcher-label">Стиль отображения:</span>
+    <div class="resume__switcher" role="group" :aria-label="dict.aria">
+      <span class="resume__switcher-label">{{ dict.label }}</span>
       <UiButton
           v-for="m in modes"
           :key="m.value"

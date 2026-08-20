@@ -1,16 +1,18 @@
 ---
 import KitLayout from '@/layouts/KitLayout.astro'
 import { kits } from '@/data/registry'
+import { getDict, format } from '@/i18n'
 
 export function getStaticPaths() {
   return kits.map((kit) => ({ params: { kit: kit.key } }))
 }
 
 const kit = kits.find((k) => k.key === Astro.params.kit)!
+const pageTitle = format(getDict().kitPage.title, { title: kit.title })
 ---
 
-<KitLayout kit={kit} title={`UI-библиотека ${kit.title}`} description={kit.description}>
-  <h1 class="page-title">UI-библиотека {kit.title}</h1>
+<KitLayout kit={kit} title={pageTitle} description={kit.description}>
+  <h1 class="page-title">{pageTitle}</h1>
   <p class="page-subtitle">{kit.description}</p>
 
   <div class="ui-grid">

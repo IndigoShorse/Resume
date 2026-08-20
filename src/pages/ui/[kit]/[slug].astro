@@ -2,6 +2,7 @@
 import KitLayout from '@/layouts/KitLayout.astro'
 import ComponentShowcase from '@/components/showcase/ComponentShowcase.vue'
 import { kits } from '@/data/registry'
+import { getDict, format } from '@/i18n'
 import { Code } from 'astro:components'
 
 export function getStaticPaths() {
@@ -13,12 +14,13 @@ export function getStaticPaths() {
 const kit = kits.find((k) => k.key === Astro.params.kit)!
 const meta = kit.components.find((m) => m.slug === Astro.params.slug)!
 const source = kit.sourceMap[meta.slug]
+const dict = getDict().kitPage
 ---
 
 <KitLayout
   kit={kit}
   currentSlug={meta.slug}
-  title={`${meta.name} — UI-библиотека ${kit.title}`}
+  title={format(dict.componentTitle, { name: meta.name, title: kit.title })}
   description={meta.description}
 >
   <h1 class="page-title">{meta.name}</h1>
@@ -27,9 +29,9 @@ const source = kit.sourceMap[meta.slug]
   <ComponentShowcase client:load kit={kit.key} slug={meta.slug} />
 
   <details class="code-block">
-    <summary class="code-block__summary">Исходный код {meta.name}.vue</summary>
+    <summary class="code-block__summary">{format(dict.source, { name: meta.name })}</summary>
     <div class="code-block__body">
-      <button class="code-block__copy" type="button">Скопировать</button>
+      <button class="code-block__copy" type="button" data-copied-label={dict.copied}>{dict.copy}</button>
       <Code code={source} lang="vue" theme="github-light" />
     </div>
   </details>
@@ -42,7 +44,7 @@ const source = kit.sourceMap[meta.slug]
       if (!pre) return
       await navigator.clipboard.writeText(pre.textContent ?? '')
       const prev = btn.textContent
-      btn.textContent = 'Скопировано!'
+      btn.textContent = btn.dataset.copiedLabel ?? prev
       setTimeout(() => (btn.textContent = prev), 1500)
     })
   })

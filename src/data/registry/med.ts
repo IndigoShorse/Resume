@@ -8,7 +8,6 @@ import UiCard from '@/components/ui/med/UiCard.vue'
 import UiContainer from '@/components/ui/med/UiContainer.vue'
 import UiDivider from '@/components/ui/med/UiDivider.vue'
 import UiForm from '@/components/ui/med/UiForm.vue'
-import UiHeader from '@/components/ui/med/UiHeader.vue'
 import UiIcon from '@/components/ui/med/UiIcon.vue'
 import UiInput from '@/components/ui/med/UiInput.vue'
 import UiInputImage from '@/components/ui/med/UiInputImage.vue'
@@ -25,7 +24,6 @@ import UiCardRaw from '@/components/ui/med/UiCard.vue?raw'
 import UiContainerRaw from '@/components/ui/med/UiContainer.vue?raw'
 import UiDividerRaw from '@/components/ui/med/UiDivider.vue?raw'
 import UiFormRaw from '@/components/ui/med/UiForm.vue?raw'
-import UiHeaderRaw from '@/components/ui/med/UiHeader.vue?raw'
 import UiIconRaw from '@/components/ui/med/UiIcon.vue?raw'
 import UiInputRaw from '@/components/ui/med/UiInput.vue?raw'
 import UiInputImageRaw from '@/components/ui/med/UiInputImage.vue?raw'
@@ -36,15 +34,15 @@ import UiStepperFormRaw from '@/components/ui/med/UiStepperForm.vue?raw'
 
 // Импорт только типов — в рантайме цикла index <-> med нет
 import type { KitRegistry, UiComponentMeta } from './index'
+import { getDict } from '@/i18n'
 
 const iconOptions = ['arrow-right', 'arrow-up-right', 'minus', 'triangle-alert']
 
 // Раздел Med: Vue-кит, перенесённый из Nuxt 3 (DTDP_front)
-const components: UiComponentMeta[] = [
+const rawComponents: Omit<UiComponentMeta, 'description'>[] = [
   {
     slug: 'button',
     name: 'UiButton',
-    description: 'Кнопка с вариантами цвета, состоянием загрузки, иконкой и рендером как ссылка.',
     props: [
       { name: 'label', type: 'string', default: 'Кнопка' },
       { name: 'color', type: 'select', default: 'primary', options: ['primary', 'secondary', 'plain'] },
@@ -60,7 +58,6 @@ const components: UiComponentMeta[] = [
   {
     slug: 'input',
     name: 'UiInput',
-    description: 'Универсальное поле: input / select / textarea / radio-group, с vee-validate под капотом.',
     props: [
       { name: 'as', type: 'select', default: 'input', options: ['input', 'select', 'textarea', 'radio-group'] },
       { name: 'type', type: 'select', default: 'text', options: ['text', 'number', 'email', 'password', 'tel'] },
@@ -87,7 +84,6 @@ const components: UiComponentMeta[] = [
   {
     slug: 'input-image',
     name: 'UiInputImage',
-    description: 'Загрузка изображения с превью, удалением и валидацией через vee-validate.',
     props: [
       { name: 'name', type: 'string', default: 'photo' },
       { name: 'label', type: 'string', default: 'Фото профиля' },
@@ -98,7 +94,6 @@ const components: UiComponentMeta[] = [
   {
     slug: 'form',
     name: 'UiForm',
-    description: 'Обёртка формы на vee-validate: заголовок, кнопки, ошибка, алерт и слоты.',
     props: [
       { name: 'title', type: 'string', default: 'Регистрация' },
       { name: 'subtitle', type: 'string', default: 'Заполните поля ниже' },
@@ -121,7 +116,6 @@ const components: UiComponentMeta[] = [
   {
     slug: 'stepper-form',
     name: 'UiStepperForm',
-    description: 'Упрощённая форма для шага степпера: без vee-validate, с теми же слотами и кнопками.',
     props: [
       { name: 'title', type: 'string', default: 'Шаг 1' },
       { name: 'subtitle', type: 'string', default: 'Данные шага' },
@@ -139,7 +133,6 @@ const components: UiComponentMeta[] = [
   {
     slug: 'stepper',
     name: 'UiStepper',
-    description: 'Степпер с анимированной подсветкой активного таба и слайдами-слотами.',
     props: [
       {
         name: 'steps', type: 'json',
@@ -155,7 +148,6 @@ const components: UiComponentMeta[] = [
   {
     slug: 'modal',
     name: 'UiModal',
-    description: 'Модальное окно с заголовком, подзаголовком и кнопкой подтверждения.',
     props: [
       { name: 'title', type: 'string', default: 'Удалить запись?' },
       { name: 'subtitle', type: 'string', default: 'Это действие нельзя отменить' },
@@ -167,7 +159,6 @@ const components: UiComponentMeta[] = [
   {
     slug: 'card',
     name: 'UiCard',
-    description: 'Карточка с изображением, заголовком и произвольным содержимым.',
     props: [
       { name: 'title', type: 'string', default: 'Заголовок карточки' },
       { name: 'variant', type: 'select', default: 'navigation', options: ['navigation', 'form'] },
@@ -180,7 +171,6 @@ const components: UiComponentMeta[] = [
   {
     slug: 'container',
     name: 'UiContainer',
-    description: 'Контейнер раскладки: колонка/строка, центрирование, вариант inset.',
     props: [
       { name: 'variant', type: 'select', default: 'default', options: ['default', 'inset'] },
       { name: 'isRow', type: 'boolean', default: false },
@@ -194,7 +184,6 @@ const components: UiComponentMeta[] = [
   {
     slug: 'layout-container',
     name: 'UiLayoutContainer',
-    description: 'Сеточный контейнер: row / col / grid с настраиваемыми отступами.',
     props: [
       { name: 'direction', type: 'select', default: 'row', options: ['row', 'col', 'grid-cols', 'grid-rows'] },
       { name: 'margin', type: 'number', default: 8 },
@@ -205,7 +194,6 @@ const components: UiComponentMeta[] = [
   {
     slug: 'divider',
     name: 'UiDivider',
-    description: 'Горизонтальный разделитель с настраиваемой шириной.',
     props: [
       { name: 'width', type: 'string', default: '450px' },
       { name: 'marginBottom', type: 'number', default: 12 },
@@ -214,7 +202,6 @@ const components: UiComponentMeta[] = [
   {
     slug: 'alert',
     name: 'UiAlert',
-    description: 'Предупреждение с иконкой.',
     props: [
       { name: 'text', type: 'string', default: 'Проверьте введённые данные' },
     ],
@@ -222,7 +209,6 @@ const components: UiComponentMeta[] = [
   {
     slug: 'breadcrumbs',
     name: 'UiBreadcrumbs',
-    description: 'Хлебные крошки со ссылками и текущим пунктом.',
     props: [
       {
         name: 'items', type: 'json',
@@ -237,7 +223,6 @@ const components: UiComponentMeta[] = [
   {
     slug: 'back',
     name: 'UiBack',
-    description: 'Ссылка «назад» с шевроном.',
     props: [
       { name: 'label', type: 'string', default: 'Назад к списку' },
       { name: 'to', type: 'string', default: '#' },
@@ -246,18 +231,11 @@ const components: UiComponentMeta[] = [
   {
     slug: 'icon',
     name: 'UiIcon',
-    description: 'SVG-иконка из assets/icons с динамическим импортом.',
     props: [
       { name: 'icon', type: 'select', default: 'arrow-right', options: iconOptions },
       { name: 'width', type: 'string', default: '32px' },
       { name: 'height', type: 'string', default: '32px' },
     ],
-  },
-  {
-    slug: 'header',
-    name: 'UiHeader',
-    description: 'Шапка страницы с блоком пользователя.',
-    props: [],
   },
 ]
 
@@ -277,7 +255,6 @@ const componentMap: Record<string, Component> = {
   'breadcrumbs': UiBreadcrumbs,
   'back': UiBack,
   'icon': UiIcon,
-  'header': UiHeader,
 }
 
 const sourceMap: Record<string, string> = {
@@ -296,15 +273,20 @@ const sourceMap: Record<string, string> = {
   'breadcrumbs': UiBreadcrumbsRaw,
   'back': UiBackRaw,
   'icon': UiIconRaw,
-  'header': UiHeaderRaw,
 }
+
+// Тексты кита (название, описание, описания компонентов) — из словаря i18n
+const kitDict = getDict().kits.med
+
+const components: UiComponentMeta[] = rawComponents.map((meta) => ({
+  ...meta,
+  description: kitDict.components[meta.slug as keyof typeof kitDict.components],
+}))
 
 export const medKit: KitRegistry = {
   key: 'med',
-  title: 'Med (Nuxt 3)',
-  description:
-    'Кастомные Vue-компоненты из проекта на Nuxt 3. Открой любой — внутри живое демо ' +
-    'с настройкой пропсов и исходным кодом.',
+  title: kitDict.title,
+  description: kitDict.description,
   components,
   componentMap,
   sourceMap,

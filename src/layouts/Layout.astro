@@ -3,18 +3,20 @@ import '@/assets/css/med/main.pcss'
 import '@/assets/css/global.css'
 import '@/assets/css/resume.css'
 import { kits } from '@/data/registry'
+import { getDict, format, defaultLocale } from '@/i18n'
 
 interface Props {
   title: string
   description?: string
 }
 
-const { title, description = 'Сайт-визитка и портфолио: кастомная UI-библиотека на Vue (Nuxt 3) и React' } = Astro.props
+const dict = getDict()
+const { title, description = dict.site.description } = Astro.props
 const { pathname } = Astro.url
 ---
 
 <!doctype html>
-<html lang="ru">
+<html lang={defaultLocale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,7 +31,7 @@ const { pathname } = Astro.url
           href="/"
           class:list={['site-header__link', { 'site-header__link--active': pathname === '/' }]}
         >
-          Резюме
+          {dict.site.nav.resume}
         </a>
         {
           kits.map((kit) => (
@@ -40,7 +42,7 @@ const { pathname } = Astro.url
                 { 'site-header__link--active': pathname.startsWith(`/ui/${kit.key}`) },
               ]}
             >
-              {kit.title} UI-kit
+              {format(dict.site.nav.kit, { title: kit.title })}
             </a>
           ))
         }

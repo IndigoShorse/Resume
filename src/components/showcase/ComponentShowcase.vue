@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
-import { getKit } from '@/data/registry'
-import PropsPanel from './PropsPanel.vue'
 import UiButton from '@/components/ui/med/UiButton.vue'
 import UiInput from '@/components/ui/med/UiInput.vue'
+import { getKit } from '@/data/registry'
+import { format, getDict } from '@/i18n'
+import { reactive, ref } from 'vue'
+import PropsPanel from './PropsPanel.vue'
 
 const props = defineProps<{ slug: string; kit?: string }>()
 
@@ -21,6 +22,8 @@ const model = ref<any>(meta.modelDefault ?? null)
 const slotText = ref(meta.slotText ?? '')
 
 const formValues = ref<Record<string, unknown> | null>(null)
+
+const dict = getDict().showcase
 </script>
 
 <template>
@@ -28,31 +31,17 @@ const formValues = ref<Record<string, unknown> | null>(null)
     <div class="showcase__preview">
       <!-- UiModal: нужен триггер открытия -->
       <template v-if="slug === 'modal'">
-        <UiButton label="Открыть модалку" @click="model = true" />
-        <component
-            :is="comp"
-            v-bind="state"
-            v-model="model"
-            @confirm-action="model = false"
-        />
+        <UiButton :label="dict.openModal" @click="model = true" />
+        <component :is="comp" v-bind="state" v-model="model" @confirm-action="model = false" />
       </template>
 
       <!-- UiStepper: слайды рендерятся по слотам step-N -->
       <template v-else-if="slug === 'stepper'">
-        <component
-            :is="comp"
-            :key="JSON.stringify(state.steps)"
-            v-bind="state"
-            v-model="model"
-        >
-          <template
-              v-for="(step, i) in state.steps"
-              :key="i"
-              #[`step-${i}`]
-          >
+        <component :is="comp" :key="JSON.stringify(state.steps)" v-bind="state" v-model="model">
+          <template v-for="(step, i) in state.steps" :key="i" #[`step-${i}`]>
             <div class="showcase__demo-step">
               <h4>{{ step.label }}</h4>
-              <p>Содержимое шага {{ i + 1 }}</p>
+              <p>{{ format(dict.stepContent, { n: i + 1 }) }}</p>
             </div>
           </template>
         </component>
@@ -60,12 +49,8 @@ const formValues = ref<Record<string, unknown> | null>(null)
 
       <!-- UiForm: демо-поля внутри формы -->
       <template v-else-if="slug === 'form'">
-        <component
-            :is="comp"
-            v-bind="state"
-            @submit="(values: any) => (formValues = values)"
-            @cancel="formValues = null"
-        >
+        <component :is="comp" v-bind="state" @submit="(values: any) => (formValues = values)"
+          @cancel="formValues = null">
           <UiInput name="name" label="Имя" placeholder="Иван" full-width />
           <UiInput name="email" type="email" label="E-mail" placeholder="ivan@example.com" full-width />
         </component>
@@ -81,35 +66,26 @@ const formValues = ref<Record<string, unknown> | null>(null)
 
       <!-- Общий случай -->
       <template v-else>
-        <component
-            :is="comp"
-            v-if="meta.hasModel"
-            v-bind="state"
-            v-model="model"
-        >
+        <component :is="comp" v-if="meta.hasModel" v-bind="state" v-model="model">
           <template v-if="meta.slotText !== undefined" #default>{{ slotText }}</template>
         </component>
-        <component
-            :is="comp"
-            v-else
-            v-bind="state"
-        >
+        <component :is="comp" v-else v-bind="state">
           <template v-if="meta.slotText !== undefined" #default>{{ slotText }}</template>
         </component>
       </template>
     </div>
 
     <aside class="showcase__panel">
-      <h3 class="showcase__panel-title">Пропсы</h3>
+      <h3 class="showcase__panel-title">{{ dict.props }}</h3>
       <PropsPanel :fields="meta.props" :state="state" />
 
       <template v-if="meta.slotText !== undefined">
-        <h3 class="showcase__panel-title">Слот</h3>
+        <h3 class="showcase__panel-title">{{ dict.slot }}</h3>
         <input v-model="slotText" type="text" class="showcase__slot-input" />
       </template>
 
       <template v-if="meta.hasModel">
-        <h3 class="showcase__panel-title">v-model</h3>
+        <h3 class="showcase__panel-title">{{ dict.vModel }}</h3>
         <code class="showcase__model-value">{{ JSON.stringify(model) }}</code>
       </template>
     </aside>
@@ -118,19 +94,20 @@ const formValues = ref<Record<string, unknown> | null>(null)
 
 <style scoped>
 .showcase {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 320px;
+  display: flex;
   gap: 24px;
   align-items: start;
 }
 
 @media (max-width: 900px) {
   .showcase {
+    display: grid;
     grid-template-columns: minmax(0, 1fr);
   }
 }
 
 .showcase__preview {
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -140,9 +117,9 @@ const formValues = ref<Record<string, unknown> | null>(null)
   box-sizing: border-box;
 
   background:
-      linear-gradient(45deg, rgba(2, 6, 23, 0.03) 25%, transparent 25%, transparent 75%, rgba(2, 6, 23, 0.03) 75%),
-      linear-gradient(45deg, rgba(2, 6, 23, 0.03) 25%, transparent 25%, transparent 75%, rgba(2, 6, 23, 0.03) 75%),
-      #fff;
+    linear-gradient(45deg, rgba(2, 6, 23, 0.03) 25%, transparent 25%, transparent 75%, rgba(2, 6, 23, 0.03) 75%),
+    linear-gradient(45deg, rgba(2, 6, 23, 0.03) 25%, transparent 25%, transparent 75%, rgba(2, 6, 23, 0.03) 75%),
+    #fff;
   background-size: 24px 24px;
   background-position: 0 0, 12px 12px;
   border: 1px solid var(--border-color);
@@ -163,10 +140,11 @@ const formValues = ref<Record<string, unknown> | null>(null)
   font-size: 14px;
   font-weight: 700;
 }
-.showcase__panel-title + .showcase__panel-title,
-.props-panel + .showcase__panel-title,
-.showcase__slot-input + .showcase__panel-title,
-.showcase__model-value + .showcase__panel-title {
+
+.showcase__panel-title+.showcase__panel-title,
+.props-panel+.showcase__panel-title,
+.showcase__slot-input+.showcase__panel-title,
+.showcase__model-value+.showcase__panel-title {
   margin-top: 20px;
 }
 
@@ -194,10 +172,12 @@ const formValues = ref<Record<string, unknown> | null>(null)
 .showcase__demo-step {
   padding: 24px;
 }
+
 .showcase__demo-step h4 {
   margin: 0 0 8px;
   font-size: 18px;
 }
+
 .showcase__demo-step p {
   margin: 0;
   color: var(--subtitle-color);

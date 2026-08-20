@@ -1,8 +1,12 @@
 ---
 // Astro-шапка визитки: имя, контакты, PDF и алерт в стилях UI-библиотеки.
-import { person } from '@/data/resume'
+import { getResume } from '@/data/resume'
+import { getDict } from '@/i18n'
 import triangleAlert from '@/assets/icons/triangle-alert.svg?raw'
 import arrowUpRight from '@/assets/icons/arrow-up-right.svg?raw'
+
+const { person } = getResume()
+const dict = getDict().hero
 ---
 
 <header class="resume__hero">
@@ -17,7 +21,7 @@ import arrowUpRight from '@/assets/icons/arrow-up-right.svg?raw'
       class="ui-button ui-button--color-primary ui-btn--has-append"
       href="/resume.pdf"
     >
-      Скачать PDF
+      {dict.downloadPdf}
       <span class="ui-btn__append-icon" set:html={arrowUpRight} />
     </a>
   </div>
@@ -25,11 +29,7 @@ import arrowUpRight from '@/assets/icons/arrow-up-right.svg?raw'
   <div class="ui-alert">
     <Fragment set:html={triangleAlert} />
     <p class="ui-alert__text">
-      <slot>
-        Стили отображения резюме собраны из компонентов моей UI-библиотеки —
-        переключайте их ниже. На вкладке Vue — интерактивный шоукейс каждого
-        компонента; вкладка React появится позже.
-      </slot>
+      <slot>{dict.alert}</slot>
     </p>
   </div>
 </header>
