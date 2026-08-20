@@ -1,0 +1,30 @@
+---
+// Переключатель реализации визитки: Astro / Vue / (позже React).
+// Новая реализация = новый пункт в impls + своя страница в src/pages.
+interface Props {
+  current: 'astro' | 'vue'
+}
+
+const { current } = Astro.props
+
+const impls = [
+  { key: 'astro', label: 'Astro', href: '/' },
+  { key: 'vue', label: 'Vue (UI-библиотека)', href: '/vue' },
+]
+---
+
+<div class="resume__switcher" role="group" aria-label="Реализация">
+  <span class="resume__switcher-label">Реализация:</span>
+  {impls.map((impl) => (
+    <a
+      href={impl.href}
+      class:list={[
+        'ui-button',
+        current === impl.key ? 'ui-button--color-primary' : 'ui-button--color-secondary',
+      ]}
+    >
+      {impl.label}
+    </a>
+  ))}
+  <span class="ui-button ui-button--color-secondary resume__impl-soon">React — скоро</span>
+</div>

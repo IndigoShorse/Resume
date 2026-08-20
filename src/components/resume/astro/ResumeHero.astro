@@ -1,0 +1,34 @@
+---
+// Astro-шапка визитки: имя, контакты, PDF и алерт в стилях UI-библиотеки.
+import { person } from '@/data/resume'
+import triangleAlert from '@/assets/icons/triangle-alert.svg?raw'
+import arrowUpRight from '@/assets/icons/arrow-up-right.svg?raw'
+---
+
+<header class="resume__hero">
+  <h1 class="resume__name">{person.name}</h1>
+  <p class="resume__tagline">{person.tagline} · {person.location}</p>
+
+  <div class="resume__contacts">
+    {person.contacts.map((contact) => (
+      <a class="ui-button ui-button--color-secondary" href={contact.href}>{contact.label}</a>
+    ))}
+    <a
+      class="ui-button ui-button--color-primary ui-btn--has-append"
+      href="/resume.pdf"
+    >
+      Скачать PDF
+      <span class="ui-btn__append-icon" set:html={arrowUpRight} />
+    </a>
+  </div>
+
+  <div class="ui-alert">
+    <Fragment set:html={triangleAlert} />
+    <p class="ui-alert__text">
+      <slot>
+        Это статическая Astro-версия резюме. Vue-версия собрана из компонентов моей
+        UI-библиотеки и умеет переключать режимы отображения; React-версия появится позже.
+      </slot>
+    </p>
+  </div>
+</header>

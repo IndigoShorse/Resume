@@ -2,8 +2,8 @@
 import { reactive, ref } from 'vue'
 import { registry, componentMap } from './registry'
 import PropsPanel from './PropsPanel.vue'
-import UiButton from '@/components/ui/UiButton.vue'
-import UiInput from '@/components/ui/UiInput.vue'
+import UiButton from '@/components/ui/med/UiButton.vue'
+import UiInput from '@/components/ui/med/UiInput.vue'
 
 const props = defineProps<{ slug: string }>()
 

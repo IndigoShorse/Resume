@@ -1,0 +1,226 @@
+/* Общие стили визитки-резюме.
+   Разметку с этими классами используют все реализации:
+   Astro (src/components/resume/astro), Vue (src/components/resume/vue), позже React. */
+
+.resume {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ---------- Шапка ---------- */
+
+.resume__hero {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 24px;
+}
+
+.resume__name {
+  margin: 0;
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.resume__tagline {
+  margin: 0;
+  font-size: 18px;
+  color: var(--subtitle-color);
+}
+
+.resume__contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.resume__hero .ui-btn__append-icon svg {
+  width: 1em;
+  height: 1em;
+}
+
+/* ---------- Переключатели (режим отображения / реализация) ---------- */
+
+.resume__switcher {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.resume__switcher-label {
+  color: var(--subtitle-color);
+  font-weight: 500;
+}
+
+.resume__impl-soon {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.resume__sections {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* ---------- Универсальный информационный блок ---------- */
+
+.resume-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  text-align: left;
+}
+
+.resume-block__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}
+
+.resume-block__heading {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.resume-block__meta {
+  color: var(--subtitle-color);
+  font-size: var(--font-size-small);
+  white-space: nowrap;
+}
+
+.resume-block__subheading {
+  margin: 0;
+  font-weight: 600;
+  color: var(--text-color-link);
+}
+
+.resume-block__text {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.resume-block__items {
+  margin: 0;
+  padding-left: 20px;
+  list-style: disc; /* Tailwind preflight убирает маркеры у ul */
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  line-height: 1.5;
+}
+
+.resume-block__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.resume-block__tag {
+  padding: 4px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: #fff;
+  font-size: var(--font-size-small);
+  font-weight: 500;
+}
+
+.resume-block__level {
+  display: flex;
+  gap: 6px;
+}
+
+.resume-block__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--border-color);
+}
+
+.resume-block__dot--active {
+  background: var(--primary-color);
+}
+
+.resume-block__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+}
+
+/* ---------- Рендерер «Типографика» ---------- */
+
+.plain-section {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.plain-section__title {
+  margin: 0 0 -8px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+/* ---------- Рендерер «Карточки» (Vue) ---------- */
+
+.card-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card-section__title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.card-section__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+/* Контент карточки в библиотеке центрируется — резюме читается слева */
+.card-section__grid .ui-card__content {
+  align-items: stretch;
+  padding: 24px 28px;
+}
+
+.card-section__grid .ui-card__title {
+  height: auto;
+  text-align: left;
+  margin-bottom: 14px;
+}
+
+/* ---------- Рендерер «Степпер» (Vue) ---------- */
+
+.stepper-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.stepper-section__title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.stepper-section__slide {
+  width: 88%;
+  max-height: 100%;
+  overflow-y: auto;
+  display: flex;
+}
