@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Icon from './support/Icon.vue'
+import Icon from '../shared/Icon.vue'
 
 const props = defineProps({
   label: {

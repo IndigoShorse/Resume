@@ -20,6 +20,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  contentHeight: {
+    type: Number,
+    default: 665,
+  },
 })
 
 const emit = defineEmits<{
@@ -133,7 +137,7 @@ defineExpose({
 
     <UiContainer
         variant="inset"
-        :height="665"
+        :height="contentHeight"
         :margin-top="20"
     >
       <div class="ui-stepper__viewport">

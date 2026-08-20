@@ -1,0 +1,187 @@
+ @import "tailwindcss";
+
+/* ---------- Каркас сайта ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.site-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 14px 20px;
+}
+
+.site-header__logo {
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.site-header__link {
+  color: var(--subtitle-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.site-header__link:hover,
+.site-header__link--active {
+  color: var(--text-color);
+}
+
+.site-main {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 32px 20px 80px;
+}
+
+/* ---------- Общие элементы страниц ---------- */
+
+.page-back {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--text-color-link);
+  text-decoration: none;
+}
+.page-back:hover {
+  text-decoration: underline;
+}
+
+.page-title {
+  margin: 0 0 8px;
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.page-subtitle {
+  margin: 0 0 28px;
+  color: var(--subtitle-color);
+  font-size: 16px;
+}
+
+/* ---------- Список компонентов ---------- */
+
+.ui-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.ui-grid__card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--text-color);
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.ui-grid__card:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(2, 6, 23, 0.06);
+}
+
+.ui-grid__name {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.ui-grid__description {
+  margin: 0;
+  color: var(--subtitle-color);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+/* ---------- Блок с кодом ---------- */
+
+.code-block {
+  margin-top: 32px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.code-block__summary {
+  padding: 14px 20px;
+  cursor: pointer;
+  font-weight: 600;
+  user-select: none;
+}
+.code-block__summary:hover {
+  background: var(--bg-color);
+}
+
+.code-block__body {
+  position: relative;
+  border-top: 1px solid var(--border-color);
+}
+
+.code-block__body pre {
+  margin: 0;
+  padding: 20px;
+  overflow: auto;
+  max-height: 600px;
+}
+.code-block__body pre,
+.code-block__body pre * {
+  font-family: ui-monospace, 'Cascadia Code', Consolas, monospace;
+  font-size: 13px;
+}
+
+.code-block__copy {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+  padding: 6px 14px;
+  background: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+.code-block__copy:hover {
+  opacity: 0.85;
+}
+
+/* ---------- Главная (заглушка) ---------- */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 80px 0;
+}
+
+.hero__title {
+  margin: 0;
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.hero__subtitle {
+  margin: 0;
+  color: var(--subtitle-color);
+  font-size: 18px;
+  max-width: 560px;
+}

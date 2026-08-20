@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import Icon from './support/Icon.vue'
+import Icon from '../shared/Icon.vue'
 import UiIcon from './UiIcon.vue'
 
 const props = defineProps({
