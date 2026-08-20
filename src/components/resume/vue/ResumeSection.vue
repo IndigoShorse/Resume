@@ -4,7 +4,7 @@
 import type { Component } from 'vue'
 import { computed } from 'vue'
 import type { ResumeSectionData } from '@/data/resume'
-import type { ResumeMode } from './config'
+import type { ResumeMode } from '@/data/modes'
 import PlainSection from './renderers/PlainSection.vue'
 import CardSection from './renderers/CardSection.vue'
 import StepperSection from './renderers/StepperSection.vue'

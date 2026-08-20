@@ -55,7 +55,7 @@ export const sections: ResumeSectionData[] = [
       {
         label: 'Обо мне',
         text:
-          'Frontend-разработчик с 2+ годами коммерческого опыта и более чем 5 годами практики разработки. ' +
+          'Frontend-разработчик с 3+ годами коммерческого опыта и более чем 5 годами практики разработки. ' +
           'Разрабатываю веб-приложения на Nuxt 3/4 и React с использованием Pinia и Axios/Fetch API. ' +
           'Генерирую API-клиенты с помощью Orval и собственных адаптеров. ' +
           'Работаю с Vuetify, Ant Design и Tailwind CSS. ' +
@@ -176,7 +176,7 @@ export const sections: ResumeSectionData[] = [
         label: 'Дубна',
         heading: 'Программная инженерия',
         subheading: 'Университет «Дубна»',
-        meta: '2029 · Заочная форма',
+        meta: '2026 · Бакалавриат',
       },
     ],
   },

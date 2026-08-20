@@ -68,6 +68,88 @@
   font-size: 16px;
 }
 
+/* ---------- Раздел UI-библиотеки: сайдбар подразделов ---------- */
+
+.docs {
+  display: flex;
+  align-items: flex-start;
+  gap: 36px;
+}
+
+.docs__sidebar {
+  position: sticky;
+  top: 78px;
+  flex-shrink: 0;
+  width: 210px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: calc(100vh - 110px);
+  overflow-y: auto;
+}
+
+.docs__sidebar-title {
+  padding: 6px 12px;
+  margin-bottom: 6px;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: 8px;
+}
+.docs__sidebar-title--active,
+.docs__sidebar-title:hover {
+  background: var(--bg-color);
+}
+
+.docs__sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-left: 1px solid var(--border-color);
+  padding-left: 8px;
+}
+
+.docs__sidebar-link {
+  padding: 6px 12px;
+  color: var(--subtitle-color);
+  text-decoration: none;
+  font-size: 13px;
+  border-radius: 8px;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+.docs__sidebar-link:hover {
+  color: var(--text-color);
+  background: var(--bg-color);
+}
+.docs__sidebar-link--active {
+  color: var(--text-color);
+  font-weight: 600;
+  background: color-mix(in oklab, var(--primary-color) 25%, transparent);
+}
+
+.docs__content {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 860px) {
+  .docs {
+    flex-direction: column;
+  }
+  .docs__sidebar {
+    position: static;
+    width: 100%;
+    max-height: none;
+  }
+  .docs__sidebar-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-left: none;
+    padding-left: 0;
+  }
+}
+
 /* ---------- Список компонентов ---------- */
 
 .ui-grid {

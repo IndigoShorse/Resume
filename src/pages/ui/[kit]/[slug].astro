@@ -1,24 +1,30 @@
 ---
-import Layout from '@/layouts/Layout.astro'
+import KitLayout from '@/layouts/KitLayout.astro'
 import ComponentShowcase from '@/components/showcase/ComponentShowcase.vue'
-import { registry, sourceMap } from '@/components/showcase/registry'
+import { kits } from '@/data/registry'
 import { Code } from 'astro:components'
 
 export function getStaticPaths() {
-  return registry.map((meta) => ({ params: { slug: meta.slug } }))
+  return kits.flatMap((kit) =>
+    kit.components.map((meta) => ({ params: { kit: kit.key, slug: meta.slug } })),
+  )
 }
 
-const { slug } = Astro.params
-const meta = registry.find((m) => m.slug === slug)!
-const source = sourceMap[meta.slug]
+const kit = kits.find((k) => k.key === Astro.params.kit)!
+const meta = kit.components.find((m) => m.slug === Astro.params.slug)!
+const source = kit.sourceMap[meta.slug]
 ---
 
-<Layout title={`${meta.name} — UI-библиотека`} description={meta.description}>
-  <a href="/ui" class="page-back">← Все компоненты</a>
+<KitLayout
+  kit={kit}
+  currentSlug={meta.slug}
+  title={`${meta.name} — UI-библиотека ${kit.title}`}
+  description={meta.description}
+>
   <h1 class="page-title">{meta.name}</h1>
   <p class="page-subtitle">{meta.description}</p>
 
-  <ComponentShowcase client:load slug={meta.slug} />
+  <ComponentShowcase client:load kit={kit.key} slug={meta.slug} />
 
   <details class="code-block">
     <summary class="code-block__summary">Исходный код {meta.name}.vue</summary>
@@ -27,7 +33,7 @@ const source = sourceMap[meta.slug]
       <Code code={source} lang="vue" theme="github-light" />
     </div>
   </details>
-</Layout>
+</KitLayout>
 
 <script>
   document.querySelectorAll<HTMLButtonElement>('.code-block__copy').forEach((btn) => {

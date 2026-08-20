@@ -1,0 +1,24 @@
+---
+// Лейаут раздела UI-библиотеки: общий каркас сайта + левый сайдбар подразделов.
+import Layout from './Layout.astro'
+import KitSidebar from '@/components/showcase/KitSidebar.astro'
+import type { KitRegistry } from '@/data/registry'
+
+interface Props {
+  kit: KitRegistry
+  currentSlug?: string
+  title: string
+  description?: string
+}
+
+const { kit, currentSlug, title, description } = Astro.props
+---
+
+<Layout title={title} description={description}>
+  <div class="docs">
+    <KitSidebar kit={kit} currentSlug={currentSlug} />
+    <div class="docs__content">
+      <slot />
+    </div>
+  </div>
+</Layout>

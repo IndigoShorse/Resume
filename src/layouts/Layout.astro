@@ -2,6 +2,7 @@
 import '@/assets/css/med/main.pcss'
 import '@/assets/css/global.css'
 import '@/assets/css/resume.css'
+import { kits } from '@/data/registry'
 
 interface Props {
   title: string
@@ -26,11 +27,24 @@ const { pathname } = Astro.url
       <nav class="site-header__nav">
         <a href="/" class="site-header__logo">Портфолио</a>
         <a
-          href="/ui"
-          class:list={['site-header__link', { 'site-header__link--active': pathname.startsWith('/ui') }]}
+          href="/"
+          class:list={['site-header__link', { 'site-header__link--active': pathname === '/' || pathname.startsWith('/vue') }]}
         >
-          UI-библиотека (Nuxt 3)
+          Резюме
         </a>
+        {
+          kits.map((kit) => (
+            <a
+              href={`/ui/${kit.key}`}
+              class:list={[
+                'site-header__link',
+                { 'site-header__link--active': pathname.startsWith(`/ui/${kit.key}`) },
+              ]}
+            >
+              UI-библиотека {kit.title}
+            </a>
+          ))
+        }
       </nav>
     </header>
     <main class="site-main">

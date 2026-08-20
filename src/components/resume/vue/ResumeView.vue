@@ -3,7 +3,7 @@
 // Текстовка одна (src/data/resume.ts), обёртки — компоненты UI-библиотеки.
 import { ref, watch, onMounted } from 'vue'
 import { person, sections } from '@/data/resume'
-import { modes, type ResumeMode } from './config'
+import { modes, type ResumeMode } from '@/data/modes'
 import ResumeSection from './ResumeSection.vue'
 import UiButton from '@/components/ui/med/UiButton.vue'
 import UiAlert from '@/components/ui/med/UiAlert.vue'

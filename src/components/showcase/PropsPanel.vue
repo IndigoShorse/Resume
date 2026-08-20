@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
-import type { PropField } from './registry'
+import type { PropField } from '@/data/registry'
 
 const props = defineProps<{
   fields: PropField[]

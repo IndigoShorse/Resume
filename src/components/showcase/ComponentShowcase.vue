@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
-import { registry, componentMap } from './registry'
+import { getKit } from '@/data/registry'
 import PropsPanel from './PropsPanel.vue'
 import UiButton from '@/components/ui/med/UiButton.vue'
 import UiInput from '@/components/ui/med/UiInput.vue'
 
-const props = defineProps<{ slug: string }>()
+const props = defineProps<{ slug: string; kit?: string }>()
 
-const meta = registry.find((m) => m.slug === props.slug)!
-const comp = componentMap[props.slug]
+const kitRegistry = getKit(props.kit ?? 'med')!
+const meta = kitRegistry.components.find((m) => m.slug === props.slug)!
+const comp = kitRegistry.componentMap[props.slug]
 
 // стартовое состояние пропсов из манифеста (глубокая копия дефолтов)
 const state = reactive<Record<string, any>>(

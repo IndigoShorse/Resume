@@ -34,29 +34,13 @@ import UiModalRaw from '@/components/ui/med/UiModal.vue?raw'
 import UiStepperRaw from '@/components/ui/med/UiStepper.vue?raw'
 import UiStepperFormRaw from '@/components/ui/med/UiStepperForm.vue?raw'
 
-export type FieldType = 'string' | 'number' | 'boolean' | 'select' | 'json'
-
-export interface PropField {
-  name: string
-  type: FieldType
-  default: unknown
-  options?: string[]
-}
-
-export interface UiComponentMeta {
-  slug: string
-  name: string
-  description: string
-  props: PropField[]
-  slotText?: string
-  hasModel?: boolean
-  modelDefault?: unknown
-}
+// Импорт только типов — в рантайме цикла index <-> med нет
+import type { KitRegistry, UiComponentMeta } from './index'
 
 const iconOptions = ['arrow-right', 'arrow-up-right', 'minus', 'triangle-alert']
 
-// Vue/Nuxt components registry
-export const registry: UiComponentMeta[] = [
+// Раздел Med: Vue-кит, перенесённый из Nuxt 3 (DTDP_front)
+const components: UiComponentMeta[] = [
   {
     slug: 'button',
     name: 'UiButton',
@@ -277,7 +261,7 @@ export const registry: UiComponentMeta[] = [
   },
 ]
 
-export const componentMap: Record<string, Component> = {
+const componentMap: Record<string, Component> = {
   'button': UiButton,
   'input': UiInput,
   'input-image': UiInputImage,
@@ -296,7 +280,7 @@ export const componentMap: Record<string, Component> = {
   'header': UiHeader,
 }
 
-export const sourceMap: Record<string, string> = {
+const sourceMap: Record<string, string> = {
   'button': UiButtonRaw,
   'input': UiInputRaw,
   'input-image': UiInputImageRaw,
@@ -313,4 +297,15 @@ export const sourceMap: Record<string, string> = {
   'back': UiBackRaw,
   'icon': UiIconRaw,
   'header': UiHeaderRaw,
+}
+
+export const medKit: KitRegistry = {
+  key: 'med',
+  title: 'Med (Nuxt 3)',
+  description:
+    'Кастомные Vue-компоненты из проекта на Nuxt 3. Открой любой — внутри живое демо ' +
+    'с настройкой пропсов и исходным кодом.',
+  components,
+  componentMap,
+  sourceMap,
 }
