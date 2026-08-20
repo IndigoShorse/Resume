@@ -8,6 +8,9 @@ import svgLoader from 'vite-svg-loader'
 
 export default defineConfig({
   integrations: [vue(), react()],
+  redirects: {
+    '/ui': '/ui/med',
+  },
   vite: {
     plugins: [tailwindcss(), svgLoader()],
     resolve: {
