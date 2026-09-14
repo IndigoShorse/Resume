@@ -28,11 +28,16 @@ jobs:
           node-version: 22
           cache: npm
 
-      # Requires Settings -> Pages -> Source: GitHub Actions to be selected once.
-      - uses: actions/configure-pages@v5
+      # package-lock.json was generated against the npmmirror mirror;
+      # CI pulls the same tarballs (identical integrity hashes) from npmjs.
+      - name: Point lockfile at the official registry
+        run: sed -i 's#https://registry\.npmmirror\.com/#https://registry.npmjs.org/#g' package-lock.json
 
       - run: npm ci
       - run: npm run build
+
+      # Requires Settings -> Pages -> Source: GitHub Actions to be selected once.
+      - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
         with:
