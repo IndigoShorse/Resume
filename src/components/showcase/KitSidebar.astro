@@ -1,8 +1,9 @@
 ---
-// Левое меню раздела UI-библиотеки (как у antd/vuetify):
+// Левое меню раздела UI-библиотеки:
 // список подразделов-компонентов строится из реестра кита.
 import type { KitRegistry } from '@/data/registry'
 import { getDict, format } from '@/i18n'
+import { withBase } from '@/utils/url'
 
 interface Props {
   kit: KitRegistry
@@ -14,7 +15,7 @@ const { kit, currentSlug } = Astro.props
 
 <aside class="docs__sidebar">
   <a
-    href={`/ui/${kit.key}`}
+    href={withBase(`/ui/${kit.key}`)}
     class:list={['docs__sidebar-title', { 'docs__sidebar-title--active': !currentSlug }]}
   >
     {kit.title}
@@ -22,7 +23,7 @@ const { kit, currentSlug } = Astro.props
   <nav class="docs__sidebar-nav" aria-label={format(getDict().kitPage.sidebarAria, { title: kit.title })}>
     {kit.components.map((meta) => (
       <a
-        href={`/ui/${kit.key}/${meta.slug}`}
+        href={withBase(`/ui/${kit.key}/${meta.slug}`)}
         class:list={['docs__sidebar-link', { 'docs__sidebar-link--active': meta.slug === currentSlug }]}
       >
         {meta.name}

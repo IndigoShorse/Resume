@@ -2,6 +2,7 @@
 import type { Step } from '@/types/default';
 import { ref, computed, onMounted, watch, nextTick } from 'vue'
 import UiContainer from './UiContainer.vue'
+import UiButton from './UiButton.vue'
 
 const props = defineProps({
   steps: {
@@ -14,7 +15,7 @@ const props = defineProps({
   },
   width: {
     type: Number,
-    default: 500,
+    default: null,
   },
   headerClickable: {
     type: Boolean,
@@ -23,6 +24,18 @@ const props = defineProps({
   contentHeight: {
     type: Number,
     default: 665,
+  },
+  showNavButtons: {
+    type: Boolean,
+    default: false,
+  },
+  prevLabel: {
+    type: String,
+    default: 'Назад',
+  },
+  nextLabel: {
+    type: String,
+    default: 'Далее',
   },
 })
 
@@ -111,10 +124,10 @@ defineExpose({
 </script>
 
 <template>
-  <div class="ui-stepper">
-    <div class="ui-stepper__header">
+  <div class="ui-carousel" :style="width ? { width: `${width}px` } : undefined">
+    <div class="ui-carousel__header">
       <div
-          class="ui-stepper__header-highlight"
+          class="ui-carousel__header-highlight"
           :style="highlightStyle"
       ></div>
 
@@ -123,11 +136,11 @@ defineExpose({
           :key="idx"
           :ref="(el) => { if (el) tabRefs[idx] = el as HTMLElement }"
           type="button"
-          class="ui-stepper__tab"
+          class="ui-carousel__tab"
           :class="{
-            'ui-stepper__tab--active': idx === currentStep,
-            'ui-stepper__tab--completed': idx < currentStep,
-            'ui-stepper__tab--clickable': headerClickable,
+            'ui-carousel__tab--active': idx === currentStep,
+            'ui-carousel__tab--completed': idx < currentStep,
+            'ui-carousel__tab--clickable': headerClickable,
           }"
           @click="onHeaderClick(idx)"
       >
@@ -140,17 +153,30 @@ defineExpose({
         :height="contentHeight"
         :margin-top="20"
     >
-      <div class="ui-stepper__viewport">
-        <div class="ui-stepper__track" :style="trackStyle">
+      <div class="ui-carousel__viewport">
+        <div class="ui-carousel__track" :style="trackStyle">
           <div
               v-for="(step, idx) in steps"
               :key="idx"
-              class="ui-stepper__slide"
+              class="ui-carousel__slide"
               :style="{ width: stepWidthPercent }"
           >
             <slot :name="`step-${idx}`" />
           </div>
         </div>
+      </div>
+
+      <div v-if="showNavButtons" class="ui-carousel__nav">
+        <UiButton
+            :label="prevLabel"
+            color="secondary"
+            :disabled="isFirst"
+            @click="prev"
+        />
+        <UiButton
+            :label="nextLabel"
+            @click="next"
+        />
       </div>
     </UiContainer>
   </div>

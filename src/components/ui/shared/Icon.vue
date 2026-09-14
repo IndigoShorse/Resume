@@ -56,17 +56,3 @@ const sizePx = computed(() =>
     <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2" />
   </svg>
 </template>
-
-<style scoped>
-.icon {
-  display: inline-block;
-  vertical-align: middle;
-}
-.icon--spin {
-  animation: icon-spin 1s linear infinite;
-}
-@keyframes icon-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-</style>

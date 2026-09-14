@@ -51,7 +51,3 @@ const emit = defineEmits(['update:modelValue', 'confirmAction'])
   </div>
   </Transition>
 </template>
-
-<style scoped>
-
-</style>

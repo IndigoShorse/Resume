@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // Универсальное «тело» информационного блока: одна и та же текстовка
-// рендерится внутри любой обёртки (типографика / UiCard / UiStepper).
+// рендерится внутри любой обёртки (типографика / UiCard / UiCarousel).
 import type { ResumeBlock } from '@/data/resume'
 import UiButton from '@/components/ui/med/UiButton.vue'
 

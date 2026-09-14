@@ -7,11 +7,9 @@ const dict = getDict().showcase
 
 const props = defineProps<{
   fields: PropField[]
-  /** реактивный объект состояния пропсов — мутируется напрямую */
   state: Record<string, any>
 }>()
 
-// json-поля редактируются как текст; невалидный JSON не применяется к состоянию
 const jsonDrafts = reactive<Record<string, { text: string; valid: boolean }>>({})
 for (const f of props.fields) {
   if (f.type === 'json') {
@@ -109,71 +107,3 @@ function onNumberInput(name: string, event: Event) {
     </p>
   </div>
 </template>
-
-<style scoped>
-.props-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.props-panel__field {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.props-panel__label {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 8px;
-  font-weight: 600;
-  font-size: 13px;
-}
-
-.props-panel__type {
-  color: var(--subtitle-color);
-  font-weight: 400;
-  font-size: 11px;
-}
-
-.props-panel__control {
-  width: 100%;
-  box-sizing: border-box;
-  min-height: 32px;
-  padding: 6px 10px;
-  background: #fff;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  font-size: 13px;
-}
-.props-panel__control:focus {
-  outline: 1px solid var(--primary-color);
-}
-
-.props-panel__control--json {
-  font-family: ui-monospace, 'Cascadia Code', Consolas, monospace;
-  font-size: 12px;
-  resize: vertical;
-}
-.props-panel__control--invalid {
-  border-color: #ef4444;
-  outline-color: #ef4444;
-}
-
-.props-panel__checkbox {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  font-size: 13px;
-  color: var(--subtitle-color);
-}
-
-.props-panel__empty {
-  color: var(--subtitle-color);
-  font-size: 13px;
-  margin: 0;
-}
-</style>

@@ -2,6 +2,7 @@
 // Astro-шапка визитки: имя, контакты, PDF и алерт в стилях UI-библиотеки.
 import { getResume } from '@/data/resume'
 import { getDict } from '@/i18n'
+import { withBase } from '@/utils/url'
 import triangleAlert from '@/assets/icons/triangle-alert.svg?raw'
 import arrowUpRight from '@/assets/icons/arrow-up-right.svg?raw'
 
@@ -17,13 +18,13 @@ const dict = getDict().hero
     {person.contacts.map((contact) => (
       <a class="ui-button ui-button--color-secondary" href={contact.href}>{contact.label}</a>
     ))}
-    <a
+    {/*}<a
       class="ui-button ui-button--color-primary ui-btn--has-append"
-      href="/resume.pdf"
+      href={withBase("/resume.pdf")}
     >
       {dict.downloadPdf}
       <span class="ui-btn__append-icon" set:html={arrowUpRight} />
-    </a>
+    </a>*/}
   </div>
 
   <div class="ui-alert">

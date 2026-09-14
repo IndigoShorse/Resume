@@ -7,12 +7,12 @@ import type { ResumeSectionData } from '@/data/resume'
 import type { ResumeMode } from '@/data/modes'
 import PlainSection from './renderers/PlainSection.vue'
 import CardSection from './renderers/CardSection.vue'
-import StepperSection from './renderers/StepperSection.vue'
+import CarouselSection from './renderers/CarouselSection.vue'
 
 const renderers: Record<ResumeMode, Component> = {
   plain: PlainSection,
   cards: CardSection,
-  stepper: StepperSection,
+  carousel: CarouselSection,
 }
 
 const props = defineProps({

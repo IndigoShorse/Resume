@@ -44,6 +44,20 @@
     color: color-mix(in oklab, var(--text-color-link) 90%, #fff);
 }
 
+.ui-button--disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+.ui-button--disabled.ui-button--color-primary:hover {
+    background: var(--primary-color);
+}
+.ui-button--disabled.ui-button--color-secondary:hover {
+    background: var(--bg-color);
+}
+.ui-button--disabled.ui-button--color-plain:hover {
+    color: var(--text-color-link);
+}
+
 .ui-btn--pending {
     background-color: color-mix(in oklab, var(--primary-color) 80%, rgba(0,0,0,0.2));
     cursor: not-allowed;

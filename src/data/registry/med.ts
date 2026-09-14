@@ -13,7 +13,7 @@ import UiInput from '@/components/ui/med/UiInput.vue'
 import UiInputImage from '@/components/ui/med/UiInputImage.vue'
 import UiLayoutContainer from '@/components/ui/med/UiLayoutContainer.vue'
 import UiModal from '@/components/ui/med/UiModal.vue'
-import UiStepper from '@/components/ui/med/UiStepper.vue'
+import UiCarousel from '@/components/ui/med/UiCarousel.vue'
 import UiStepperForm from '@/components/ui/med/UiStepperForm.vue'
 
 import UiAlertRaw from '@/components/ui/med/UiAlert.vue?raw'
@@ -29,7 +29,7 @@ import UiInputRaw from '@/components/ui/med/UiInput.vue?raw'
 import UiInputImageRaw from '@/components/ui/med/UiInputImage.vue?raw'
 import UiLayoutContainerRaw from '@/components/ui/med/UiLayoutContainer.vue?raw'
 import UiModalRaw from '@/components/ui/med/UiModal.vue?raw'
-import UiStepperRaw from '@/components/ui/med/UiStepper.vue?raw'
+import UiCarouselRaw from '@/components/ui/med/UiCarousel.vue?raw'
 import UiStepperFormRaw from '@/components/ui/med/UiStepperForm.vue?raw'
 
 // Импорт только типов — в рантайме цикла index <-> med нет
@@ -59,9 +59,9 @@ const rawComponents: Omit<UiComponentMeta, 'description'>[] = [
     slug: 'input',
     name: 'UiInput',
     props: [
-      { name: 'as', type: 'select', default: 'input', options: ['input', 'select', 'textarea', 'radio-group'] },
+      { name: 'as', type: 'select', default: 'input', options: ['input', 'select', 'textarea'] },
+      { name: 'error', type: 'string', default: '' },
       { name: 'type', type: 'select', default: 'text', options: ['text', 'number', 'email', 'password', 'tel'] },
-      { name: 'name', type: 'string', default: 'demo-field' },
       { name: 'label', type: 'string', default: 'Имя' },
       { name: 'placeholder', type: 'string', default: 'Введите текст' },
       {
@@ -76,7 +76,6 @@ const rawComponents: Omit<UiComponentMeta, 'description'>[] = [
       { name: 'hasMargin', type: 'boolean', default: false },
       { name: 'disabled', type: 'boolean', default: false },
       { name: 'labelBold', type: 'boolean', default: false },
-      { name: 'error', type: 'string', default: '' },
     ],
     hasModel: true,
     modelDefault: '',
@@ -85,10 +84,10 @@ const rawComponents: Omit<UiComponentMeta, 'description'>[] = [
     slug: 'input-image',
     name: 'UiInputImage',
     props: [
-      { name: 'name', type: 'string', default: 'photo' },
       { name: 'label', type: 'string', default: 'Фото профиля' },
       { name: 'placeholder', type: 'string', default: 'Загрузить фото' },
       { name: 'accept', type: 'string', default: 'image/png, image/jpeg, image/jpg' },
+      { name: 'disabled', type: 'boolean', default: false },
     ],
   },
   {
@@ -108,9 +107,6 @@ const rawComponents: Omit<UiComponentMeta, 'description'>[] = [
       { name: 'width', type: 'number', default: 400 },
       { name: 'gap', type: 'number', default: 24 },
       { name: 'error', type: 'string', default: '' },
-      { name: 'alert', type: 'string', default: '' },
-      { name: 'backLabel', type: 'string', default: '' },
-      { name: 'backTo', type: 'string', default: '' },
     ],
   },
   {
@@ -131,14 +127,17 @@ const rawComponents: Omit<UiComponentMeta, 'description'>[] = [
     slotText: 'Содержимое шага',
   },
   {
-    slug: 'stepper',
-    name: 'UiStepper',
+    slug: 'carousel',
+    name: 'UiCarousel',
     props: [
       {
         name: 'steps', type: 'json',
         default: [{ label: 'Профиль' }, { label: 'Документы' }, { label: 'Готово' }],
       },
       { name: 'headerClickable', type: 'boolean', default: true },
+      { name: 'showNavButtons', type: 'boolean', default: true },
+      { name: 'prevLabel', type: 'string', default: 'Назад' },
+      { name: 'nextLabel', type: 'string', default: 'Далее' },
       { name: 'width', type: 'number', default: 500 },
       { name: 'contentHeight', type: 'number', default: 665 },
     ],
@@ -197,6 +196,9 @@ const rawComponents: Omit<UiComponentMeta, 'description'>[] = [
     props: [
       { name: 'width', type: 'string', default: '450px' },
       { name: 'marginBottom', type: 'number', default: 12 },
+      { name: 'marginTop', type: 'number', default: 0 },
+      { name: 'thickness', type: 'number', default: 1 },
+      { name: 'color', type: 'string', default: '' },
     ],
   },
   {
@@ -204,6 +206,9 @@ const rawComponents: Omit<UiComponentMeta, 'description'>[] = [
     name: 'UiAlert',
     props: [
       { name: 'text', type: 'string', default: 'Проверьте введённые данные' },
+      { name: 'variant', type: 'select', default: 'warning', options: ['warning', 'error', 'info', 'success'] },
+      { name: 'hideIcon', type: 'boolean', default: false },
+      { name: 'width', type: 'string', default: 'auto' },
     ],
   },
   {
@@ -218,6 +223,9 @@ const rawComponents: Omit<UiComponentMeta, 'description'>[] = [
           { label: 'Текущая страница' },
         ],
       },
+      { name: 'separator', type: 'select', default: 'arrow-right', options: iconOptions },
+      { name: 'separatorSize', type: 'number', default: 8 },
+      { name: 'boldCurrent', type: 'boolean', default: true },
     ],
   },
   {
@@ -226,6 +234,8 @@ const rawComponents: Omit<UiComponentMeta, 'description'>[] = [
     props: [
       { name: 'label', type: 'string', default: 'Назад к списку' },
       { name: 'to', type: 'string', default: '#' },
+      { name: 'hideIcon', type: 'boolean', default: false },
+      { name: 'iconSize', type: 'number', default: 24 },
     ],
   },
   {
@@ -235,6 +245,7 @@ const rawComponents: Omit<UiComponentMeta, 'description'>[] = [
       { name: 'icon', type: 'select', default: 'arrow-right', options: iconOptions },
       { name: 'width', type: 'string', default: '32px' },
       { name: 'height', type: 'string', default: '32px' },
+      { name: 'color', type: 'string', default: '' },
     ],
   },
 ]
@@ -245,7 +256,7 @@ const componentMap: Record<string, Component> = {
   'input-image': UiInputImage,
   'form': UiForm,
   'stepper-form': UiStepperForm,
-  'stepper': UiStepper,
+  'carousel': UiCarousel,
   'modal': UiModal,
   'card': UiCard,
   'container': UiContainer,
@@ -263,7 +274,7 @@ const sourceMap: Record<string, string> = {
   'input-image': UiInputImageRaw,
   'form': UiFormRaw,
   'stepper-form': UiStepperFormRaw,
-  'stepper': UiStepperRaw,
+  'carousel': UiCarouselRaw,
   'modal': UiModalRaw,
   'card': UiCardRaw,
   'container': UiContainerRaw,

@@ -31,21 +31,29 @@ const dict = getDict().kitPage
   <details class="code-block">
     <summary class="code-block__summary">{format(dict.source, { name: meta.name })}</summary>
     <div class="code-block__body">
-      <button class="code-block__copy" type="button" data-copied-label={dict.copied}>{dict.copy}</button>
+      <button class="code-block__copy" type="button" data-copied-label={dict.copied}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="9" y="9" width="13" height="13" rx="2" />
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+        </svg>
+        <span>{dict.copy}</span>
+      </button>
       <Code code={source} lang="vue" theme="github-light" />
     </div>
   </details>
 </KitLayout>
 
 <script>
-  document.querySelectorAll<HTMLButtonElement>('.code-block__copy').forEach((btn) => {
+  // Кнопка внутри Vue-острова (.code-block--usage) обрабатывается самим компонентом
+  document.querySelectorAll<HTMLButtonElement>('.code-block:not(.code-block--usage) .code-block__copy').forEach((btn) => {
     btn.addEventListener('click', async () => {
       const pre = btn.closest('.code-block__body')?.querySelector('pre')
-      if (!pre) return
+      const label = btn.querySelector('span')
+      if (!pre || !label) return
       await navigator.clipboard.writeText(pre.textContent ?? '')
-      const prev = btn.textContent
-      btn.textContent = btn.dataset.copiedLabel ?? prev
-      setTimeout(() => (btn.textContent = prev), 1500)
+      const prev = label.textContent
+      label.textContent = btn.dataset.copiedLabel ?? prev
+      setTimeout(() => (label.textContent = prev), 1500)
     })
   })
 </script>

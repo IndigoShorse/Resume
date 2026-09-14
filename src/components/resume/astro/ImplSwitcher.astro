@@ -2,6 +2,7 @@
 // Вкладки визитки: Astro — резюме со стилями отображения,
 // Vue — интерактивный шоукейс компонентов UI-библиотеки, позже React.
 import { getDict } from '@/i18n'
+import { withBase } from '@/utils/url'
 
 interface Props {
   current: 'astro' | 'vue'
@@ -20,7 +21,7 @@ const impls = [
   <span class="resume__switcher-label">{dict.label}</span>
   {impls.map((impl) => (
     <a
-      href={impl.href}
+      href={withBase(impl.href)}
       class:list={[
         'ui-button',
         current === impl.key ? 'ui-button--color-primary' : 'ui-button--color-secondary',

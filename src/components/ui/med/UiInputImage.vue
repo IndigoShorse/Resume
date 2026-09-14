@@ -22,7 +22,11 @@ const props = defineProps({
   accept: {
     type: String,
     default: 'image/png, image/jpeg, image/jpg',
-  }
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
 })
 
 const emit = defineEmits<{
@@ -46,6 +50,7 @@ function uploadImage(event: Event) {
 }
 
 function removeImage() {
+  if (props.disabled) return
   isImageHidden.value = true
   if (image.value) {
     const fileInput = document.getElementById(inputId) as HTMLInputElement
@@ -60,11 +65,11 @@ function removeImage() {
 </script>
 
 <template>
-  <div class="ui-input-image">
+  <div class="ui-input-image" :class="{ 'ui-input-image--disabled': disabled }">
     <div class="ui-input-image__container">
       <label
           class="ui-input-image__placeholder"
-          :class="{ 'cursor-pointer': isImageHidden }"
+          :class="{ 'cursor-pointer': isImageHidden && !disabled }"
           :for="inputId"
       >
         <span :class="{ 'hidden': !isImageHidden }">{{ placeholder }}</span>
@@ -79,7 +84,7 @@ function removeImage() {
 
       <p
           class="ui-input-image__remove"
-          :class="{ 'hidden': isImageHidden }"
+          :class="{ 'hidden': isImageHidden || disabled }"
           @click="removeImage"
       >
         X
@@ -92,7 +97,7 @@ function removeImage() {
           type="file"
           class="hidden"
           :accept="accept"
-          :disabled="!isImageHidden"
+          :disabled="disabled || !isImageHidden"
           @change="uploadImage"
       />
     </div>

@@ -1,9 +1,12 @@
 ---
 import '@/assets/css/med/main.pcss'
 import '@/assets/css/global.css'
-import '@/assets/css/resume.css'
+import '@/assets/css/app/resume.css'
+import '@/assets/css/app/showcase.css'
+import '@/assets/css/app/panel.css'
 import { kits } from '@/data/registry'
 import { getDict, format, defaultLocale } from '@/i18n'
+import { withBase, stripBase } from '@/utils/url'
 
 interface Props {
   title: string
@@ -12,7 +15,7 @@ interface Props {
 
 const dict = getDict()
 const { title, description = dict.site.description } = Astro.props
-const { pathname } = Astro.url
+const pathname = stripBase(Astro.url.pathname)
 ---
 
 <!doctype html>
@@ -21,14 +24,14 @@ const { pathname } = Astro.url
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
     <title>{title}</title>
   </head>
   <body>
     <header class="site-header">
       <nav class="site-header__nav">
         <a
-          href="/"
+          href={withBase("/")}
           class:list={['site-header__link', { 'site-header__link--active': pathname === '/' }]}
         >
           {dict.site.nav.resume}
@@ -36,7 +39,7 @@ const { pathname } = Astro.url
         {
           kits.map((kit) => (
             <a
-              href={`/ui/${kit.key}`}
+              href={withBase(`/ui/${kit.key}`)}
               class:list={[
                 'site-header__link',
                 { 'site-header__link--active': pathname.startsWith(`/ui/${kit.key}`) },

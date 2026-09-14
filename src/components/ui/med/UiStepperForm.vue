@@ -20,23 +20,11 @@ defineProps({
     type: String,
     default: 'left', // center, right
   },
-  titleWidth: {
-    type: Number,
-    default: null,
-  },
-  isSubmitBtnShown: {
-    type: Boolean,
-    default: true,
-  },
   subtitle: {
     type: String,
     default: null,
   },
   confirmBtnDisabled: {
-    type: Boolean,
-    default: false,
-  },
-  cancelBtnDisabled: {
     type: Boolean,
     default: false,
   },
@@ -51,10 +39,6 @@ defineProps({
   cancelTitle: {
     type: String,
     default: null,
-  },
-  btnSize: {
-    type: String,
-    default: "m",
   },
   btnsDirection: {
     type: String,
@@ -88,17 +72,12 @@ defineProps({
       <h5
           v-if="title"
           class="ui-form__title"
-          :style="{
-            'text-align': titleAlign,
-            'width': titleWidth ? titleWidth + 'px' : '100%',
-          }"
+          :style="{ 'text-align': titleAlign }"
       >{{ title }}</h5>
       <p
           v-if="subtitle"
           class="ui-form__subtitle"
-          :style="{
-            'width': titleWidth ? titleWidth + 'px' : '100%',
-          }"
+          :style="{ 'text-align': titleAlign }"
       >{{ subtitle }}</p>
     </div>
     <div class="ui-form__sections">
@@ -117,10 +96,8 @@ defineProps({
           v-if="cancelTitle"
           type="button"
           :label="cancelTitle"
-          :disabled="cancelBtnDisabled"
           color="secondary"
           @click="$emit('cancel')"
-          wide
           :full-width="btnsFullWidth"
       />
       <UiButton
@@ -128,8 +105,7 @@ defineProps({
           type="submit"
           :label="confirmTitle"
           :disabled="confirmBtnDisabled"
-          :loading="btnLoading"
-          wide
+          :pending="btnLoading"
           :full-width="btnsFullWidth"
       />
     </div>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, useId } from 'vue'
 import { Field, useFieldError } from 'vee-validate'
 
 type Option = {
@@ -74,6 +74,10 @@ const component = computed(() => {
   return props.as
 })
 
+// vee-validate требует непустое имя поля; вне формы name можно не передавать
+const uid = useId()
+const fieldName = computed(() => props.name ?? `ui-input-${uid}`)
+
 // Ошибка валидации из vee-validate (вне контекста формы остаётся undefined);
 // проп error имеет приоритет. Показ единым блоком, чтобы анимировался Transition
 const fieldError = useFieldError(computed(() => props.name ?? ''))
@@ -124,7 +128,7 @@ const inputValue = computed({
           v-model="inputValue"
           class="ui-input__control"
           :type="type"
-          :name="name"
+          :name="fieldName"
           :placeholder="placeholder"
           :disabled="disabled"
       />
@@ -135,7 +139,7 @@ const inputValue = computed({
           v-model="inputValue"
           as="textarea"
           class="ui-input__control ui-input__control--textarea"
-          :name="name"
+          :name="fieldName"
           :placeholder="placeholder"
           :disabled="disabled"
       />
@@ -146,7 +150,7 @@ const inputValue = computed({
           v-model="inputValue"
           as="select"
           class="ui-input__control"
-          :name="name"
+          :name="fieldName"
           :disabled="disabled"
       >
         <option
@@ -177,7 +181,7 @@ const inputValue = computed({
         >
           <Field
               :checked="modelValue === option.value"
-              :name="name"
+              :name="fieldName"
               :value="option.value"
               :disabled="disabled || option.disabled"
               type="radio"

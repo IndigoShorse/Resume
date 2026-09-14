@@ -3,3 +3,27 @@
     display: inline-block;
     vertical-align: middle;
 }
+
+/* При заданном пропе color перекрашиваем и stroke-, и fill-иконки
+   (в части svg цвета захардкожены атрибутами) */
+.ui-icon--colored path[stroke] {
+    stroke: currentColor;
+}
+.ui-icon--colored path[fill]:not([fill="none"]) {
+    fill: currentColor;
+}
+
+/* Общий инлайновый Icon (ui/shared/Icon.vue) */
+.icon {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.icon--spin {
+    animation: icon-spin 1s linear infinite;
+}
+
+@keyframes icon-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}

@@ -71,11 +71,12 @@ const isLink = computed(() => component.value === 'a')
 <template>
   <component
     :is="component"
-    :href="isLink ? to : null"
+    :href="isLink && !disabled ? to : null"
     class="ui-button"
     :class="[
       `ui-button--color-${color}`,
       {
+        'ui-button--disabled': disabled || pending,
         'ui-btn--full-width': fullWidth,
         'ui-btn--has-append': appendIcon,
         'ui-btn--has-margin': hasMargin,

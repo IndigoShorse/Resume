@@ -14,6 +14,10 @@ const props = defineProps({
     type: [String, Number],
     default: '1em',
   },
+  color: {
+    type: String,
+    default: null,
+  },
 })
 
 // Динамический импорт SVG как Vue-компонентов (vite-svg-loader)
@@ -30,9 +34,11 @@ const DynamicIcon = computed(() => {
       :is="DynamicIcon"
       v-if="DynamicIcon"
       class="ui-icon"
+      :class="{ 'ui-icon--colored': color }"
       :style="{
         height: typeof height === 'string' ? height : `${height}px`,
         width: typeof width === 'string' ? width : `${width}px`,
+        ...(color ? { color } : {}),
       }"
   />
 </template>

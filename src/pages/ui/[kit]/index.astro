@@ -2,6 +2,7 @@
 import KitLayout from '@/layouts/KitLayout.astro'
 import { kits } from '@/data/registry'
 import { getDict, format } from '@/i18n'
+import { withBase } from '@/utils/url'
 
 export function getStaticPaths() {
   return kits.map((kit) => ({ params: { kit: kit.key } }))
@@ -18,7 +19,7 @@ const pageTitle = format(getDict().kitPage.title, { title: kit.title })
   <div class="ui-grid">
     {
       kit.components.map((meta) => (
-        <a href={`/ui/${kit.key}/${meta.slug}`} class="ui-grid__card">
+        <a href={withBase(`/ui/${kit.key}/${meta.slug}`)} class="ui-grid__card">
           <span class="ui-grid__name">{meta.name}</span>
           <p class="ui-grid__description">{meta.description}</p>
         </a>

@@ -40,6 +40,24 @@
     background: #FFF;
 }
 
+.ui-input--disabled {
+    color: var(--subtitle-color);
+    cursor: not-allowed;
+}
+.ui-input__control:disabled {
+    background: #F1F5F9;
+    color: var(--subtitle-color);
+    cursor: not-allowed;
+}
+.ui-input--disabled .ui-input__radio,
+.ui-input__radio input:disabled,
+.ui-input__radio input:disabled + span {
+    cursor: not-allowed;
+}
+.ui-input__radio input:disabled + span {
+    opacity: 0.55;
+}
+
 .ui-input__error {
     color: #ef4444;
     font-size: 13px;
@@ -151,6 +169,20 @@
 .ui-input-image__remove:hover {
     background: color-mix(in oklab, 70% var(--bg-color), transparent);
     color: color-mix(in oklab, 80% var(--text-color), var(--bg-color));
+}
+
+.ui-input-image--disabled {
+    opacity: 0.55;
+}
+.ui-input-image--disabled .ui-input-image__placeholder {
+    cursor: not-allowed;
+}
+.ui-input-image--disabled .ui-input-image__placeholder:hover {
+    color: var(--subtitle-color);
+    transform: none;
+}
+.ui-input-image--disabled .ui-input-image__placeholder:hover span {
+    transform: none;
 }
 
 .ui-input-image__label {

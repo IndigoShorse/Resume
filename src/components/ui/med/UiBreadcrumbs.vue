@@ -7,6 +7,18 @@ defineProps({
     type: Array as () => Breadcrumb[],
     required: true,
   },
+  separator: {
+    type: String,
+    default: 'arrow-right',
+  },
+  separatorSize: {
+    type: Number,
+    default: 8,
+  },
+  boldCurrent: {
+    type: Boolean,
+    default: true,
+  },
 })
 </script>
 
@@ -23,16 +35,18 @@ defineProps({
       <span
           v-else
           class="ui-breadcrumbs__current"
+          :class="{ 'ui-breadcrumbs__current--plain': !boldCurrent }"
       >
         {{ item.label }}
       </span>
       <span
           v-if="idx < items.length - 1"
           class="ui-breadcrumbs__separator"
+          :style="{ height: `${separatorSize}px` }"
       >
         <UiIcon
-          :icon="'arrow-right'"
-          :height="8"
+          :icon="separator"
+          :height="separatorSize"
       />
       </span>
     </template>

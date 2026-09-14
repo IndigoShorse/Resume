@@ -209,22 +209,22 @@
   margin-bottom: 14px;
 }
 
-/* ---------- Рендерер «Степпер» (Vue) ---------- */
+/* ---------- Рендерер «Карусель» (Vue) ---------- */
 
-.stepper-section {
+.carousel-section {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.stepper-section__title {
+.carousel-section__title {
   margin: 0;
   font-size: 22px;
   font-weight: 800;
   letter-spacing: 0.5px;
 }
 
-.stepper-section__slide {
+.carousel-section__slide {
   width: 88%;
   max-height: 100%;
   overflow-y: auto;

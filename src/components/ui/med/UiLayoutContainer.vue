@@ -4,7 +4,7 @@ const props = defineProps({
     type: String,
     default: 'row',
     validator: (value: string) => {
-      return ['row, col', 'grid-cols', 'grid-rows'].indexOf(value) > -1;
+      return ['row', 'col', 'grid-cols', 'grid-rows'].indexOf(value) > -1;
     },
   },
   margin: {
@@ -38,7 +38,3 @@ const props = defineProps({
     <slot/>
   </div>
 </template>
-
-<style scoped>
-
-</style>
