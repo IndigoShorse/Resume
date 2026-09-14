@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, dev]
   workflow_dispatch:
 
 permissions:
@@ -28,10 +28,8 @@ jobs:
           node-version: 22
           cache: npm
 
-      # Enables GitHub Pages on the repo if it is not configured yet.
+      # Requires Settings -> Pages -> Source: GitHub Actions to be selected once.
       - uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - run: npm ci
       - run: npm run build
