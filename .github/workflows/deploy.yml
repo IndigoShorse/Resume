@@ -36,10 +36,9 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-      # Enables Pages and configures it to use GitHub Actions.
+      # Pages must be enabled once in repository settings with GitHub Actions
+      # selected as the deployment source.
       - uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:
