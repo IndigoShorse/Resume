@@ -41,6 +41,9 @@ const pathname = stripBase(Astro.url.pathname)
   <body>
     <header class="site-header">
       <nav class="site-header__nav">
+        <a href={withBase('/')} class="site-header__logo" aria-label="IndigoShorse — на главную">
+          <span class="site-header__logo-part site-header__logo-part--indigo">Indigo</span><span class="site-header__logo-part site-header__logo-part--shorse">Shorse</span>
+        </a>
         <a
           href={withBase("/")}
           class:list={['site-header__link', { 'site-header__link--active': pathname === '/' }]}
