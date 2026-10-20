@@ -8,7 +8,7 @@
   },
   "home": {
     "title": "Сурков Даниил — Frontend-разработчик",
-    "description": "Резюме-визитка Даниила Суркова: frontend-разработчик (Vue / React / TypeScript). Стили отображения собраны из компонентов собственной UI-библиотеки."
+    "description": "Резюме Даниила Суркова: опыт frontend-разработки, технологии и проекты. Портфолио и библиотека компонентов DTDP."
   },
   "hero": {
     "downloadPdf": "Скачать PDF",
@@ -32,7 +32,7 @@
     "title": "UI-библиотека {title}",
     "componentTitle": "{name} — UI-библиотека {title}",
     "sidebarAria": "Компоненты {title}",
-    "source": "Исходный код {name}.vue",
+    "source": "Исходный код {name}.{extension}",
     "copy": "Скопировать",
     "copied": "Скопировано!"
   },
@@ -51,7 +51,7 @@
   "kits": {
     "med": {
       "title": "Med (Nuxt 3)",
-      "description": "Кастомные Vue-компоненты из проекта на Nuxt 3. Открой любой — внутри живое демо с настройкой пропсов и исходным кодом.",
+      "description": "Компоненты интерфейса исследовательского проекта DTDP на Nuxt 3. Открой любой — внутри живое демо с настройкой пропсов и исходным кодом.",
       "components": {
         "button": "Кнопка с вариантами цвета, состоянием загрузки, иконкой и рендером как ссылка.",
         "input": "Универсальное поле: input / select / textarea / radio-group, с vee-validate под капотом.",
@@ -156,8 +156,8 @@
             "label": "Стек",
             "tags": [
               "JavaScript", "TypeScript", "Python", "Nuxt 3", "React", "Pinia",
-              "Tailwind", "Ant Design", "Webpack", "REST API", "Git", "Vite",
-              "FastAPI", "Django"
+              "Tailwind", "Ant Design", "Webpack", "REST API", "Git", "FastAPI",
+              "Django"
             ]
           }
         ]

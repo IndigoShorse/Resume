@@ -1,5 +1,5 @@
 .ui-card {
-    background: #fff;
+    background: var(--surface-color);
     border-radius: calc(var(--radius) * 1.4);
 
     display: flex;
@@ -8,17 +8,17 @@
 }
 
 .ui-card__navigation {
-    border: 2px #E2E8F0 solid;
+    border: 2px var(--border-color) solid;
     transition: box-shadow .2s ease-in-out;
     box-shadow: none;
 }
 .ui-card__navigation:hover {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: var(--shadow-card-hover);
 }
 
 .ui-card__form {
-    border: 1px solid #E2E8F0;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-card);
 }
 
 

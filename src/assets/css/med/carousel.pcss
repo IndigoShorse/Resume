@@ -5,7 +5,7 @@
 
 .ui-carousel__header {
     width: fit-content;
-    background-color: #F1F5F9;
+    background-color: var(--surface-muted-color);
     border-radius: 10px;
     position: relative;
     display: flex;
@@ -19,7 +19,7 @@
     height: 100%;
     border-radius: var(--button-radius);
     border: 2px solid var(--primary-color);
-    background: rgba(146, 218, 240, 0.08);
+    background: color-mix(in oklab, var(--primary-color) 8%, transparent);
     transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1),
     width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 0;

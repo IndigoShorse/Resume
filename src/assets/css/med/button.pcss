@@ -21,14 +21,14 @@
 
 .ui-button--color-primary {
     background: var(--primary-color);
-    color: var(--text-color);
+    color: var(--primary-text-color);
 }
 .ui-button--color-secondary {
     background: var(--bg-color);
     color: var(--text-color);
 }
 .ui-button--color-secondary:hover {
-    background-color: color-mix(in oklab, var(--bg-color) 80%, rgba(0,0,0,0.2));
+    background-color: color-mix(in oklab, var(--bg-color) 80%, var(--text-color) 20%);
 }
 .ui-button--color-primary:hover {
     background-color: color-mix(in oklab, var(--primary-color) 80%, transparent);
@@ -41,7 +41,7 @@
     color: var(--text-color-link);
 }
 .ui-button--color-plain:hover {
-    color: color-mix(in oklab, var(--text-color-link) 90%, #fff);
+    color: color-mix(in oklab, var(--text-color-link) 90%, var(--surface-color));
 }
 
 .ui-button--disabled {
@@ -59,12 +59,12 @@
 }
 
 .ui-btn--pending {
-    background-color: color-mix(in oklab, var(--primary-color) 80%, rgba(0,0,0,0.2));
+    background-color: color-mix(in oklab, var(--primary-color) 80%, var(--text-color) 20%);
     cursor: not-allowed;
     padding: 0;
 }
 .ui-btn--pending:hover {
-    background-color: color-mix(in oklab, var(--primary-color) 80%, rgba(0,0,0,0.2));
+    background-color: color-mix(in oklab, var(--primary-color) 80%, var(--text-color) 20%);
 }
 
 .ui-btn--full-width {

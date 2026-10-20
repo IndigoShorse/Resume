@@ -1,0 +1,68 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import PortfolioGallery from '@/components/portfolio/PortfolioGallery.vue'
+import { portfolio } from '@/data/portfolio'
+import { withBase } from '@/utils/url'
+
+const visibleProjects = portfolio.filter((project) => project.visibleInPortfolio)
+---
+
+<Layout title="Портфолио — Сурков Даниил" description="DTDP — медицинский ИИ-сервис: разработка интерфейса, технологии и экраны приложения.">
+  <div class="portfolio-page">
+    <header class="page-intro" data-reveal>
+      <p class="eyebrow">Работы и проекты</p>
+      <h1>Портфолио</h1>
+      <p>DTDP: задача, технологии и реальные экраны приложения.</p>
+    </header>
+    <div class="portfolio-list">
+      {visibleProjects.map((project, index) => (
+        <article class="portfolio-item" data-reveal>
+          <div class="portfolio-item__body">
+            <span class="portfolio-item__index">{String(index + 1).padStart(2, '0')} / {project.category}</span>
+            <h2>{project.title}</h2>
+            <p class="portfolio-item__summary">{project.summary}</p>
+            <div class="resume-tags">{project.stack.map((tag) => <span>{tag}</span>)}</div>
+            <details class="portfolio-item__details">
+              <summary>Подробнее о проекте <span aria-hidden="true">⌄</span></summary>
+              <div>{project.details.map((paragraph) => <p>{paragraph}</p>)}</div>
+            </details>
+            {project.links?.length && <div class="portfolio-item__links">{project.links.map((link) => <a href={link.internal ? withBase(link.href) : link.href} target={link.internal ? undefined : '_blank'} rel={link.internal ? undefined : 'noopener noreferrer'}>{link.label} ↗</a>)}</div>}
+          </div>
+          <PortfolioGallery client:visible images={project.images} title={project.title} />
+        </article>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<script>
+  const page = document.querySelector<HTMLElement>('.portfolio-page')
+  const motionAllowed = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  if (page && motionAllowed && 'IntersectionObserver' in window) {
+    const blocks = Array.from(page.querySelectorAll<HTMLElement>('[data-reveal]'))
+    page.classList.add('portfolio-page--reveal-ready')
+
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => blocks.indexOf(a.target as HTMLElement) - blocks.indexOf(b.target as HTMLElement))
+
+      visible.forEach((entry, index) => {
+        const block = entry.target as HTMLElement
+        block.style.setProperty('--reveal-delay', `${Math.min(index, 3) * 80}ms`)
+        block.classList.add('is-visible')
+        observer.unobserve(block)
+      })
+    }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' })
+
+    blocks.forEach((block) => observer.observe(block))
+    page.addEventListener('focusin', (event) => {
+      const block = (event.target as Element).closest<HTMLElement>('[data-reveal]')
+      if (block) {
+        block.classList.add('is-visible')
+        observer.unobserve(block)
+      }
+    })
+  }
+</script>

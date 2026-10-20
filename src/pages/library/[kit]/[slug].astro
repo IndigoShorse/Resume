@@ -1,6 +1,7 @@
 ---
 import KitLayout from '@/layouts/KitLayout.astro'
 import ComponentShowcase from '@/components/showcase/ComponentShowcase.vue'
+import ReactShowcase from '@/components/showcase/ReactShowcase'
 import { kits } from '@/data/registry'
 import { getDict, format } from '@/i18n'
 import { Code } from 'astro:components'
@@ -26,10 +27,12 @@ const dict = getDict().kitPage
   <h1 class="page-title">{meta.name}</h1>
   <p class="page-subtitle">{meta.description}</p>
 
-  <ComponentShowcase client:load kit={kit.key} slug={meta.slug} />
+  {kit.framework === 'vue'
+    ? <ComponentShowcase client:load kit={kit.key} slug={meta.slug} />
+    : <ReactShowcase client:load kit={kit.key} slug={meta.slug} />}
 
   <details class="code-block">
-    <summary class="code-block__summary">{format(dict.source, { name: meta.name })}</summary>
+    <summary class="code-block__summary">{format(dict.source, { name: meta.name, extension: kit.framework === 'vue' ? 'vue' : (kit.sourceLanguage ?? 'tsx') })}</summary>
     <div class="code-block__body">
       <button class="code-block__copy" type="button" data-copied-label={dict.copied}>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -38,7 +41,7 @@ const dict = getDict().kitPage
         </svg>
         <span>{dict.copy}</span>
       </button>
-      <Code code={source} lang="vue" theme="github-light" />
+      <Code code={source} lang={kit.framework === 'vue' ? 'vue' : (kit.sourceLanguage ?? 'tsx')} theme="github-light" />
     </div>
   </details>
 </KitLayout>

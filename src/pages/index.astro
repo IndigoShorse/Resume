@@ -1,19 +1,96 @@
 ---
 import Layout from '@/layouts/Layout.astro'
-import ResumeHero from '@/components/resume/astro/ResumeHero.astro'
-import ImplSwitcher from '@/components/resume/astro/ImplSwitcher.astro'
-import ResumeModes from '@/components/resume/vue/ResumeModes.vue'
+import ResumeTextSection from '@/components/resume/astro/ResumeTextSection.astro'
+import { getResume } from '@/data/resume'
 import { getDict } from '@/i18n'
+import { withBase } from '@/utils/url'
 
 const dict = getDict()
+const { person, sections } = getResume()
+const experience = sections.find((section) => section.id === 'experience')
+const profile = sections.find((section) => section.id === 'profile')
+const skills = sections.find((section) => section.id === 'skills')
+const typographySections = sections.filter((section) => ['education', 'languages'].includes(section.id))
+const projects = sections.find((section) => section.id === 'projects')
 ---
 
 <Layout title={dict.home.title} description={dict.home.description}>
-  <div class="resume">
-    <ResumeHero />
+  <div class="resume-page">
+    <header class="resume-intro" data-reveal>
+      <p class="eyebrow">Резюме / Frontend-разработка</p>
+      <h1>{person.name}</h1>
+      <p class="resume-intro__role">{person.tagline} · {person.location}</p>
+      <div class="resume-intro__contacts">
+        {person.contacts.map((contact) => <a href={contact.href}>{contact.label}</a>)}
+      </div>
+    </header>
 
-    <ImplSwitcher current="astro" />
+    {profile && <ResumeTextSection section={profile} />}
 
-    <ResumeModes client:load />
+    {experience && (
+      <section class="resume-experience" id="experience">
+        <div class="section-heading" data-reveal><div><h2>{experience.title}</h2></div></div>
+        <div class="resume-experience__list">
+          {experience.blocks.map((block) => (
+            <article class="experience-card" data-reveal>
+              <div class="experience-card__top">
+                <div><h3>{block.heading}</h3><p class="experience-card__company">{block.subheading}</p></div>
+                <span class="experience-card__meta">{block.meta}</span>
+              </div>
+              {block.items?.length && <ul>{block.items.map((item) => <li>{item}</li>)}</ul>}
+            </article>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {projects && (
+      <section class="resume-projects" data-reveal>
+        <div class="section-heading">
+          <div><h2>{projects.title}</h2></div>
+          <a class="text-link" href={withBase('/portfolio')}>Смотреть портфолио <span aria-hidden="true">↗</span></a>
+        </div>
+        <p>Подробнее о DTDP и реальные экраны приложения — в портфолио.</p>
+      </section>
+    )}
+
+    {skills && <ResumeTextSection section={skills} />}
+
+    <div class="resume-page__grid">
+      {typographySections.map((section) => <ResumeTextSection section={section} />)}
+    </div>
+
   </div>
 </Layout>
+
+<script>
+  const page = document.querySelector<HTMLElement>('.resume-page')
+  const motionAllowed = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  if (page && motionAllowed && 'IntersectionObserver' in window) {
+    const blocks = Array.from(page.querySelectorAll<HTMLElement>('[data-reveal]'))
+    page.classList.add('resume-page--reveal-ready')
+
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => blocks.indexOf(a.target as HTMLElement) - blocks.indexOf(b.target as HTMLElement))
+
+      visible.forEach((entry, index) => {
+        const block = entry.target as HTMLElement
+        block.style.setProperty('--reveal-delay', `${Math.min(index, 3) * 80}ms`)
+        block.classList.add('is-visible')
+        observer.unobserve(block)
+      })
+    }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' })
+
+    blocks.forEach((block) => observer.observe(block))
+    page.addEventListener('focusin', (event) => {
+      const block = (event.target as Element).closest<HTMLElement>('[data-reveal]')
+      if (block) {
+        block.classList.add('is-visible')
+        observer.unobserve(block)
+      }
+    })
+  }
+</script>

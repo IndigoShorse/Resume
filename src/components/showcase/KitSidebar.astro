@@ -14,8 +14,9 @@ const { kit, currentSlug } = Astro.props
 ---
 
 <aside class="docs__sidebar">
+  <a class="docs__sidebar-parent" href={withBase('/library')}>← Библиотека</a>
   <a
-    href={withBase(`/ui/${kit.key}`)}
+    href={withBase(`/library/${kit.key}`)}
     class:list={['docs__sidebar-title', { 'docs__sidebar-title--active': !currentSlug }]}
   >
     {kit.title}
@@ -23,7 +24,7 @@ const { kit, currentSlug } = Astro.props
   <nav class="docs__sidebar-nav" aria-label={format(getDict().kitPage.sidebarAria, { title: kit.title })}>
     {kit.components.map((meta) => (
       <a
-        href={withBase(`/ui/${kit.key}/${meta.slug}`)}
+        href={withBase(`/library/${kit.key}/${meta.slug}`)}
         class:list={['docs__sidebar-link', { 'docs__sidebar-link--active': meta.slug === currentSlug }]}
       >
         {meta.name}

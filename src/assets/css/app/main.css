@@ -1,0 +1,74 @@
+/* Палитра сайта. Стили компонентов остаются в med/. */
+:root {
+  color-scheme: light;
+  --primary-color: #92daf0;
+  --primary-text-color: #020617;
+  --bg-color: #f8fafc;
+  --surface-color: #fff;
+  --surface-muted-color: #f1f5f9;
+  --surface-soft-color: #eef5f7;
+  --field-color: #fafafa;
+  --border-color: #e2e8f0;
+  --text-color: #020617;
+  --text-color-link: #1d809e;
+  --subtitle-color: #64748b;
+  --body-copy-color: #405366;
+  --tag-text-color: #305367;
+  --accent-color: #287892;
+  --accent-border-color: #9bc9d6;
+  --header-color: rgb(255 255 255 / 85%);
+  --gallery-color: #eaf0f5;
+  --gallery-arrow-color: #203b4a;
+  --gallery-dot-color: #cbd8de;
+  --checker-color: rgb(2 6 23 / 3%);
+  --shadow-soft: 0 12px 36px rgb(24 47 66 / 3.5%);
+  --shadow-hover: 0 18px 44px rgb(24 47 66 / 9%);
+  --shadow-control: 0 3px 12px rgb(0 0 0 / 13%);
+  --shadow-form: 0 0 10px rgb(0 0 0 / 10%);
+  --shadow-card: 0 0 10px rgb(0 0 0 / 5%);
+  --shadow-card-hover: 0 4px 8px rgb(0 0 0 / 20%);
+  --shadow-inset: inset 0 0 4px rgb(0 0 0 / 10%);
+  --danger-color: #ef4444;
+  --warning-color: #f59e0b;
+  --info-color: #0ea5e9;
+  --success-color: #22c55e;
+  --modal-scrim-color: #33415599;
+  --lightbox-scrim-color: rgb(50 50 50 / 80%);
+  --lightbox-text-color: #fff;
+  --lightbox-control-color: rgb(255 255 255 / 8%);
+  --lightbox-control-hover-color: rgb(255 255 255 / 18%);
+  --lightbox-border-color: rgb(255 255 255 / 28%);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --primary-color: #38b8db;
+  --primary-text-color: #061924;
+  --bg-color: #0d1623;
+  --surface-color: #172435;
+  --surface-muted-color: #213249;
+  --surface-soft-color: #1d3545;
+  --field-color: #101d2b;
+  --border-color: #35485d;
+  --text-color: #edf5fa;
+  --text-color-link: #73d9f3;
+  --subtitle-color: #a9bacb;
+  --body-copy-color: #c4d3e0;
+  --tag-text-color: #c7e8f0;
+  --accent-color: #76d9f1;
+  --accent-border-color: #55a9c1;
+  --header-color: rgb(23 36 53 / 88%);
+  --gallery-color: #0b1522;
+  --gallery-arrow-color: #edf5fa;
+  --gallery-dot-color: #526b80;
+  --checker-color: rgb(202 225 239 / 5%);
+  --shadow-soft: 0 12px 36px rgb(0 0 0 / 18%);
+  --shadow-hover: 0 18px 44px rgb(0 0 0 / 25%);
+  --shadow-control: 0 3px 12px rgb(0 0 0 / 28%);
+  --shadow-form: 0 0 10px rgb(0 0 0 / 20%);
+  --shadow-card: 0 0 10px rgb(0 0 0 / 14%);
+  --shadow-card-hover: 0 4px 8px rgb(0 0 0 / 30%);
+  --shadow-inset: inset 0 0 4px rgb(0 0 0 / 25%);
+  --modal-scrim-color: rgb(2 7 13 / 75%);
+  --lightbox-scrim-color: rgb(2 7 13 / 90%);
+}

@@ -2,11 +2,20 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Astro: dev-сервер",
-      "type": "node-terminal",
+      "name": "Astro: открыть сайт (Edge)",
+      "type": "pwa-msedge",
       "request": "launch",
-      "command": "npm run dev -- --host",
-      "cwd": "${workspaceFolder}"
+      "url": "http://127.0.0.1:4321/",
+      "webRoot": "${workspaceFolder}",
+      "preLaunchTask": "astro: dev"
+    },
+    {
+      "name": "Astro: открыть сайт (Chrome)",
+      "type": "pwa-chrome",
+      "request": "launch",
+      "url": "http://127.0.0.1:4321/",
+      "webRoot": "${workspaceFolder}",
+      "preLaunchTask": "astro: dev"
     }
   ]
 }
