@@ -23,7 +23,7 @@ const isTypography = ['profile', 'skills', 'education', 'languages'].includes(se
         {block.meta && <p class="resume-entry__meta">{block.meta}</p>}
         {block.text && <p>{block.text}</p>}
         {block.items?.length && <ul>{block.items.map((item) => <li>{item}</li>)}</ul>}
-        {block.tags?.length && <div class="resume-tags">{block.tags.map((tag) => <span>{tag}</span>)}</div>}
+        {block.tags?.length && <div class:list={['resume-tags', { 'resume-tags--skills': section.id === 'skills' }]}>{block.tags.map((tag) => <span>{tag}</span>)}</div>}
         {block.level && (
           <div class="resume-block__level" role="img" aria-label={`Уровень владения: ${block.level} из 5`}>
             {Array.from({ length: 5 }, (_, index) => (

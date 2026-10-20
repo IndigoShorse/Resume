@@ -156,8 +156,8 @@
             "label": "Стек",
             "tags": [
               "JavaScript", "TypeScript", "Python", "Nuxt 3", "React", "Pinia",
-              "Tailwind", "Ant Design", "Webpack", "REST API", "Git", "Vite",
-              "FastAPI", "Django"
+              "Tailwind", "Ant Design", "Webpack", "REST API", "Git", "FastAPI",
+              "Django"
             ]
           }
         ]

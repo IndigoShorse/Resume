@@ -29,7 +29,7 @@ const projects = sections.find((section) => section.id === 'projects')
 
     {experience && (
       <section class="resume-experience" id="experience">
-        <div class="section-heading" data-reveal><div><p class="eyebrow">Карьера</p><h2>{experience.title}</h2></div></div>
+        <div class="section-heading" data-reveal><div><h2>{experience.title}</h2></div></div>
         <div class="resume-experience__list">
           {experience.blocks.map((block) => (
             <article class="experience-card" data-reveal>
@@ -47,10 +47,10 @@ const projects = sections.find((section) => section.id === 'projects')
     {projects && (
       <section class="resume-projects" data-reveal>
         <div class="section-heading">
-          <div><p class="eyebrow">Выбранные работы</p><h2>{projects.title}</h2></div>
+          <div><h2>{projects.title}</h2></div>
           <a class="text-link" href={withBase('/portfolio')}>Смотреть портфолио <span aria-hidden="true">↗</span></a>
         </div>
-        <p>Подробности о проектах и иллюстрации собраны на отдельной странице.</p>
+        <p>Подробнее о DTDP и реальные экраны приложения — в портфолио.</p>
       </section>
     )}
 

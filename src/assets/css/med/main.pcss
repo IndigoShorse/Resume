@@ -24,6 +24,20 @@
     --text-color: #020617;
     --text-color-link: #1d809e;
     --subtitle-color: #64748B;
+    --primary-text-color: #020617;
+    --surface-color: #fff;
+    --surface-muted-color: #F1F5F9;
+    --field-color: #FAFAFA;
+    --body-copy-color: #405366;
+    --shadow-form: 0 0 10px rgb(0 0 0 / 10%);
+    --shadow-card: 0 0 10px rgb(0 0 0 / 5%);
+    --shadow-card-hover: 0 4px 8px rgb(0 0 0 / 20%);
+    --shadow-inset: inset 0 0 4px rgb(0 0 0 / 10%);
+    --danger-color: #ef4444;
+    --warning-color: #f59e0b;
+    --info-color: #0ea5e9;
+    --success-color: #22c55e;
+    --modal-scrim-color: #33415599;
 
     --container-width: 1040px;
     --button-radius: 8px;
@@ -81,17 +95,17 @@ body {
 }
 
 .ui-back__icon {
-    color: #475569;
+    color: var(--subtitle-color);
 }
 
 .ui-back__label {
-    color: #334155;
+    color: var(--body-copy-color);
     font-size: 16px;
     font-weight: 500;
 }
 
 .ui-divider {
-    background: #E2E8F0;
+    background: var(--border-color);
     height: 1px;
     margin: 0 auto;
 }
