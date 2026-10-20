@@ -48,8 +48,8 @@
     resize: vertical;
 }
 .props-panel__control--invalid {
-    border-color: var(--danger-color);
-    outline-color: var(--danger-color);
+    border-color: var(--primary-color);
+    outline-color: var(--primary-color);
 }
 
 .props-panel__checkbox {
