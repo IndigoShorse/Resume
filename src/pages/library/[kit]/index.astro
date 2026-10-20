@@ -19,7 +19,7 @@ const pageTitle = format(getDict().kitPage.title, { title: kit.title })
   <div class="ui-grid">
     {
       kit.components.map((meta) => (
-        <a href={withBase(`/ui/${kit.key}/${meta.slug}`)} class="ui-grid__card">
+        <a href={withBase(`/library/${kit.key}/${meta.slug}`)} class="ui-grid__card">
           <span class="ui-grid__name">{meta.name}</span>
           <p class="ui-grid__description">{meta.description}</p>
         </a>

@@ -4,8 +4,8 @@ import '@/assets/css/global.css'
 import '@/assets/css/app/resume.css'
 import '@/assets/css/app/showcase.css'
 import '@/assets/css/app/panel.css'
-import { kits } from '@/data/registry'
-import { getDict, format, defaultLocale } from '@/i18n'
+import '@/assets/css/app/pages.css'
+import { getDict, defaultLocale } from '@/i18n'
 import { withBase, stripBase } from '@/utils/url'
 
 interface Props {
@@ -36,19 +36,8 @@ const pathname = stripBase(Astro.url.pathname)
         >
           {dict.site.nav.resume}
         </a>
-        {
-          kits.map((kit) => (
-            <a
-              href={withBase(`/ui/${kit.key}`)}
-              class:list={[
-                'site-header__link',
-                { 'site-header__link--active': pathname.startsWith(`/ui/${kit.key}`) },
-              ]}
-            >
-              {format(dict.site.nav.kit, { title: kit.title })}
-            </a>
-          ))
-        }
+        <a href={withBase('/portfolio')} class:list={['site-header__link', { 'site-header__link--active': pathname.startsWith('/portfolio') }]}>Портфолио</a>
+        <a href={withBase('/library')} class:list={['site-header__link', { 'site-header__link--active': pathname.startsWith('/library') }]}>Библиотека</a>
       </nav>
     </header>
     <main class="site-main">

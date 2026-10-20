@@ -1,0 +1,41 @@
+---
+import type { ResumeSectionData } from '@/data/resume'
+
+interface Props { section: ResumeSectionData }
+const { section } = Astro.props
+const isTypography = ['profile', 'skills', 'education', 'languages'].includes(section.id)
+---
+
+<section
+  class:list={[
+    isTypography ? 'resume-typography' : 'resume-card',
+    { 'resume-typography--profile': section.id === 'profile' },
+  ]}
+  id={section.id}
+  data-reveal
+>
+  <h2>{section.title}</h2>
+  <div class="resume-card__content">
+    {section.blocks.map((block) => (
+      <div class="resume-entry">
+        {block.heading && <h3>{block.heading}</h3>}
+        {block.subheading && <p class="resume-entry__subheading">{block.subheading}</p>}
+        {block.meta && <p class="resume-entry__meta">{block.meta}</p>}
+        {block.text && <p>{block.text}</p>}
+        {block.items?.length && <ul>{block.items.map((item) => <li>{item}</li>)}</ul>}
+        {block.tags?.length && <div class="resume-tags">{block.tags.map((tag) => <span>{tag}</span>)}</div>}
+        {block.level && (
+          <div class="resume-block__level" role="img" aria-label={`Уровень владения: ${block.level} из 5`}>
+            {Array.from({ length: 5 }, (_, index) => (
+              <span
+                class:list={['resume-block__dot', { 'resume-block__dot--active': index < (block.level ?? 0) }]}
+                aria-hidden="true"
+              />
+            ))}
+          </div>
+        )}
+        {block.links?.length && <div class="resume-entry__links">{block.links.map((link) => <a href={link.href}>{link.label}</a>)}</div>}
+      </div>
+    ))}
+  </div>
+</section>

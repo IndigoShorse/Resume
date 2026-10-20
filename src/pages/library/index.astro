@@ -1,0 +1,24 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import { kits } from '@/data/registry'
+import { withBase } from '@/utils/url'
+---
+
+<Layout title="Библиотека — Сурков Даниил" description="Библиотека интерфейсных компонентов и решений из проектов Даниила Суркова.">
+  <div class="library-page">
+    <header class="page-intro">
+      <p class="eyebrow">Интерфейсные решения</p>
+      <h1>Библиотека</h1>
+      <p>Компоненты и подходы из реальных проектов. Каждый раздел содержит живые примеры, настройки и исходный код.</p>
+    </header>
+    <div class="library-grid">
+      {kits.map((kit, index) => (
+        <a class="library-card" href={withBase(`/library/${kit.key}`)}>
+          <span class="library-card__number">{String(index + 1).padStart(2, '0')} / Раздел</span>
+          <div><h2>{kit.title}</h2><p>{kit.description}</p></div>
+          <span class="library-card__footer"><span>{kit.components.length} компонентов</span><span aria-hidden="true">↗</span></span>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>

@@ -97,6 +97,13 @@
   text-decoration: none;
   border-radius: 8px;
 }
+.docs__sidebar-parent {
+  padding: 5px 12px 10px;
+  color: var(--subtitle-color);
+  text-decoration: none;
+  font-size: 12px;
+}
+.docs__sidebar-parent:hover { color: var(--text-color-link); }
 .docs__sidebar-title--active,
 .docs__sidebar-title:hover {
   background: var(--bg-color);

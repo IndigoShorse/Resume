@@ -33,7 +33,7 @@ import UiCarouselRaw from '@/components/ui/med/UiCarousel.vue?raw'
 import UiStepperFormRaw from '@/components/ui/med/UiStepperForm.vue?raw'
 
 // Импорт только типов — в рантайме цикла index <-> med нет
-import type { KitRegistry, UiComponentMeta } from './index'
+import type { VueKitRegistry, UiComponentMeta } from './index'
 import { getDict } from '@/i18n'
 
 const iconOptions = ['arrow-right', 'arrow-up-right', 'minus', 'triangle-alert']
@@ -294,9 +294,10 @@ const components: UiComponentMeta[] = rawComponents.map((meta) => ({
   description: kitDict.components[meta.slug as keyof typeof kitDict.components],
 }))
 
-export const medKit: KitRegistry = {
-  key: 'med',
-  title: kitDict.title,
+export const medKit: VueKitRegistry = {
+  key: 'dtdp',
+  framework: 'vue',
+  title: 'DTDP (Nuxt 3)',
   description: kitDict.description,
   components,
   componentMap,

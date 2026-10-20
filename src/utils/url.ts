@@ -2,7 +2,7 @@
 // локально base === '/'. Astro не переписывает href автоматически.
 const base = import.meta.env.BASE_URL
 
-/** Абсолютный путь внутри сайта: withBase('/ui/med') -> '/Resume/ui/med' */
+/** Абсолютный путь внутри сайта: withBase('/library/dtdp') -> '/Resume/library/dtdp' */
 export function withBase(path = '/'): string {
   const clean = `/${String(path).replace(/^\/+/, '')}`
   const prefix = base.replace(/\/+$/, '')

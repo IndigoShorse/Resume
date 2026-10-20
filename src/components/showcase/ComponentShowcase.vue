@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import UiButton from '@/components/ui/med/UiButton.vue'
 import UiInput from '@/components/ui/med/UiInput.vue'
-import { getKit } from '@/data/registry'
+import { getVueKit } from '@/data/registry/vue'
 import { format, getDict } from '@/i18n'
 import { computed, reactive, ref } from 'vue'
 import PropsPanel from './PropsPanel.vue'
 
 const props = defineProps<{ slug: string; kit?: string }>()
 
-const kitRegistry = getKit(props.kit ?? 'med')!
+const kitRegistry = getVueKit(props.kit ?? 'dtdp')!
 const meta = kitRegistry.components.find((m) => m.slug === props.slug)!
 const comp = kitRegistry.componentMap[props.slug]
 
