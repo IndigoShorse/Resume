@@ -7,7 +7,7 @@ withDefaults(defineProps<{
   align?: 'left' | 'center' | 'right'
 }>(), {
   index: 1,
-  label: 'Заголовок сценария',
+  label: 'Scenario title',
   align: 'left',
 })
 </script>
@@ -18,6 +18,6 @@ withDefaults(defineProps<{
       <ReRomanIndex :value="index" size="xl" />
       <h3>{{ label }}</h3>
     </header>
-    <div class="re-text-card__body"><slot>Описание сценария или преимущества компании.</slot></div>
+    <div class="re-text-card__body"><slot>Scenario description</slot></div>
   </article>
 </template>

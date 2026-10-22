@@ -7,7 +7,7 @@ withDefaults(defineProps<{
   width?: string
   background?: string
 }>(), {
-  label: 'Заголовок карточки',
+  label: 'Card title',
   index: 1,
   width: '100%',
   background: '#1e1e1e',
@@ -20,6 +20,6 @@ withDefaults(defineProps<{
       <ReRomanIndex v-if="index !== null" :value="index" />
       <h3>{{ label }}</h3>
     </header>
-    <div class="re-card__body"><slot>Текст карточки с описанием услуги или сценария.</slot></div>
+    <div class="re-card__body"><slot>Card description</slot></div>
   </article>
 </template>

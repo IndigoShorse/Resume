@@ -8,7 +8,7 @@ withDefaults(defineProps<{
   open?: boolean
 }>(), {
   index: 1,
-  title: 'Частый вопрос',
+  title: 'Frequently asked question',
   open: false,
 })
 </script>
@@ -21,7 +21,7 @@ withDefaults(defineProps<{
         <span>{{ title }}</span>
         <span class="re-panel__action" aria-hidden="true" />
       </VExpansionPanelTitle>
-      <VExpansionPanelText class="re-panel__content"><slot>Ответ на частый вопрос.</slot></VExpansionPanelText>
+      <VExpansionPanelText class="re-panel__content"><slot>Answer to the frequently asked question.</slot></VExpansionPanelText>
     </VExpansionPanel>
   </VExpansionPanels>
 </template>

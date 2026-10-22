@@ -7,7 +7,7 @@ const props = withDefaults(defineProps<{
   perSlide?: number
   color?: string
 }>(), {
-  items: () => ['Продажа', 'Аренда', 'Флиппинг', 'Срочный выкуп'],
+  items: () => ['Sale', 'Rent', 'Flipping', 'Urgent buyout'],
   perSlide: 2,
   color: 'transparent',
 })

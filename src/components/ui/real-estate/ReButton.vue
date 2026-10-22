@@ -8,7 +8,7 @@ withDefaults(defineProps<{
   disabled?: boolean
   pending?: boolean
 }>(), {
-  label: 'Оставить заявку',
+  label: 'Submit',
   color: 'primary',
   as: 'button',
   href: '#',
@@ -26,6 +26,6 @@ withDefaults(defineProps<{
     :href="as === 'a' ? href : undefined"
     :disabled="as === 'button' ? disabled || pending : undefined"
   >
-    <slot>{{ pending ? 'Загрузка…' : label }}</slot>
+    <span class="re-button__text"><slot>{{ pending ? 'Loading…' : label }}</slot></span>
   </component>
 </template>

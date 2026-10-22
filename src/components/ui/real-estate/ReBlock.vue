@@ -6,7 +6,7 @@ withDefaults(defineProps<{
   background?: string
   padding?: string
 }>(), {
-  title: 'Заголовок раздела',
+  title: 'Section heading',
   headingTag: 'h2',
   color: '#fff',
   background: '#1a1817',
@@ -17,6 +17,6 @@ withDefaults(defineProps<{
 <template>
   <section class="re-block" :style="{ color, background, padding }">
     <component :is="headingTag" class="re-block__title">{{ title }}</component>
-    <div class="re-block__content"><slot>Содержимое блока</slot></div>
+    <div class="re-block__content"><slot>Block content</slot></div>
   </section>
 </template>
