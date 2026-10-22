@@ -31,11 +31,11 @@ const props = defineProps({
   },
   prevLabel: {
     type: String,
-    default: 'Назад',
+    default: 'Back',
   },
   nextLabel: {
     type: String,
-    default: 'Далее',
+    default: 'Next',
   },
 })
 

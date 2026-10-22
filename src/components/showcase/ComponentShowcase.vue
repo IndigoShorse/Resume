@@ -2,13 +2,13 @@
 import UiButton from '@/components/ui/med/UiButton.vue'
 import UiInput from '@/components/ui/med/UiInput.vue'
 import { getVueKit } from '@/data/registry/vue'
-import { format, getDict } from '@/i18n'
+import { format, getDict, type Locale } from '@/i18n'
 import { computed, reactive, ref } from 'vue'
 import PropsPanel from './PropsPanel.vue'
 
-const props = defineProps<{ slug: string; kit?: string }>()
+const props = defineProps<{ slug: string; kit?: string; locale?: Locale }>()
 
-const kitRegistry = getVueKit(props.kit ?? 'dtdp')!
+const kitRegistry = getVueKit(props.kit ?? 'dtdp', props.locale)!
 const meta = kitRegistry.components.find((m) => m.slug === props.slug)!
 const comp = kitRegistry.componentMap[props.slug]
 
@@ -22,7 +22,7 @@ const slotText = ref(meta.slotText ?? '')
 
 const formValues = ref<Record<string, unknown> | null>(null)
 
-const dict = getDict().showcase
+const dict = getDict(props.locale).showcase
 
 function toKebab(name: string) {
   return name.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`)
@@ -106,7 +106,7 @@ function resetProps() {
       <template v-else-if="slug === 'form'">
         <component :is="comp" v-bind="state" @submit="(values: any) => (formValues = values)"
           @cancel="formValues = null">
-          <UiInput name="name" label="Имя" placeholder="Иван" full-width />
+          <UiInput name="name" :label="dict.demoName" :placeholder="dict.demoNamePlaceholder" full-width />
           <UiInput name="email" type="email" label="E-mail" placeholder="ivan@example.com" full-width />
         </component>
         <pre v-if="formValues" class="showcase__form-result">submit: {{ formValues }}</pre>

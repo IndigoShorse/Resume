@@ -34,17 +34,20 @@ import UiStepperFormRaw from '@/components/ui/med/UiStepperForm.vue?raw'
 
 // Импорт только типов — в рантайме цикла index <-> med нет
 import type { VueKitRegistry, UiComponentMeta } from './index'
-import { getDict } from '@/i18n'
+import { getDict, type Locale } from '@/i18n'
 
 const iconOptions = ['arrow-right', 'arrow-up-right', 'minus', 'triangle-alert']
 
 // Раздел Med: Vue-кит, перенесённый из Nuxt 3 (DTDP_front)
+export function getMedKit(locale: Locale): VueKitRegistry {
+const kitDict = getDict(locale).kits.med
+const defaults = kitDict.defaults
 const rawComponents: Omit<UiComponentMeta, 'description'>[] = [
   {
     slug: 'button',
     name: 'UiButton',
     props: [
-      { name: 'label', type: 'string', default: 'Кнопка' },
+      { name: 'label', type: 'string', default: defaults.button },
       { name: 'color', type: 'select', default: 'primary', options: ['primary', 'secondary', 'plain'] },
       { name: 'as', type: 'select', default: 'button', options: ['button', 'a', 'nuxt-link'] },
       { name: 'to', type: 'string', default: '' },
@@ -62,14 +65,14 @@ const rawComponents: Omit<UiComponentMeta, 'description'>[] = [
       { name: 'as', type: 'select', default: 'input', options: ['input', 'select', 'textarea'] },
       { name: 'error', type: 'string', default: '' },
       { name: 'type', type: 'select', default: 'text', options: ['text', 'number', 'email', 'password', 'tel'] },
-      { name: 'label', type: 'string', default: 'Имя' },
-      { name: 'placeholder', type: 'string', default: 'Введите текст' },
+      { name: 'label', type: 'string', default: defaults.name },
+      { name: 'placeholder', type: 'string', default: defaults.enterText },
       {
         name: 'options', type: 'json',
         default: [
-          { label: 'Первый', value: 1 },
-          { label: 'Второй', value: 2 },
-          { label: 'Третий', value: 3, disabled: true },
+          { label: defaults.options[0], value: 1 },
+          { label: defaults.options[1], value: 2 },
+          { label: defaults.options[2], value: 3, disabled: true },
         ],
       },
       { name: 'fullWidth', type: 'boolean', default: false },
@@ -84,8 +87,8 @@ const rawComponents: Omit<UiComponentMeta, 'description'>[] = [
     slug: 'input-image',
     name: 'UiInputImage',
     props: [
-      { name: 'label', type: 'string', default: 'Фото профиля' },
-      { name: 'placeholder', type: 'string', default: 'Загрузить фото' },
+      { name: 'label', type: 'string', default: defaults.profilePhoto },
+      { name: 'placeholder', type: 'string', default: defaults.uploadPhoto },
       { name: 'accept', type: 'string', default: 'image/png, image/jpeg, image/jpg' },
       { name: 'disabled', type: 'boolean', default: false },
     ],
@@ -94,11 +97,11 @@ const rawComponents: Omit<UiComponentMeta, 'description'>[] = [
     slug: 'form',
     name: 'UiForm',
     props: [
-      { name: 'title', type: 'string', default: 'Регистрация' },
-      { name: 'subtitle', type: 'string', default: 'Заполните поля ниже' },
+      { name: 'title', type: 'string', default: defaults.registration },
+      { name: 'subtitle', type: 'string', default: defaults.fillFields },
       { name: 'titleAlign', type: 'select', default: 'left', options: ['left', 'center', 'right'] },
-      { name: 'confirmTitle', type: 'string', default: 'Отправить' },
-      { name: 'cancelTitle', type: 'string', default: 'Отмена' },
+      { name: 'confirmTitle', type: 'string', default: defaults.send },
+      { name: 'cancelTitle', type: 'string', default: defaults.cancel },
       { name: 'btnsDirection', type: 'select', default: 'row', options: ['row', 'column'] },
       { name: 'btnsAlign', type: 'select', default: 'end', options: ['start', 'center', 'end'] },
       { name: 'btnsFullWidth', type: 'boolean', default: false },
@@ -113,10 +116,10 @@ const rawComponents: Omit<UiComponentMeta, 'description'>[] = [
     slug: 'stepper-form',
     name: 'UiStepperForm',
     props: [
-      { name: 'title', type: 'string', default: 'Шаг 1' },
-      { name: 'subtitle', type: 'string', default: 'Данные шага' },
-      { name: 'confirmTitle', type: 'string', default: 'Далее' },
-      { name: 'cancelTitle', type: 'string', default: 'Назад' },
+      { name: 'title', type: 'string', default: defaults.stepOne },
+      { name: 'subtitle', type: 'string', default: defaults.stepData },
+      { name: 'confirmTitle', type: 'string', default: defaults.next },
+      { name: 'cancelTitle', type: 'string', default: defaults.back },
       { name: 'btnsDirection', type: 'select', default: 'row', options: ['row', 'column'] },
       { name: 'btnsAlign', type: 'select', default: 'end', options: ['start', 'center', 'end'] },
       { name: 'btnsFullWidth', type: 'boolean', default: false },
@@ -124,7 +127,7 @@ const rawComponents: Omit<UiComponentMeta, 'description'>[] = [
       { name: 'width', type: 'number', default: 400 },
       { name: 'gap', type: 'number', default: 24 },
     ],
-    slotText: 'Содержимое шага',
+    slotText: defaults.stepContent,
   },
   {
     slug: 'carousel',
@@ -132,12 +135,12 @@ const rawComponents: Omit<UiComponentMeta, 'description'>[] = [
     props: [
       {
         name: 'steps', type: 'json',
-        default: [{ label: 'Профиль' }, { label: 'Документы' }, { label: 'Готово' }],
+        default: defaults.steps.map((label) => ({ label })),
       },
       { name: 'headerClickable', type: 'boolean', default: true },
       { name: 'showNavButtons', type: 'boolean', default: true },
-      { name: 'prevLabel', type: 'string', default: 'Назад' },
-      { name: 'nextLabel', type: 'string', default: 'Далее' },
+      { name: 'prevLabel', type: 'string', default: defaults.back },
+      { name: 'nextLabel', type: 'string', default: defaults.next },
       { name: 'width', type: 'number', default: 500 },
       { name: 'contentHeight', type: 'number', default: 665 },
     ],
@@ -148,9 +151,9 @@ const rawComponents: Omit<UiComponentMeta, 'description'>[] = [
     slug: 'modal',
     name: 'UiModal',
     props: [
-      { name: 'title', type: 'string', default: 'Удалить запись?' },
-      { name: 'subtitle', type: 'string', default: 'Это действие нельзя отменить' },
-      { name: 'confirmTitle', type: 'string', default: 'Подтвердить' },
+      { name: 'title', type: 'string', default: defaults.deleteRecord },
+      { name: 'subtitle', type: 'string', default: defaults.cannotUndo },
+      { name: 'confirmTitle', type: 'string', default: defaults.confirm },
     ],
     hasModel: true,
     modelDefault: false,
@@ -159,13 +162,13 @@ const rawComponents: Omit<UiComponentMeta, 'description'>[] = [
     slug: 'card',
     name: 'UiCard',
     props: [
-      { name: 'title', type: 'string', default: 'Заголовок карточки' },
+      { name: 'title', type: 'string', default: defaults.cardTitle },
       { name: 'variant', type: 'select', default: 'navigation', options: ['navigation', 'form'] },
       { name: 'width', type: 'string', default: '400px' },
       { name: 'height', type: 'string', default: 'auto' },
       { name: 'image', type: 'string', default: '' },
     ],
-    slotText: 'Содержимое карточки',
+    slotText: defaults.cardContent,
   },
   {
     slug: 'container',
@@ -178,7 +181,7 @@ const rawComponents: Omit<UiComponentMeta, 'description'>[] = [
       { name: 'width', type: 'number', default: 0 },
       { name: 'height', type: 'number', default: 0 },
     ],
-    slotText: 'Контент контейнера',
+    slotText: defaults.containerContent,
   },
   {
     slug: 'layout-container',
@@ -205,7 +208,7 @@ const rawComponents: Omit<UiComponentMeta, 'description'>[] = [
     slug: 'alert',
     name: 'UiAlert',
     props: [
-      { name: 'text', type: 'string', default: 'Проверьте введённые данные' },
+      { name: 'text', type: 'string', default: defaults.checkData },
       { name: 'variant', type: 'select', default: 'warning', options: ['warning', 'error', 'info', 'success'] },
       { name: 'hideIcon', type: 'boolean', default: false },
       { name: 'width', type: 'string', default: 'auto' },
@@ -218,9 +221,9 @@ const rawComponents: Omit<UiComponentMeta, 'description'>[] = [
       {
         name: 'items', type: 'json',
         default: [
-          { label: 'Главная', to: '#' },
-          { label: 'Каталог', to: '#' },
-          { label: 'Текущая страница' },
+          { label: defaults.breadcrumbs[0], to: '#' },
+          { label: defaults.breadcrumbs[1], to: '#' },
+          { label: defaults.breadcrumbs[2] },
         ],
       },
       { name: 'separator', type: 'select', default: 'arrow-right', options: iconOptions },
@@ -232,7 +235,7 @@ const rawComponents: Omit<UiComponentMeta, 'description'>[] = [
     slug: 'back',
     name: 'UiBack',
     props: [
-      { name: 'label', type: 'string', default: 'Назад к списку' },
+      { name: 'label', type: 'string', default: defaults.backToList },
       { name: 'to', type: 'string', default: '#' },
       { name: 'hideIcon', type: 'boolean', default: false },
       { name: 'iconSize', type: 'number', default: 24 },
@@ -286,20 +289,20 @@ const sourceMap: Record<string, string> = {
   'icon': UiIconRaw,
 }
 
-// Тексты кита (название, описание, описания компонентов) — из словаря i18n
-const kitDict = getDict().kits.med
-
 const components: UiComponentMeta[] = rawComponents.map((meta) => ({
   ...meta,
   description: kitDict.components[meta.slug as keyof typeof kitDict.components],
 }))
 
-export const medKit: VueKitRegistry = {
+return {
   key: 'dtdp',
   framework: 'vue',
-  title: 'DTDP (Nuxt 3)',
+  title: kitDict.title,
   description: kitDict.description,
   components,
   componentMap,
   sourceMap,
 }
+}
+
+export const medKit = getMedKit('en')

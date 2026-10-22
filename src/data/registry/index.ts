@@ -1,7 +1,8 @@
 import type { Component as VueComponent } from 'vue'
 import type { ComponentType as ReactComponent } from 'react'
-import { vueKits } from './vue'
+import { getVueKits, vueKits } from './vue'
 import { reactKits } from './react'
+import type { Locale } from '@/i18n'
 
 // ---------- Абстрактная модель реестра кита ----------
 // Каждый раздел UI-библиотеки (med и др.) описывается объектом KitRegistry.
@@ -64,6 +65,10 @@ export type KitRegistry = VueKitRegistry | ReactKitRegistry
 // ---------- Зарегистрированные разделы ----------
 
 export const kits: KitRegistry[] = [...vueKits, ...reactKits]
+
+export function getKits(locale: Locale): KitRegistry[] {
+  return [...getVueKits(locale), ...reactKits]
+}
 
 export function getKit(key: string): KitRegistry | undefined {
   return kits.find((kit) => kit.key === key)

@@ -1,15 +1,16 @@
+import en from './en.json'
 import ru from './ru.json'
 
 // Пока один язык; en появится как en.json + запись в dictionaries,
 // дальше подключается встроенный i18n-роутинг Astro (/en/...).
-export const locales = ['ru'] as const
+export const locales = ['en', 'ru'] as const
 export type Locale = (typeof locales)[number]
 
-export const defaultLocale: Locale = 'ru'
+export const defaultLocale: Locale = 'en'
 
 export type Dictionary = typeof ru
 
-const dictionaries: Record<Locale, Dictionary> = { ru }
+const dictionaries: Record<Locale, Dictionary> = { en, ru }
 
 export function getDict(locale: Locale = defaultLocale): Dictionary {
   return dictionaries[locale]

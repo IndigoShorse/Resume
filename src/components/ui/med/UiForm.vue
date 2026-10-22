@@ -39,7 +39,7 @@ defineProps({
   },
   confirmTitle: {
     type: String,
-    default: "Завершить",
+    default: 'Complete',
   },
   cancelTitle: {
     type: String,

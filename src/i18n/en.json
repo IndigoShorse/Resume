@@ -1,0 +1,535 @@
+{
+  "site": {
+    "description": "Personal website and portfolio",
+    "nav": {
+      "resume": "Resume",
+      "portfolio": "Portfolio",
+      "library": "Library",
+      "kit": "{title} UI-kit"
+    },
+    "logoAria": "Go to homepage",
+    "theme": {
+      "toggle": "Toggle theme",
+      "enableLight": "Enable light theme",
+      "enableDark": "Enable dark theme"
+    },
+    "language": {
+      "label": "RU",
+      "switchAria": "Switch to Russian"
+    }
+  },
+  "home": {
+    "title": "Daniil Surkov — Frontend Developer",
+    "description": "Daniil Surkov's resume: frontend development experience, technologies, and projects. DTDP portfolio and component library.",
+    "eyebrow": "Resume / Frontend Development",
+    "portfolioLink": {
+      "eyebrow": "Portfolio",
+      "title": "Go to projects page",
+      "description": "Real screens, detailed descriptions, and fullstack tasks — read more about my work."
+    }
+  },
+  "portfolioPage": {
+    "title": "Portfolio — Daniil Surkov",
+    "description": "DTDP — medical AI service: interface development, technologies, and application screens.",
+    "eyebrow": "Works and Projects",
+    "heading": "Portfolio",
+    "intro": "Tasks, technologies, and real project screens.",
+    "details": "Project details"
+  },
+  "libraryPage": {
+    "title": "Library — Daniil Surkov",
+    "description": "Library of interface components and solutions from Daniil Surkov's projects.",
+    "eyebrow": "Interface Solutions",
+    "heading": "Library",
+    "intro": "Components and approaches from real projects. Each section contains live examples, settings, and source code.",
+    "section": "Section",
+    "components": "components",
+    "back": "← Library"
+  },
+  "gallery": {
+    "zoomAria": "Zoom image: {alt}",
+    "zoom": "Zoom ↗",
+    "previousProject": "Previous image of project {title}",
+    "nextProject": "Next image of project {title}",
+    "fallbackCaption": "Interface illustration",
+    "groupAria": "Images of project {title}",
+    "showImage": "Show image {index}: {alt}",
+    "previous": "Previous image",
+    "next": "Next image"
+  },
+  "accessibility": {
+    "skillLevel": "Proficiency level: {level} out of 5"
+  },
+  "portfolio": {
+    "illustration": {
+      "detail": "Detailed screen",
+      "overview": "General view",
+      "scheme": "interface diagram",
+      "watermark": "ILLUSTRATION",
+      "alt": "{title} — {label}, illustrative diagram"
+    },
+    "projects": {
+      "reports": {
+        "title": "Report Generation Service",
+        "illustrationTitle": "Report Service",
+        "category": "Web Application",
+        "summary": "Interface for preparing reports and documents.",
+        "details": ["Client-side development on Nuxt 3 with state management via Pinia and UI using Vuetify.", "The server side of the project uses FastAPI."]
+      },
+      "shop": {
+        "title": "Online Store",
+        "category": "E-commerce",
+        "summary": "Catalog and interface forms of the online store.",
+        "details": ["Development of catalog pages and interface forms using Nuxt 3 and Pinia.", "Integration of the client application with Django REST API."]
+      },
+      "dtdp": {
+        "title": "DTDP — AI Service",
+        "category": "Research Project",
+        "summary": "Medical AI service for analyzing images and oral cavity parameters, classification according to the Mallampati score, and evaluating the probability of difficult intubation. Designed an interface that helps to consistently navigate through complex data collection and verification scenarios.",
+        "details": [
+          "Developed the client side using Nuxt 4 and TypeScript: login and registration screens, dashboard, protected sections, and navigation. Used Pinia for application state management. Built a custom set of reusable UI components, defined design tokens, and provided light and dark themes.",
+          "Paid special attention to complex forms. Designed step-by-step scenarios for patient data, ultrasound, and difficult airway prediction: validation is performed at the current step, and entered data is preserved during transitions.",
+          "Thought through the workflow with medical images: uploading, previewing, deleting, and reselecting files. In the ultrasound form, the user sequentially adds six images — original and annotated images for three stages — and the measurements associated with them.",
+          "Created model verification screens: prediction based on patient data showing the Cormack–Lehane grade and model confidence, as well as Mallampati classification from photo with visualization of the detection result.",
+          "Configured API request generation via Orval and wrote an API client for authentication, data and file transmission, error handling, and expired sessions. Also implemented an event log with filters and pagination, and a section for managing employee invitation keys.",
+          "DTDP interface components are available in the \"Library\" section, and the gallery contains real application screens."
+        ],
+        "link": "DTDP components in the library",
+        "images": [
+          {
+            "alt": "DTDP — login screen",
+            "caption": "Login screen"
+          },
+          {
+            "alt": "DTDP — model selection for testing",
+            "caption": "Model selection"
+          },
+          {
+            "alt": "DTDP — step-by-step difficult airway prediction form",
+            "caption": "Difficult airway prediction"
+          },
+          {
+            "alt": "DTDP — Mallampati classification by photo form",
+            "caption": "Mallampati by photo"
+          }
+        ]
+      },
+      "realEstate": {
+        "title": "Moscow House of Real Estate",
+        "category": "Real estate agency landing page",
+        "summary": "Turnkey website for the growing real estate agency \"Moscow House of Real Estate\".",
+        "details": [
+          "Built a single-page website from a Figma design using Nuxt 4 and Vue 3: adapted the structure and interface for different screen sizes, assembled navigation, header, and footer.",
+          "Developed key landing-page sections: service cards, a section with complex cases, an \"About Company\" block, and an FAQ with expanding answers.",
+          "Organized content via Nuxt Content: texts, cards, navigation, and FAQs are stored in separate JSON collections with typed schemas, so the content can be updated without editing components.",
+          "Configured basic SEO metadata and Open Graph markup for the landing page launch."
+        ],
+        "openSite": "Open website",
+        "link": "MDI components in the library",
+        "images": [
+          {
+            "alt": "Moscow House of Real Estate — first screen and services",
+            "caption": "Hero section and services"
+          },
+          {
+            "alt": "Moscow House of Real Estate — complex cases block",
+            "caption": "Complex cases"
+          },
+          {
+            "alt": "Moscow House of Real Estate — about company block",
+            "caption": "About company"
+          },
+          {
+            "alt": "Moscow House of Real Estate — frequently asked questions section",
+            "caption": "Frequently asked questions"
+          }
+        ]
+      },
+      "energyPassport": {
+        "title": "Digital Energy Passport",
+        "category": "Educational full-stack project",
+        "summary": "Service for preparing energy passports: the user fills in data in a web form, and the system generates a ready-made Word document and saves the information in the registry for subsequent export.",
+        "details": [
+          "Acted as a fullstack developer in the project: developed the client side on Nuxt 3 and Vuetify, as well as the server side on Django and Django REST Framework.",
+          "Designed a multi-step form for filling in a large set of information about the organization, energy consumption, and inspection facilities. Divided the complex structure of the energy passport into clear stages so that the user enters data sequentially.",
+          "Implemented saving filled forms to PostgreSQL and a passport registry, from which you can open the desired record and export the document.",
+          "Configured DOCX generation on the server: data from the form is inserted into a Word template, after which the user downloads the generated energy passport.",
+          "Presented the non-commercial educational project at an exhibition within the \"Student Startup\" competition to receive a grant."
+        ],
+        "images": [
+          {
+            "alt": "Digital Energy Passport — main page",
+            "caption": "Service main page"
+          },
+          {
+            "alt": "Digital Energy Passport — multi-step form",
+            "caption": "Energy passport input form"
+          },
+          {
+            "alt": "Digital Energy Passport — passport registry",
+            "caption": "Registry of saved passports"
+          },
+          {
+            "alt": "Digital Energy Passport — Word template",
+            "caption": "Template of the generated Word document"
+          }
+        ]
+      },
+      "catalog": {
+        "title": "Rstar Trading Catalog",
+        "illustrationTitle": "Catalog",
+        "category": "Public website",
+        "summary": "Catalog on WordPress and WooCommerce.",
+        "details": [
+          "The public catalog site and project prototype are available at the links below."
+        ],
+        "openSite": "Open website",
+        "prototype": "Prototype on GitLab"
+      },
+      "diploma": {
+        "category": "Graduation Project",
+        "summary": "Web application for a client's graduation project.",
+        "details": [
+          "The client side is built on Nuxt 3, the server side — on Django.",
+          "python-docx is used for working with documents."
+        ],
+        "repository": "Repository on GitLab"
+      }
+    }
+  },
+  "hero": {
+    "downloadPdf": "Download PDF",
+    "alert": "Resume display styles are assembled from the components of my UI library — switch them below. On the Vue tab, there is an interactive showcase of each component; the React tab will appear later."
+  },
+  "tabs": {
+    "label": "Tabs:",
+    "aria": "Tabs",
+    "astro": "Astro",
+    "vue": "Vue",
+    "reactSoon": "React — coming soon"
+  },
+  "modes": {
+    "label": "Display style:",
+    "aria": "Display style",
+    "plain": "Typography",
+    "cards": "Cards",
+    "carousel": "Carousel"
+  },
+  "kitPage": {
+    "title": "{title} UI Library",
+    "componentTitle": "{name} — {title} UI Library",
+    "sidebarAria": "{title} Components",
+    "source": "{name}.{extension} source code",
+    "copy": "Copy",
+    "copied": "Copied!"
+  },
+  "showcase": {
+    "props": "Props",
+    "slot": "Slot",
+    "vModel": "v-model",
+    "openModal": "Open modal",
+    "stepContent": "Step {n} content",
+    "noProps": "The component has no configurable props",
+    "viewCode": "View code",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "reset": "Reset",
+    "value": "Value",
+    "demoName": "Name",
+    "demoNamePlaceholder": "John"
+  },
+  "kits": {
+    "med": {
+      "title": "Med (Nuxt 3)",
+      "description": "Interface components of the DTDP research project on Nuxt 3. Open any of them — inside is a live demo with prop configuration and source code.",
+      "components": {
+        "button": "Button with color variants, loading state, icon, and rendering as a link.",
+        "input": "Universal field: input / select / textarea / radio-group, with vee-validate under the hood.",
+        "input-image": "Image upload with preview, deletion, and validation via vee-validate.",
+        "form": "Form wrapper on vee-validate: title, buttons, error, alert, and slots.",
+        "stepper-form": "Simplified form for a carousel step: without vee-validate, with the same slots and buttons.",
+        "carousel": "Carousel with animated active tab highlighting, slide slots, and navigation buttons.",
+        "modal": "Modal window with a title, subtitle, and confirmation button.",
+        "card": "Card with an image, title, and custom content.",
+        "container": "Layout container: column/row, centering, inset variant.",
+        "layout-container": "Grid container: row / col / grid with adjustable paddings.",
+        "divider": "Horizontal divider with adjustable width.",
+        "alert": "Alert with an icon.",
+        "breadcrumbs": "Breadcrumbs with links and the current item.",
+        "back": "\"Back\" link with a chevron.",
+        "icon": "SVG icon from assets/icons with dynamic import.",
+        "header": "Page header with a user block."
+      },
+      "defaults": {
+        "button": "Button",
+        "name": "Name",
+        "enterText": "Enter text",
+        "options": [
+          "First",
+          "Second",
+          "Third"
+        ],
+        "profilePhoto": "Profile photo",
+        "uploadPhoto": "Upload photo",
+        "registration": "Registration",
+        "fillFields": "Fill in the fields below",
+        "send": "Send",
+        "cancel": "Cancel",
+        "stepOne": "Step 1",
+        "stepData": "Step data",
+        "next": "Next",
+        "back": "Back",
+        "stepContent": "Step content",
+        "steps": [
+          "Profile",
+          "Documents",
+          "Ready"
+        ],
+        "deleteRecord": "Delete record?",
+        "cannotUndo": "This action cannot be undone",
+        "confirm": "Confirm",
+        "cardTitle": "Card title",
+        "cardContent": "Card content",
+        "containerContent": "Container content",
+        "checkData": "Check the entered data",
+        "breadcrumbs": [
+          "Main",
+          "Catalog",
+          "Current page"
+        ],
+        "backToList": "Back to list",
+        "complete": "Complete",
+        "navigation": "Navigation"
+      }
+    },
+    "realEstate": {
+      "title": "MDI (Nuxt 4)",
+      "description": "Components of the \"Moscow House of Real Estate\" website: branded cards, buttons, FAQ, and carousel on Vuetify.",
+      "components": {
+        "block": {
+          "description": "Section container with a title, color scheme, and content.",
+          "title": "Our services",
+          "content": "Section content"
+        },
+        "button": {
+          "description": "Action button in the landing page's signature dark palette.",
+          "label": "Submit request"
+        },
+        "card": {
+          "description": "Service or advantage card with a Roman numeral.",
+          "label": "Fair price",
+          "content": "We evaluate the property according to the market and fix the terms in the contract."
+        },
+        "textCard": {
+          "description": "Text card for scenarios and complex cases.",
+          "label": "Seized real estate",
+          "content": "We will analyze the situation and offer a working scenario."
+        },
+        "romanIndex": {
+          "description": "Roman numeral numbering for emphasis in cards and FAQs."
+        },
+        "panel": {
+          "description": "Expanding FAQ panel built on Vuetify Expansion Panels.",
+          "title": "What funds are used for the buyout?",
+          "content": "The transaction is funded by the agency's own equity."
+        },
+        "carousel": {
+          "description": "Carousel of card groups based on Vuetify Carousel.",
+          "items": [
+            "Sale",
+            "Rent",
+            "Flipping",
+            "Urgent buyout"
+          ]
+        }
+      },
+      "fallbacks": {
+        "blockTitle": "Section title",
+        "blockContent": "Block content",
+        "pending": "Loading…",
+        "cardTitle": "Card title",
+        "cardContent": "Card text describing the service or scenario.",
+        "textCardTitle": "Scenario title",
+        "textCardContent": "Description of the scenario or company advantage.",
+        "panelTitle": "Frequent question",
+        "panelContent": "Answer to the frequent question."
+      }
+    }
+  },
+  "resume": {
+    "person": {
+      "name": "Daniil Surkov",
+      "tagline": "Frontend Developer (Vue / React / TypeScript)",
+      "location": "Moscow",
+      "contacts": [
+        {
+          "label": "7535415@gmail.com",
+          "href": "mailto:7535415@gmail.com"
+        },
+        {
+          "label": "+7 (968) 994-87-16",
+          "href": "tel:+79689948716"
+        },
+        {
+          "label": "Telegram @indigoshorse",
+          "href": "https://t.me/indigoshorse"
+        },
+        {
+          "label": "GitHub @IndigoShorse",
+          "href": "https://github.com/IndigoShorse"
+        }
+      ]
+    },
+    "sections": [
+      {
+        "id": "profile",
+        "title": "Profile",
+        "blocks": [
+          {
+            "label": "About me",
+            "text": "Frontend developer with 3+ years of commercial experience and over 5 years in development. I create web interfaces where well-thought-out architecture combines with a clear user experience: from client-side design and API integration to the evolution of existing products and legacy code refactoring.\n\nI work with Nuxt and React, design reusable UI components, application state, and reliable REST API integrations. In current projects, I accelerated interface performance, automated business processes, and significantly sped up new feature development.\n\nI am particularly interested in designing complex interfaces and forms: working out their structure, states, validation, and user scenarios so that even heavy business processes remain intuitive and convenient."
+          }
+        ]
+      },
+      {
+        "id": "experience",
+        "title": "Work Experience",
+        "blocks": [
+          {
+            "label": "CES",
+            "heading": "Fullstack Developer",
+            "subheading": "LLC \"Center for Energy Certification\"",
+            "meta": "Dec 2023 — Present · Moscow",
+            "items": [
+              "Refactored legacy code, optimized architecture and memory usage: increased web application interface performance by 30% and reduced new feature development time by approximately 40%.",
+              "Developed a number of features in the core system, including certificate issuance (React + Axios + Ant Design + Python FastAPI).",
+              "Automated document workflow in the internal service and accelerated certificate issuance by 90% (Nuxt 3 + Pinia + FastAPI).",
+              "Developed an extension service for generating reports and certificates (FastAPI)."
+            ]
+          },
+          {
+            "label": "Petrovsky NRCH",
+            "heading": "Frontend Developer",
+            "subheading": "Petrovsky National Research Center of Surgery · DTDP project",
+            "meta": "Sep 2024 — Jun 2026 · Moscow",
+            "items": [
+              "Developed the frontend of the DTDP medical AI service using Nuxt 4, Vue 3, TypeScript, and Pinia: authorization screens, dashboard, protected sections, and navigation.",
+              "Designed complex step-by-step forms for patient data, ultrasound, and difficult airway prediction: with validation at each step and preservation of entered values during transitions.",
+              "Implemented uploading and previewing of medical images, model verification screens, and REST API integration via generated Orval clients."
+            ]
+          },
+          {
+            "label": "Navigator Service",
+            "heading": "System Administrator",
+            "subheading": "LLC \"Navigator Service\"",
+            "meta": "Oct 2020 — Feb 2023 · Khimki",
+            "items": [
+              "Implemented automatic backup of the local server (Ubuntu, Samba).",
+              "Maintained infrastructure and provided technical support to employees.",
+              "Configured and connected IP telephony."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "skills",
+        "title": "Technologies",
+        "blocks": [
+          {
+            "label": "Stack",
+            "tags": [
+              "JavaScript",
+              "TypeScript",
+              "Python",
+              "Nuxt 3",
+              "React",
+              "Pinia",
+              "Tailwind",
+              "Ant Design",
+              "Webpack",
+              "REST API",
+              "Git",
+              "FastAPI",
+              "Django"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "projects",
+        "title": "Projects",
+        "blocks": [
+          {
+            "label": "Reports",
+            "heading": "Report Generation Service",
+            "subheading": "Nuxt 3 + Pinia + Vuetify + FastAPI"
+          },
+          {
+            "label": "Shop",
+            "heading": "Online Store",
+            "subheading": "Nuxt 3 + Pinia + Tailwind"
+          },
+          {
+            "label": "R&D",
+            "heading": "R&D (AI Ultrasound Analysis)",
+            "subheading": "Nuxt 3 + Pinia + Vuetify"
+          },
+          {
+            "label": "Catalog",
+            "heading": "Catalog",
+            "subheading": "WordPress + WooCommerce",
+            "links": [
+              {
+                "label": "rstartrading.ae",
+                "href": "https://rstartrading.ae/"
+              },
+              {
+                "label": "Prototype on GitLab",
+                "href": "https://gitlab.com/IndigoShorse/catalogue"
+              }
+            ]
+          },
+          {
+            "label": "Diploma",
+            "heading": "Web application for a client's graduation project",
+            "subheading": "Nuxt 3 + Django + python-docx",
+            "links": [
+              {
+                "label": "energy-passport on GitLab",
+                "href": "https://gitlab.com/IndigoShorse/energy-passport"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "education",
+        "title": "Education",
+        "blocks": [
+          {
+            "label": "Dubna",
+            "heading": "Software Engineering",
+            "subheading": "Dubna State University",
+            "meta": "2026 · Bachelor's Degree"
+          }
+        ]
+      },
+      {
+        "id": "languages",
+        "title": "Languages",
+        "blocks": [
+          {
+            "label": "Russian",
+            "heading": "Russian",
+            "level": 5
+          },
+          {
+            "label": "English",
+            "heading": "English (B2)",
+            "level": 4
+          }
+        ]
+      }
+    ]
+  }
+}

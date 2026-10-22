@@ -1,0 +1,36 @@
+@import 'block.pcss';
+@import 'button.pcss';
+@import 'card.pcss';
+@import 'carousel.pcss';
+@import 'panel.pcss';
+@import 'text-card.pcss';
+
+/* Общие токены UI-набора сайта «Московский Дом Недвижимости». */
+.re-block,
+.re-button,
+.re-card,
+.re-text-card,
+.re-panel {
+  --re-primary: #fff;
+  --re-gold: #b3994a;
+  --re-muted: #a0a0a0;
+  --re-border: rgb(179 153 74 / 30%);
+  --re-font: Arial, sans-serif;
+  font-family: var(--re-font);
+}
+
+.re-roman-index {
+  display: inline-block;
+  color: #b3994a;
+  font-family: Georgia, serif;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.re-roman-index--default {
+  font-size: 18px;
+}
+
+.re-roman-index--xl {
+  font-size: 34px;
+}

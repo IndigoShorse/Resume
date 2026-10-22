@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import type { Breadcrumb } from '@/types/default'
 import UiIcon from './UiIcon.vue'
+import { getDict } from '@/i18n'
+
+const dict = getDict().kits.med.defaults
 
 defineProps({
   items: {
@@ -23,7 +26,7 @@ defineProps({
 </script>
 
 <template>
-  <nav class="ui-breadcrumbs" aria-label="Навигация">
+  <nav class="ui-breadcrumbs" :aria-label="dict.navigation">
     <template v-for="(item, idx) in items" :key="idx">
       <a
           v-if="item.to"

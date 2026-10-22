@@ -29,6 +29,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .resume-page--reveal-ready [data-reveal],
   .portfolio-page--reveal-ready [data-reveal] {
     opacity: 1;
@@ -38,7 +39,7 @@
 }
 
 .resume-intro {
-  padding: 48px 0 18px;
+  padding: 32px 0 2px;
 }
 
 .resume-intro h1,
@@ -296,7 +297,9 @@
   text-transform: uppercase;
 }
 
-.portfolio-link-card h3 { margin: 0; }
+.portfolio-link-card h3 {
+  margin: 0;
+}
 
 .portfolio-link-card__description {
   margin: 8px 0 0;

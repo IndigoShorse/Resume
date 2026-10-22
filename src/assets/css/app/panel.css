@@ -38,6 +38,7 @@
     border-radius: 6px;
     font-size: 13px;
 }
+
 .props-panel__control:focus {
     outline: 1px solid var(--primary-color);
 }
@@ -47,6 +48,7 @@
     font-size: 12px;
     resize: vertical;
 }
+
 .props-panel__control--invalid {
     border-color: var(--primary-color);
     outline-color: var(--primary-color);

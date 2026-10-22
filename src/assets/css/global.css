@@ -26,8 +26,8 @@
    place-items: center;
    flex: none;
    width: 38px;
+   margin-left: -12px;
    height: 38px;
-   margin-left: auto;
    padding: 0;
    border: 1px solid var(--border-color);
    border-radius: 10px;
@@ -36,6 +36,33 @@
    cursor: pointer;
    overflow: hidden;
    view-transition-name: theme-toggle;
+ }
+
+ .site-header__language {
+   display: grid;
+   place-items: center;
+   flex: none;
+   margin-left: auto;
+   min-width: 38px;
+   height: 38px;
+   padding: 0 9px;
+   border: 1px solid var(--border-color);
+   border-radius: 10px;
+   background: var(--surface-color);
+   color: var(--text-color);
+   font-size: 12px;
+   font-weight: 700;
+   letter-spacing: .04em;
+   text-decoration: none;
+ }
+
+ .site-header__language:hover {
+   border-color: var(--accent-border-color);
+ }
+
+ .site-header__language:focus-visible {
+   outline: 2px solid var(--text-color-link);
+   outline-offset: 2px;
  }
 
  .site-header__theme:hover {
@@ -256,6 +283,11 @@
    padding: 32px 20px 80px;
  }
 
+ .site-main--docs {
+   max-width: 1360px;
+   padding-inline: 16px;
+ }
+
  /* ---------- Общие элементы страниц ---------- */
 
  .page-back {
@@ -286,14 +318,14 @@
  .docs {
    display: flex;
    align-items: flex-start;
-   gap: 36px;
+   gap: 24px;
  }
 
  .docs__sidebar {
    position: sticky;
    top: 78px;
    flex-shrink: 0;
-   width: 210px;
+   width: 180px;
    display: flex;
    flex-direction: column;
    gap: 4px;
@@ -442,6 +474,20 @@
  .code-block__body {
    position: relative;
    border-top: 1px solid var(--border-color);
+ }
+
+ :root[data-theme="dark"] .code-block__body {
+   background: #211f38;
+ }
+
+ /* Astro Code рендерит светлую тему инлайновыми стилями. */
+ :root[data-theme="dark"] .code-block__body pre.astro-code {
+   background-color: #211f38 !important;
+   color: #e7e5ff !important;
+ }
+
+ :root[data-theme="dark"] .code-block__body pre.astro-code span {
+   color: inherit !important;
  }
 
  .code-block__body pre {

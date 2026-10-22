@@ -1,0 +1,30 @@
+---
+import KitLayout from '@/layouts/KitLayout.astro'
+import ComponentShowcase from '@/components/showcase/ComponentShowcase.vue'
+import ReactShowcase from '@/components/showcase/ReactShowcase'
+import { getKits } from '@/data/registry'
+import { getDict, format, type Locale } from '@/i18n'
+import { Code } from 'astro:components'
+
+export function getStaticPaths() {
+  return getKits('ru').flatMap((kit) => kit.components.map((meta) => ({ params: { kit: kit.key, slug: meta.slug } })))
+}
+
+const locale: Locale = 'ru'
+const kit = getKits(locale).find((item) => item.key === Astro.params.kit)!
+const meta = kit.components.find((item) => item.slug === Astro.params.slug)!
+const source = kit.sourceMap[meta.slug]
+const dict = getDict(locale).kitPage
+---
+
+<KitLayout kit={kit} currentSlug={meta.slug} title={format(dict.componentTitle, { name: meta.name, title: kit.title })} description={meta.description} locale={locale}>
+  <h1 class="page-title">{meta.name}</h1>
+  <p class="page-subtitle">{meta.description}</p>
+  {kit.framework === 'vue'
+    ? <ComponentShowcase client:load kit={kit.key} slug={meta.slug} locale={locale} />
+    : <ReactShowcase client:load kit={kit.key} slug={meta.slug} />}
+  <details class="code-block">
+    <summary class="code-block__summary">{format(dict.source, { name: meta.name, extension: kit.framework === 'vue' ? 'vue' : (kit.sourceLanguage ?? 'tsx') })}</summary>
+    <div class="code-block__body"><Code code={source} lang={kit.framework === 'vue' ? 'vue' : (kit.sourceLanguage ?? 'tsx')} theme="github-light" /></div>
+  </details>
+</KitLayout>

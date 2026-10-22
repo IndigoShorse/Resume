@@ -1,22 +1,27 @@
 ---
 import Layout from '@/layouts/Layout.astro'
-import { kits } from '@/data/registry'
-import { withBase } from '@/utils/url'
+import { getKits } from '@/data/registry'
+import { withLocale } from '@/utils/url'
+import { defaultLocale, getDict, type Locale } from '@/i18n'
+
+const locale: Locale = Astro.props.locale ?? defaultLocale
+const dict = getDict(locale).libraryPage
+const kits = getKits(locale)
 ---
 
-<Layout title="Библиотека — Сурков Даниил" description="Библиотека интерфейсных компонентов и решений из проектов Даниила Суркова.">
+<Layout title={dict.title} description={dict.description} locale={locale}>
   <div class="library-page">
     <header class="page-intro">
-      <p class="eyebrow">Интерфейсные решения</p>
-      <h1>Библиотека</h1>
-      <p>Компоненты и подходы из реальных проектов. Каждый раздел содержит живые примеры, настройки и исходный код.</p>
+      <p class="eyebrow">{dict.eyebrow}</p>
+      <h1>{dict.heading}</h1>
+      <p>{dict.intro}</p>
     </header>
     <div class="library-grid">
       {kits.map((kit, index) => (
-        <a class="library-card" href={withBase(`/library/${kit.key}`)}>
-          <span class="library-card__number">{String(index + 1).padStart(2, '0')} / Раздел</span>
+        <a class="library-card" href={withLocale(`/library/${kit.key}`, locale)}>
+          <span class="library-card__number">{String(index + 1).padStart(2, '0')} / {dict.section}</span>
           <div><h2>{kit.title}</h2><p>{kit.description}</p></div>
-          <span class="library-card__footer"><span>{kit.components.length} компонентов</span><span aria-hidden="true">↗</span></span>
+          <span class="library-card__footer"><span>{kit.components.length} {dict.components}</span><span aria-hidden="true">↗</span></span>
         </a>
       ))}
     </div>

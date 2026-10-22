@@ -107,7 +107,7 @@ export default function ReactShowcase({ kit: key, slug }: Props) {
           <input className="showcase__slot-input" type="text" value={children} onChange={(event) => setChildren(event.target.value)} />
         </>}
         {Demo && meta.modelDefault !== undefined && <>
-          <h3 className="showcase__panel-title">Значение</h3>
+          <h3 className="showcase__panel-title">{dict.value}</h3>
           <code className="showcase__model-value">{JSON.stringify(value)}</code>
         </>}
         <button className="showcase__reset" type="button" onClick={reset}>{dict.reset}</button>

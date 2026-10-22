@@ -1,12 +1,13 @@
 ---
 import Layout from '@/layouts/Layout.astro'
-import ResumeTextSection from '@/components/resume/astro/ResumeTextSection.astro'
+import ResumeTextSection from '@/components/resume/ResumeTextSection.astro'
 import { getResume } from '@/data/resume'
-import { getDict } from '@/i18n'
-import { withBase } from '@/utils/url'
+import { defaultLocale, getDict, type Locale } from '@/i18n'
+import { withLocale } from '@/utils/url'
 
-const dict = getDict()
-const { person, sections } = getResume()
+const locale: Locale = Astro.props.locale ?? defaultLocale
+const dict = getDict(locale)
+const { person, sections } = getResume(locale)
 const experience = sections.find((section) => section.id === 'experience')
 const profile = sections.find((section) => section.id === 'profile')
 const skills = sections.find((section) => section.id === 'skills')
@@ -14,10 +15,10 @@ const typographySections = sections.filter((section) => ['education', 'languages
 const projects = sections.find((section) => section.id === 'projects')
 ---
 
-<Layout title={dict.home.title} description={dict.home.description}>
+<Layout title={dict.home.title} description={dict.home.description} locale={locale}>
   <div class="resume-page">
     <header class="resume-intro" data-reveal>
-      <p class="eyebrow">Резюме / Frontend-разработка</p>
+      <p class="eyebrow">{dict.home.eyebrow}</p>
       <h1>{person.name}</h1>
       <p class="resume-intro__role">{person.tagline} · {person.location}</p>
       <div class="resume-intro__contacts">
@@ -25,7 +26,7 @@ const projects = sections.find((section) => section.id === 'projects')
       </div>
     </header>
 
-    {profile && <ResumeTextSection section={profile} />}
+    {profile && <ResumeTextSection section={profile} locale={locale} />}
 
     {experience && (
       <section class="resume-experience" id="experience">
@@ -49,12 +50,12 @@ const projects = sections.find((section) => section.id === 'projects')
         <div class="section-heading">
           <div><h2>{projects.title}</h2></div>
         </div>
-        <a class="experience-card portfolio-link-card" href={withBase('/portfolio')}>
+        <a class="experience-card portfolio-link-card" href={withLocale('/portfolio', locale)}>
           <div class="portfolio-link-card__top">
             <div>
-              <p class="portfolio-link-card__eyebrow">Портфолио</p>
-              <h3>DTDP и Цифровой энергопаспорт</h3>
-              <p class="portfolio-link-card__description">Реальные экраны, сложные формы и fullstack-задачи — подробнее о двух проектах.</p>
+              <p class="portfolio-link-card__eyebrow">{dict.home.portfolioLink.eyebrow}</p>
+              <h3>{dict.home.portfolioLink.title}</h3>
+              <p class="portfolio-link-card__description">{dict.home.portfolioLink.description}</p>
             </div>
             <span class="portfolio-link-card__arrow" aria-hidden="true">↗</span>
           </div>
@@ -62,10 +63,10 @@ const projects = sections.find((section) => section.id === 'projects')
       </section>
     )}
 
-    {skills && <ResumeTextSection section={skills} />}
+    {skills && <ResumeTextSection section={skills} locale={locale} />}
 
     <div class="resume-page__grid">
-      {typographySections.map((section) => <ResumeTextSection section={section} />)}
+      {typographySections.map((section) => <ResumeTextSection section={section} locale={locale} />)}
     </div>
 
   </div>
