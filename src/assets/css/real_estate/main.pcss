@@ -1,0 +1,67 @@
+/* Изолированные стили UI-набора сайта «Московский Дом Недвижимости». */
+.re-block, .re-button, .re-card, .re-text-card, .re-panel {
+  --re-primary: #fff;
+  --re-gold: #b3994a;
+  --re-muted: #a0a0a0;
+  --re-border: rgb(179 153 74 / 30%);
+  --re-font: Arial, sans-serif;
+  font-family: var(--re-font);
+}
+
+.re-button {
+  display: inline-flex;
+  justify-content: center;
+  min-width: 180px;
+  padding: 14px 20px;
+  border: 0;
+  border-radius: 6px;
+  color: var(--re-primary);
+  font-size: 17px;
+  font-weight: 400;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color .2s ease, transform .2s ease;
+}
+.re-button--primary { background: rgb(112 112 112 / 30%); }
+.re-button--secondary { background: rgb(179 153 74 / 72%); }
+.re-button--plain { min-width: auto; padding: 0; background: transparent; color: var(--re-gold); }
+.re-button:hover { background-color: rgb(179 153 74 / 78%); transform: translateY(-1px); }
+.re-button--plain:hover { background: transparent; color: var(--re-primary); }
+.re-button--full-width { width: 100%; }
+
+.re-block { max-width: 760px; border-radius: 10px; }
+.re-block__title { margin: 0 0 20px; font-family: Georgia, serif; font-size: 28px; text-align: center; }
+.re-block__content { color: var(--re-muted); line-height: 1.55; }
+
+.re-roman-index { display: inline-block; color: var(--re-gold); font-family: Georgia, serif; font-size: 24px; line-height: 1; }
+.re-roman-index--default { font-size: 18px; }
+.re-roman-index--xl { font-size: 34px; }
+
+.re-card { overflow: hidden; border-radius: 10px; color: var(--re-primary); }
+.re-card__header { display: flex; align-items: center; gap: 16px; padding: 24px 28px 0; }
+.re-card__header h3, .re-text-card h3 { margin: 0; font-family: Georgia, serif; font-size: 23px; }
+.re-card__body { padding: 20px 28px 30px; color: var(--re-muted); font-size: 17px; line-height: 1.5; }
+
+.re-text-card { padding: 12px 0 28px; color: var(--re-primary); }
+.re-text-card--center { text-align: center; }
+.re-text-card--right { text-align: right; }
+.re-text-card__header { display: flex; align-items: center; gap: 18px; }
+.re-text-card--center .re-text-card__header { justify-content: center; }
+.re-text-card--right .re-text-card__header { justify-content: flex-end; }
+.re-text-card__body { margin-top: 20px; color: var(--re-muted); font-size: 18px; line-height: 1.5; }
+
+.re-panel-group { border-top: 1px solid var(--re-border); border-radius: 0; }
+.re-panel { border-bottom: 1px solid var(--re-border); border-radius: 0 !important; background: transparent !important; color: var(--re-primary) !important; }
+.re-panel__title { display: grid !important; grid-template-columns: 36px 1fr 20px; gap: 18px; min-height: 68px; padding: 0 8px !important; font-family: var(--re-font); font-size: 17px; font-weight: 600; }
+.re-panel__title .v-expansion-panel-title__overlay { opacity: 0; }
+.re-panel__action { position: relative; width: 16px; height: 16px; }
+.re-panel__action::before, .re-panel__action::after { position: absolute; top: 7px; left: 0; width: 16px; height: 2px; content: ''; background: var(--re-gold); transition: transform .2s ease; }
+.re-panel__action::after { transform: rotate(90deg); }
+.re-panel .v-expansion-panel-title--active .re-panel__action::before { transform: rotate(45deg); }
+.re-panel .v-expansion-panel-title--active .re-panel__action::after { transform: rotate(-45deg); }
+.re-panel__content { color: var(--re-muted); line-height: 1.55; }
+.re-panel__content .v-expansion-panel-text__wrapper { padding: 0 54px 22px; }
+
+.re-carousel { max-width: 680px; border-radius: 10px; background: #1a1817; }
+.re-carousel__slide { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: center; padding: 28px 52px; }
+.re-carousel__item { padding: 32px 20px; border-radius: 8px; background: #292726; color: var(--re-primary); font-family: Georgia, serif; font-size: 20px; text-align: center; }
