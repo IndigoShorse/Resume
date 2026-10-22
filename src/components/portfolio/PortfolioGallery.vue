@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { onBeforeUnmount, ref } from 'vue'
 import type { PortfolioImage } from '@/data/portfolio'
+import { format, getDict, type Locale } from '@/i18n'
 
-const props = defineProps<{ images: PortfolioImage[]; title: string }>()
+const props = defineProps<{ images: PortfolioImage[]; title: string; locale?: Locale }>()
 const current = ref(0)
 const slideDirection = ref<1 | -1>(1)
 const dialog = ref<HTMLDialogElement | null>(null)
+const dict = getDict(props.locale).gallery
 
 function move(direction: number) {
   slideDirection.value = direction > 0 ? 1 : -1
@@ -48,28 +50,28 @@ onBeforeUnmount(onClose)
 <template>
   <div class="portfolio-gallery" @keydown="onKeydown">
     <div class="portfolio-gallery__stage">
-      <button class="portfolio-gallery__image" type="button" :aria-label="`Увеличить изображение: ${images[current].alt}`" @click="open">
+      <button class="portfolio-gallery__image" type="button" :aria-label="format(dict.zoomAria, { alt: images[current].alt })" @click="open">
         <Transition :name="slideDirection > 0 ? 'portfolio-slide-next' : 'portfolio-slide-prev'">
           <img :key="current" :src="images[current].src" :alt="images[current].alt" loading="lazy" decoding="async" />
         </Transition>
-        <span class="portfolio-gallery__zoom">Увеличить ↗</span>
+        <span class="portfolio-gallery__zoom">{{ dict.zoom }}</span>
       </button>
       <div v-if="images.length > 1" class="portfolio-gallery__arrows">
-        <button type="button" :aria-label="`Предыдущее изображение проекта ${title}`" @click="move(-1)">←</button>
-        <button type="button" :aria-label="`Следующее изображение проекта ${title}`" @click="move(1)">→</button>
+        <button type="button" :aria-label="format(dict.previousProject, { title })" @click="move(-1)">←</button>
+        <button type="button" :aria-label="format(dict.nextProject, { title })" @click="move(1)">→</button>
       </div>
     </div>
-    <div class="portfolio-gallery__caption"><span>{{ images[current].caption ?? 'Иллюстрация интерфейса' }}</span><span>{{ current + 1 }} / {{ images.length }}</span></div>
-    <div v-if="images.length > 1" class="portfolio-gallery__dots" role="group" :aria-label="`Изображения проекта ${title}`">
-      <button v-for="(image, index) in images" :key="index" type="button" :class="{ 'is-active': index === current }" :aria-label="`Показать изображение ${index + 1}: ${image.alt}`" :aria-pressed="index === current" @click="select(index)" />
+    <div class="portfolio-gallery__caption"><span>{{ images[current].caption ?? dict.fallbackCaption }}</span><span>{{ current + 1 }} / {{ images.length }}</span></div>
+    <div v-if="images.length > 1" class="portfolio-gallery__dots" role="group" :aria-label="format(dict.groupAria, { title })">
+      <button v-for="(image, index) in images" :key="index" type="button" :class="{ 'is-active': index === current }" :aria-label="format(dict.showImage, { index: index + 1, alt: image.alt })" :aria-pressed="index === current" @click="select(index)" />
     </div>
 
-    <dialog ref="dialog" class="portfolio-lightbox" :aria-label="`Изображения проекта ${title}`" @close="onClose" @click="onBackdrop">
+    <dialog ref="dialog" class="portfolio-lightbox" :aria-label="format(dict.groupAria, { title })" @close="onClose" @click="onBackdrop">
       <div class="portfolio-lightbox__inner">
         <img class="portfolio-lightbox__image" :src="images[current].src" :alt="images[current].alt" />
         <div v-if="images.length > 1" class="portfolio-lightbox__arrows">
-          <button type="button" aria-label="Предыдущее изображение" @click="move(-1)">←</button>
-          <button type="button" aria-label="Следующее изображение" @click="move(1)">→</button>
+          <button type="button" :aria-label="dict.previous" @click="move(-1)">←</button>
+          <button type="button" :aria-label="dict.next" @click="move(1)">→</button>
         </div>
       </div>
     </dialog>

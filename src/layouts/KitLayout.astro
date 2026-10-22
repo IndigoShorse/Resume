@@ -3,20 +3,22 @@
 import Layout from './Layout.astro'
 import KitSidebar from '@/components/showcase/KitSidebar.astro'
 import type { KitRegistry } from '@/data/registry'
+import type { Locale } from '@/i18n'
 
 interface Props {
   kit: KitRegistry
   currentSlug?: string
   title: string
   description?: string
+  locale?: Locale
 }
 
-const { kit, currentSlug, title, description } = Astro.props
+const { kit, currentSlug, title, description, locale } = Astro.props
 ---
 
-<Layout title={title} description={description}>
+<Layout title={title} description={description} mainClass="site-main--docs" locale={locale}>
   <div class="docs">
-    <KitSidebar kit={kit} currentSlug={currentSlug} />
+    <KitSidebar kit={kit} currentSlug={currentSlug} locale={locale} />
     <div class="docs__content">
       <slot />
     </div>

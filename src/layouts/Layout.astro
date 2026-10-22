@@ -1,111 +1,99 @@
 ---
-import '@/assets/css/dtdp/main.pcss'
-import '@/assets/css/real_estate/main.pcss'
-import '@/assets/css/app/main.css'
-import '@/assets/css/global.css'
-import '@/assets/css/app/resume.css'
-import '@/assets/css/app/showcase.css'
-import '@/assets/css/app/panel.css'
-import '@/assets/css/app/pages.css'
-import { getDict, defaultLocale } from '@/i18n'
-import { withBase, stripBase } from '@/utils/url'
+import "@/assets/css/dtdp/main.pcss";
+import "@/assets/css/real_estate/main.pcss";
+import "@/assets/css/app/main.css";
+import "@/assets/css/global.css";
+import "@/assets/css/app/resume.css";
+import "@/assets/css/app/showcase.css";
+import "@/assets/css/app/panel.css";
+import "@/assets/css/app/pages.css";
+import Header from "@/components/layout/Header.astro";
+import { defaultLocale, getDict, type Locale } from "@/i18n";
+import { withBase } from "@/utils/url";
 
 interface Props {
-  title: string
-  description?: string
+  title: string;
+  description?: string;
+  mainClass?: string;
+  locale?: Locale;
 }
-
-const dict = getDict()
-const { title, description = dict.site.description } = Astro.props
-const pathname = stripBase(Astro.url.pathname)
+const { title, mainClass, locale = defaultLocale } = Astro.props;
+const description = Astro.props.description ?? getDict(locale).site.description;
 ---
 
 <!doctype html>
-<html lang={defaultLocale}>
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <script is:inline>
       try {
-        const savedTheme = localStorage.getItem('site-theme')
-        document.documentElement.dataset.theme = savedTheme === 'light' || savedTheme === 'dark'
-          ? savedTheme
-          : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+        const savedTheme = localStorage.getItem("site-theme");
+        document.documentElement.dataset.theme =
+          savedTheme === "light" || savedTheme === "dark"
+            ? savedTheme
+            : matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light";
       } catch {
-        document.documentElement.dataset.theme = 'light'
+        document.documentElement.dataset.theme = "light";
       }
     </script>
     <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
     <title>{title}</title>
   </head>
   <body>
-    <header class="site-header">
-      <nav class="site-header__nav">
-        <a href={withBase('/')} class="site-header__logo" aria-label="IndigoShorse — на главную">
-          <span class="site-header__logo-part site-header__logo-part--indigo">Indigo</span><span class="site-header__logo-part site-header__logo-part--shorse">Shorse</span>
-        </a>
-        <a
-          href={withBase("/")}
-          class:list={['site-header__link', { 'site-header__link--active': pathname === '/' }]}
-        >
-          {dict.site.nav.resume}
-        </a>
-        <a href={withBase('/portfolio')} class:list={['site-header__link', { 'site-header__link--active': pathname.startsWith('/portfolio') }]}>Портфолио</a>
-        <a href={withBase('/library')} class:list={['site-header__link', { 'site-header__link--active': pathname.startsWith('/library') }]}>Библиотека</a>
-        <button class="site-header__theme" type="button" aria-label="Переключить тему" title="Переключить тему" data-theme-toggle>
-          <svg class="site-header__theme-icon site-header__theme-icon--moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.2 15.4A8.7 8.7 0 0 1 8.6 3.8 8.7 8.7 0 1 0 20.2 15.4Z" /></svg>
-          <svg class="site-header__theme-icon site-header__theme-icon--sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" /></svg>
-        </button>
-      </nav>
-    </header>
-    <main class="site-main">
-      <slot />
-    </main>
+    <Header locale={locale} />
+    <main class:list={["site-main", mainClass]}><slot /></main>
     <script is:inline>
-      const themeButton = document.querySelector('[data-theme-toggle]')
-      const root = document.documentElement
+      const themeButton = document.querySelector("[data-theme-toggle]");
+      const root = document.documentElement;
       if (themeButton) {
-        let switching = false
+        let switching = false;
         const syncLabel = () => {
-          const label = root.dataset.theme === 'dark' ? 'Включить светлую тему' : 'Включить тёмную тему'
-          themeButton.setAttribute('aria-label', label)
-          themeButton.setAttribute('title', label)
-        }
-        syncLabel()
-
-        themeButton.addEventListener('click', () => {
-          if (switching) return
-          const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark'
+          const label =
+            root.dataset.theme === "dark"
+              ? themeButton.dataset.themeLightLabel
+              : themeButton.dataset.themeDarkLabel;
+          themeButton.setAttribute("aria-label", label);
+          themeButton.setAttribute("title", label);
+        };
+        syncLabel();
+        themeButton.addEventListener("click", () => {
+          if (switching) return;
+          const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
           const changeTheme = () => {
-            root.dataset.theme = nextTheme
-            syncLabel()
-            try { localStorage.setItem('site-theme', nextTheme) } catch { /* Storage may be unavailable. */ }
-          }
-
-          if (!document.startViewTransition || matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            changeTheme()
-            return
-          }
-
-          const bounds = themeButton.getBoundingClientRect()
-          const x = bounds.left + bounds.width / 2
-          const y = bounds.top + bounds.height / 2
-          const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y))
-          root.style.setProperty('--theme-reveal-x', `${x}px`)
-          root.style.setProperty('--theme-reveal-y', `${y}px`)
-          root.style.setProperty('--theme-reveal-radius', `${radius}px`)
-          root.classList.add('theme-view-transition')
-          switching = true
-          const transition = document.startViewTransition(changeTheme)
-          transition.finished.finally(() => {
-            switching = false
-            root.classList.remove('theme-view-transition')
-            root.style.removeProperty('--theme-reveal-x')
-            root.style.removeProperty('--theme-reveal-y')
-            root.style.removeProperty('--theme-reveal-radius')
-          })
-        })
+            root.dataset.theme = nextTheme;
+            syncLabel();
+            try {
+              localStorage.setItem("site-theme", nextTheme);
+            } catch {}
+          };
+          if (
+            !document.startViewTransition ||
+            matchMedia("(prefers-reduced-motion: reduce)").matches
+          )
+            return changeTheme();
+          const bounds = themeButton.getBoundingClientRect();
+          const x = bounds.left + bounds.width / 2;
+          const y = bounds.top + bounds.height / 2;
+          root.style.setProperty("--theme-reveal-x", `${x}px`);
+          root.style.setProperty("--theme-reveal-y", `${y}px`);
+          root.style.setProperty(
+            "--theme-reveal-radius",
+            `${Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y))}px`,
+          );
+          root.classList.add("theme-view-transition");
+          switching = true;
+          document.startViewTransition(changeTheme).finished.finally(() => {
+            switching = false;
+            root.classList.remove("theme-view-transition");
+            root.style.removeProperty("--theme-reveal-x");
+            root.style.removeProperty("--theme-reveal-y");
+            root.style.removeProperty("--theme-reveal-radius");
+          });
+        });
       }
     </script>
   </body>

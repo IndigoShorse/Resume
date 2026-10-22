@@ -16,25 +16,28 @@ import RePanelRaw from '@/components/ui/real-estate/RePanel.vue?raw'
 import ReRomanIndexRaw from '@/components/ui/real-estate/ReRomanIndex.vue?raw'
 import ReTextCardRaw from '@/components/ui/real-estate/ReTextCard.vue?raw'
 import type { UiComponentMeta, VueKitRegistry } from './index'
+import { getDict, type Locale } from '@/i18n'
 
+export function getRealEstateKit(locale: Locale): VueKitRegistry {
+const kitDict = getDict(locale).kits.realEstate
 const components: UiComponentMeta[] = [
   {
     slug: 'block', name: 'ReBlock',
-    description: 'Контейнер секции с заголовком, цветовой схемой и содержимым.',
+    description: kitDict.components.block.description,
     props: [
-      { name: 'title', type: 'string', default: 'Наши услуги' },
+      { name: 'title', type: 'string', default: kitDict.components.block.title },
       { name: 'headingTag', type: 'select', default: 'h2', options: ['h2', 'h3'] },
       { name: 'color', type: 'string', default: '#fff' },
       { name: 'background', type: 'string', default: '#1a1817' },
       { name: 'padding', type: 'string', default: '32px 24px' },
     ],
-    slotText: 'Содержимое секции',
+    slotText: kitDict.components.block.content,
   },
   {
     slug: 'button', name: 'ReButton',
-    description: 'Кнопка действия в фирменной тёмной палитре лендинга.',
+    description: kitDict.components.button.description,
     props: [
-      { name: 'label', type: 'string', default: 'Оставить заявку' },
+      { name: 'label', type: 'string', default: kitDict.components.button.label },
       { name: 'color', type: 'select', default: 'primary', options: ['primary', 'secondary', 'plain'] },
       { name: 'as', type: 'select', default: 'button', options: ['button', 'a'] },
       { name: 'href', type: 'string', default: '#' },
@@ -45,28 +48,28 @@ const components: UiComponentMeta[] = [
   },
   {
     slug: 'card', name: 'ReCard',
-    description: 'Карточка услуги или преимущества с римским номером.',
+    description: kitDict.components.card.description,
     props: [
-      { name: 'label', type: 'string', default: 'Честная цена' },
+      { name: 'label', type: 'string', default: kitDict.components.card.label },
       { name: 'index', type: 'number', default: 1 },
       { name: 'width', type: 'string', default: '100%' },
       { name: 'background', type: 'string', default: '#1e1e1e' },
     ],
-    slotText: 'Оцениваем объект по рынку и фиксируем условия в договоре.',
+    slotText: kitDict.components.card.content,
   },
   {
     slug: 'text-card', name: 'ReTextCard',
-    description: 'Текстовая карточка для сценариев и сложных ситуаций.',
+    description: kitDict.components.textCard.description,
     props: [
-      { name: 'label', type: 'string', default: 'Недвижимость под арестом' },
+      { name: 'label', type: 'string', default: kitDict.components.textCard.label },
       { name: 'index', type: 'number', default: 1 },
       { name: 'align', type: 'select', default: 'left', options: ['left', 'center', 'right'] },
     ],
-    slotText: 'Разберём ситуацию и предложим рабочий сценарий.',
+    slotText: kitDict.components.textCard.content,
   },
   {
     slug: 'roman-index', name: 'ReRomanIndex',
-    description: 'Нумерация римскими цифрами для акцентов в карточках и FAQ.',
+    description: kitDict.components.romanIndex.description,
     props: [
       { name: 'value', type: 'number', default: 4 },
       { name: 'size', type: 'select', default: 'large', options: ['default', 'large', 'xl'] },
@@ -74,19 +77,19 @@ const components: UiComponentMeta[] = [
   },
   {
     slug: 'panel', name: 'RePanel',
-    description: 'Раскрывающаяся панель FAQ, построенная на Vuetify Expansion Panels.',
+    description: kitDict.components.panel.description,
     props: [
-      { name: 'title', type: 'string', default: 'За счёт каких средств происходит выкуп?' },
+      { name: 'title', type: 'string', default: kitDict.components.panel.title },
       { name: 'index', type: 'number', default: 1 },
       { name: 'open', type: 'boolean', default: false },
     ],
-    slotText: 'Сделка финансируется за счёт собственного капитала агентства.',
+    slotText: kitDict.components.panel.content,
   },
   {
     slug: 'carousel', name: 'ReCarousel',
-    description: 'Карусель групп карточек на базе Vuetify Carousel.',
+    description: kitDict.components.carousel.description,
     props: [
-      { name: 'items', type: 'json', default: ['Продажа', 'Аренда', 'Флиппинг', 'Срочный выкуп'] },
+      { name: 'items', type: 'json', default: kitDict.components.carousel.items },
       { name: 'perSlide', type: 'number', default: 2 },
       { name: 'color', type: 'string', default: 'transparent' },
     ],
@@ -113,12 +116,15 @@ const sourceMap: Record<string, string> = {
   carousel: ReCarouselRaw,
 }
 
-export const realEstateKit: VueKitRegistry = {
+return {
   key: 'real-estate',
   framework: 'vue',
-  title: 'МДИ (Nuxt 4)',
-  description: 'Компоненты сайта «Московский Дом Недвижимости»: фирменные карточки, кнопки, FAQ и карусель на Vuetify.',
+  title: kitDict.title,
+  description: kitDict.description,
   components,
   componentMap,
   sourceMap,
 }
+}
+
+export const realEstateKit = getRealEstateKit('en')

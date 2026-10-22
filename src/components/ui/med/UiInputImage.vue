@@ -13,7 +13,7 @@ const props = defineProps({
   },
   placeholder: {
     type: String,
-    default: 'Загрузить фото',
+    default: 'Upload photo',
   },
   id: {
     type: String,

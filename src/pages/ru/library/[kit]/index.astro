@@ -1,0 +1,28 @@
+---
+import KitLayout from '@/layouts/KitLayout.astro'
+import { getKits } from '@/data/registry'
+import { getDict, format, type Locale } from '@/i18n'
+import { withLocale } from '@/utils/url'
+
+export function getStaticPaths() {
+  return getKits('ru').map((kit) => ({ params: { kit: kit.key } }))
+}
+
+const locale: Locale = 'ru'
+const kit = getKits(locale).find((item) => item.key === Astro.params.kit)!
+const dict = getDict(locale)
+const pageTitle = format(dict.kitPage.title, { title: kit.title })
+---
+
+<KitLayout kit={kit} title={pageTitle} description={kit.description} locale={locale}>
+  <h1 class="page-title">{pageTitle}</h1>
+  <p class="page-subtitle">{kit.description}</p>
+  <div class="ui-grid">
+    {kit.components.map((meta) => (
+      <a href={withLocale(`/library/${kit.key}/${meta.slug}`, locale)} class="ui-grid__card">
+        <span class="ui-grid__name">{meta.name}</span>
+        <p class="ui-grid__description">{meta.description}</p>
+      </a>
+    ))}
+  </div>
+</KitLayout>

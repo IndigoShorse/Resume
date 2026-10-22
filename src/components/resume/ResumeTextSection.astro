@@ -1,8 +1,9 @@
 ---
 import type { ResumeSectionData } from '@/data/resume'
+import { format, getDict, type Locale } from '@/i18n'
 
-interface Props { section: ResumeSectionData }
-const { section } = Astro.props
+interface Props { section: ResumeSectionData; locale?: Locale }
+const { section, locale } = Astro.props
 const isTypography = ['profile', 'skills', 'education', 'languages'].includes(section.id)
 ---
 
@@ -25,7 +26,7 @@ const isTypography = ['profile', 'skills', 'education', 'languages'].includes(se
         {block.items?.length && <ul>{block.items.map((item) => <li>{item}</li>)}</ul>}
         {block.tags?.length && <div class:list={['resume-tags', { 'resume-tags--skills': section.id === 'skills' }]}>{block.tags.map((tag) => <span>{tag}</span>)}</div>}
         {block.level && (
-          <div class="resume-block__level" role="img" aria-label={`Уровень владения: ${block.level} из 5`}>
+          <div class="resume-block__level" role="img" aria-label={format(getDict(locale).accessibility.skillLevel, { level: block.level })}>
             {Array.from({ length: 5 }, (_, index) => (
               <span
                 class:list={['resume-block__dot', { 'resume-block__dot--active': index < (block.level ?? 0) }]}
