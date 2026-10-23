@@ -549,6 +549,10 @@
   font-size: 18px;
   cursor: pointer;
 }
+.portfolio-gallery__arrows button:hover {
+  background: color-mix(in srgb, var(--surface-color) 90%, var(--gallery-arrow-color));
+}
+
 
 .portfolio-gallery__caption {
   display: flex;
@@ -624,16 +628,15 @@
 .portfolio-lightbox__arrows button {
   width: 44px;
   height: 44px;
-  border: 1px solid var(--lightbox-border-color);
   border-radius: 50%;
-  background: var(--lightbox-control-color);
+  background: transparent;
   color: var(--lightbox-text-color);
   font-size: 22px;
   cursor: pointer;
 }
 
 .portfolio-lightbox__arrows button:hover {
-  background: var(--lightbox-control-hover-color);
+  background: color-mix(in srgb, var(--lightbox-text-color) 10%, transparent);
 }
 
 .portfolio-lightbox__arrows button:focus-visible {
