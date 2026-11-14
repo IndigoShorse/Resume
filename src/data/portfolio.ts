@@ -63,6 +63,20 @@ export function getPortfolio(locale: Locale): PortfolioProject[] {
     images: [illustration(projects.shop.title, 'overview', '#8d78b8'), illustration(projects.shop.title, 'detail', '#8d78b8')],
   },
   {
+    title: projects.russianLove.title, category: projects.russianLove.category, visibleInPortfolio: true,
+    summary: projects.russianLove.summary,
+    details: projects.russianLove.details,
+    stack: ['React 18', 'TypeScript', 'Vite', 'React Router', 'Tailwind CSS', 'Motion', 'Radix UI', 'REST API', 'WebSocket'],
+    links: [{ label: projects.russianLove.repository, href: 'https://github.com/IndigoShorse/forruss' }],
+    images: [
+      { src: withBase('/portfolio/forruss/1.png'), ...projects.russianLove.images[0] },
+      { src: withBase('/portfolio/forruss/2.png'), ...projects.russianLove.images[1] },
+      { src: withBase('/portfolio/forruss/3.png'), ...projects.russianLove.images[2] },
+      { src: withBase('/portfolio/forruss/4.png'), ...projects.russianLove.images[3] },
+      { src: withBase('/portfolio/forruss/5.png'), ...projects.russianLove.images[4] },
+    ],
+  },
+  {
     title: projects.dtdp.title, category: projects.dtdp.category, visibleInPortfolio: true,
     summary: projects.dtdp.summary,
     details: projects.dtdp.details,

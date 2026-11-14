@@ -1,0 +1,33 @@
+@import "overlayscrollbars/overlayscrollbars.css";
+
+/* Russian Love UI kit: its product palette and scrolling primitives are isolated
+   to the library preview, so they do not alter the resume site's theme. */
+.forruss-showcase {
+  --forruss-red: #dc2626;
+  --forruss-amber: #f59e0b;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+.forruss-showcase .os-theme-brand {
+  --os-size: 3px;
+  --os-handle-border-radius: 999px;
+  --os-padding-perpendicular: 0px;
+  --os-padding-axis: 2px;
+  --os-track-bg: transparent;
+  --os-handle-bg: linear-gradient(135deg, var(--forruss-red), var(--forruss-amber));
+  --os-handle-bg-hover: linear-gradient(135deg, #b91c1c, #d97706);
+  --os-handle-min-size: 36px;
+}
+
+.forruss-showcase .os-theme-brand-blue {
+  --os-size: 3px;
+  --os-handle-border-radius: 999px;
+  --os-padding-perpendicular: 0px;
+  --os-padding-axis: 2px;
+  --os-track-bg: transparent;
+  --os-handle-bg: linear-gradient(135deg, #0ea5e9, #6366f1);
+  --os-handle-bg-hover: linear-gradient(135deg, #0284c7, #4f46e5);
+  --os-handle-min-size: 36px;
+}
+
+.forruss-showcase :is(button, input, textarea) { font: inherit; }
