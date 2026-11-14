@@ -30,7 +30,7 @@
   },
   "portfolioPage": {
     "title": "Portfolio — Daniil Surkov",
-    "description": "DTDP — medical AI service: interface development, technologies, and application screens.",
+    "description": "Frontend developer portfolio: Russian Love, DTDP, and other projects — technologies, challenges, and real application screens.",
     "eyebrow": "Works and Projects",
     "heading": "Portfolio",
     "intro": "Tasks, technologies, and real project screens.",
@@ -81,6 +81,26 @@
         "category": "E-commerce",
         "summary": "Catalog and interface forms of the online store.",
         "details": ["Development of catalog pages and interface forms using Nuxt 3 and Pinia.", "Integration of the client application with Django REST API."]
+      },
+      "russianLove": {
+        "title": "Russian Love — Dating Platform",
+        "category": "Web Application",
+        "summary": "Rebuilt the web frontend of a dating platform from scratch: responsive interfaces, complex product flows, and integration with an existing API.",
+        "details": [
+          "Developed a TypeScript React application with a public landing page, onboarding, protected area, and administrative screens. Organized routing, shared UI primitives, and responsive interfaces for the service's key flows.",
+          "Implemented a dating feed with a card stack and Motion-powered swipe gestures: horizontal dragging is coordinated with vertical profile scrolling, while button actions use the same logic as gestures.",
+          "Created a typed modal manager with stack navigation: related dialogs layer correctly, preserve the previous step's state, and allow returning to it. The mechanism supports compatibility and detailed-analysis purchase flows, among others.",
+          "Developed an animated match flow and compatibility-calculation interfaces, with loading, ready, and error states for results and detailed analyses.",
+          "Integrated REST API and WebSocket for authentication, chats, notifications, and social events; implemented session recovery, token refresh, reconnection, and fallback synchronization."
+        ],
+        "repository": "Repository on GitHub",
+        "images": [
+          { "alt": "Russian Love — landing page hero section", "caption": "Landing page: hero section" },
+          { "alt": "Russian Love — landing page product section", "caption": "Landing page: product section" },
+          { "alt": "Russian Love — dating feed with swipe interaction", "caption": "Swipe mechanics" },
+          { "alt": "Russian Love — modal dialog stack", "caption": "Modal dialog stack" },
+          { "alt": "Russian Love — match and compatibility calculation", "caption": "Match and AI compatibility" }
+        ]
       },
       "dtdp": {
         "title": "DTDP — AI Service",
