@@ -8,6 +8,7 @@ export interface PortfolioImage {
 }
 
 export interface PortfolioProject {
+  id?: string
   visibleInPortfolio?: boolean
   title: string
   category: string
@@ -48,6 +49,21 @@ export function getPortfolio(locale: Locale): PortfolioProject[] {
   }
 
   return [
+  {
+    id: 'green-e-track',
+    title: projects.greenETrack.title, category: projects.greenETrack.category, visibleInPortfolio: true,
+    summary: projects.greenETrack.summary,
+    details: projects.greenETrack.details,
+    stack: ['React', 'TypeScript', 'Ant Design', 'Redux Toolkit', 'Redux Saga', 'Axios', 'Less / CSS Modules', 'Python', 'FastAPI', 'fpdf2'],
+    links: [{ label: projects.greenETrack.openSite, href: 'https://rg.green-e-track.ru/' }],
+    images: [
+      { src: withBase('/portfolio/green_e_track/1.png'), ...projects.greenETrack.images[0] },
+      { src: withBase('/portfolio/green_e_track/2.png'), ...projects.greenETrack.images[1] },
+      { src: withBase('/portfolio/green_e_track/3.png'), ...projects.greenETrack.images[2] },
+      { src: withBase('/portfolio/green_e_track/4.png'), ...projects.greenETrack.images[3] },
+      { src: withBase('/portfolio/green_e_track/5.png'), ...projects.greenETrack.images[4] },
+    ],
+  },
   {
     title: projects.reports.title, category: projects.reports.category,
     summary: projects.reports.summary,

@@ -39,6 +39,7 @@ const projects = sections.find((section) => section.id === 'projects')
                 <span class="experience-card__meta">{block.meta}</span>
               </div>
               {block.items?.length && <ul>{block.items.map((item) => <li>{item}</li>)}</ul>}
+              {block.links?.length && <div class="resume-entry__links">{block.links.map((link) => <a href={link.internal ? withLocale(link.href, locale) : link.href}>{link.label} ↗</a>)}</div>}
             </article>
           ))}
         </div>
