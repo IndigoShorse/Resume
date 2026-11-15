@@ -19,7 +19,7 @@ const dict = getDict(locale).portfolioPage
     </header>
     <div class="portfolio-list">
       {visibleProjects.map((project, index) => (
-        <article class="portfolio-item" data-reveal>
+        <article id={project.id} class="portfolio-item" data-reveal>
           <div class="portfolio-item__body">
             <span class="portfolio-item__index">{String(index + 1).padStart(2, '0')} / {project.category}</span>
             <h2>{project.title}</h2>

@@ -6,6 +6,7 @@ import { getDict, type Locale } from '@/i18n'
 export interface ResumeLink {
   label: string
   href: string
+  internal?: boolean
 }
 
 export interface ResumeBlock {
