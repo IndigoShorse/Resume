@@ -460,6 +460,9 @@
               "Developed the frontend of the DTDP medical AI service using Nuxt 4, Vue 3, TypeScript, and Pinia: authorization screens, dashboard, protected sections, and navigation.",
               "Designed complex step-by-step forms for patient data, ultrasound, and difficult airway prediction: with validation at each step and preservation of entered values during transitions.",
               "Implemented uploading and previewing of medical images, model verification screens, and REST API integration via generated Orval clients."
+            ],
+            "links": [
+              { "label": "DTDP in my portfolio", "href": "/portfolio/#dtdp", "internal": true }
             ]
           },
           {

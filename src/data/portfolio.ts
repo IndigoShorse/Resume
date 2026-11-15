@@ -93,6 +93,7 @@ export function getPortfolio(locale: Locale): PortfolioProject[] {
     ],
   },
   {
+    id: 'dtdp',
     title: projects.dtdp.title, category: projects.dtdp.category, visibleInPortfolio: true,
     summary: projects.dtdp.summary,
     details: projects.dtdp.details,
